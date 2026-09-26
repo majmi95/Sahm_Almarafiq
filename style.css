@@ -406,3 +406,5 @@ html[dir="ltr"] .cta-box::before{background-position:right -20px bottom -30px}
   .solves{grid-template-columns:1fr}
   .p-hero{padding:28px 0 48px}
 }
+/* remove decorative arrows */
+.persona .go,.btn .arrow{display:none}
