@@ -544,3 +544,21 @@ html.a11y-dark .lead-err{color:#F29B84}
 html.a11y-dark .plan.selected,html.a11y-dark .plan:focus-within{background:linear-gradient(180deg,var(--surface) 0%,var(--tint) 100%)}
 @media(hover:hover){html.a11y-dark .plan:hover{background:linear-gradient(180deg,var(--surface) 0%,var(--tint) 100%)}}
 html.a11y-dark .btn-copper{color:#15110D}
+
+/* ===== v13: plan request dialog ===== */
+.lead-dlg{border:0;padding:0;margin:auto;width:calc(100% - 32px);max-width:560px;max-height:calc(100vh - 32px);border-radius:var(--r-lg);background:var(--surface);color:var(--text);box-shadow:var(--sh);overflow:auto}
+.lead-dlg::backdrop{background:rgba(21,17,13,.55);backdrop-filter:blur(2px)}
+.dlg-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 24px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--surface);z-index:1}
+.dlg-head h2{font-size:1.2rem}
+.dlg-body{padding:18px 24px 24px}
+.dlg-form{border-top:0;padding-top:0}
+.dlg-actions{display:flex;gap:10px;flex-wrap:wrap}
+.dlg-actions .btn{flex:1}
+.dlg-ok{border-top:0;padding-top:4px}
+.dlg-ok .btn{width:100%;margin-top:8px}
+@media(max-width:640px){
+  .lead-dlg{margin:auto 0 0;width:100%;max-width:none;max-height:92vh;border-radius:var(--r-lg) var(--r-lg) 0 0}
+  .dlg-head{padding:16px 18px}.dlg-body{padding:14px 18px calc(20px + env(safe-area-inset-bottom,0px))}
+  .dlg-form .fgrid{grid-template-columns:1fr}
+  .dlg-actions{flex-direction:column}.dlg-actions .btn{width:100%;flex:none}
+}
