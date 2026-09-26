@@ -320,6 +320,37 @@
     HOOKS.forEach(function (f) { f(en); });
   }
 
+  /* ---------- Google Forms connection ---------- */
+  var GF = {
+    action: 'https://docs.google.com/forms/d/e/1FAIpQLSelebci6NyLK1aqt2hoZHARp2XyeTo6Q-Y6yF1sjhHowdHgvw/formResponse',
+    name: 'entry.2070584688', phone: 'entry.1332491611', city: 'entry.850383722',
+    type: 'entry.1865738174', service: 'entry.1878773108', details: ''   /* add the 6th entry id here if needed */
+  };
+  function makeRef() {
+    var d = new Date(), p = function (n) { return (n < 10 ? '0' : '') + n; }, r;
+    try { r = crypto.getRandomValues(new Uint32Array(1))[0] % 9000 + 1000; } catch (e) { r = Math.floor(Math.random() * 9000) + 1000; }
+    return 'SA-' + String(d.getFullYear()).slice(2) + p(d.getMonth() + 1) + p(d.getDate()) + '-' + r;
+  }
+  /* o: { ref, name, phone, city, type, service, details } — the reference number is saved with the service so it shows in the sheet */
+  function sendLead(o) {
+    var data = new URLSearchParams(), service = '[' + o.ref + '] ' + o.service;
+    data.append(GF.name, o.name); data.append(GF.phone, o.phone); data.append(GF.city, o.city); data.append(GF.type, o.type);
+    if (GF.details) { data.append(GF.service, service); if (o.details) data.append(GF.details, o.details); }
+    else data.append(GF.service, o.details ? service + ' | ' + o.details : service);
+    return fetch(GF.action, { method: 'POST', mode: 'no-cors', body: data });
+  }
+  function validPhone(s) { return s.replace(/[^0-9٠-٩]/g, '').length >= 9; }
+  function refBox(ref, en) {
+    return '<div class="ref-box"><span>' + (en ? 'Your reference number' : 'رقم طلبك المرجعي') + '</span><b class="ltr">' + ref + '</b>' +
+      '<button type="button" class="ref-copy" data-copy="' + ref + '">' + (en ? 'Copy' : 'نسخ') + '</button></div>' +
+      '<p class="ref-note">' + (en ? 'Keep this number to follow up on your request.' : 'احتفظ بالرقم لمتابعة طلبك.') + '</p>';
+  }
+  document.addEventListener('click', function (e) {
+    var c = e.target.closest && e.target.closest('[data-copy]'); if (!c) return;
+    var en = document.documentElement.lang === 'en', done = function () { c.textContent = en ? 'Copied ✓' : 'تم النسخ ✓'; };
+    if (navigator.clipboard) navigator.clipboard.writeText(c.getAttribute('data-copy')).then(done, function () {}); else done();
+  });
+
   /* ---------- "What does your facility need?" finder ---------- */
   var finder = document.getElementById('finderOut');
   if (finder) {
@@ -342,23 +373,65 @@
       c.setAttribute('aria-pressed', 'false');
       c.addEventListener('click', function () {
         var g = c.hasAttribute('data-type') ? 'type' : 'need';
-        pick[g] = c.getAttribute('data-' + g);
+        pick[g] = c.getAttribute('data-' + g); if (F.sent) { F.sent = null; F.open = false; }
         document.querySelectorAll('.finder .chip[data-' + g + ']').forEach(function (o) { o.setAttribute('aria-pressed', o === c ? 'true' : 'false'); });
         renderFinder(document.documentElement.lang === 'en', true);
       });
     });
+    var CITIES = [['الرياض', 'Riyadh'], ['الدمام', 'Dammam'], ['الخبر', 'Khobar'], ['الظهران', 'Dhahran'], ['أخرى', 'Other']];
+    var F = { open: false, sent: null, busy: false, err: '', v: { name: '', phone: '', city: '0', msg: '' } };
     var renderFinder = function (en, scroll) {
       if (!pick.type || !pick.need) return;
       var i = en ? 1 : 0, t = TYPES[pick.type], n = NEEDS[pick.need];
       var list = n[3].slice(); var x = EXTRA[pick.type] && EXTRA[pick.type][pick.need]; if (x) list.push(x);
       var msg = en ? 'Hello,\nSite type: ' + t[1] + '\nNeed: ' + n[1] + '\nI would like a quote for my facility.' : 'مرحبًا،\nنوع الموقع: ' + t[0] + '\nالاحتياج: ' + n[0] + '\nأرغب بعرض لمرفقي.';
-      finder.innerHTML = '<div class="finder-res"><h3>' + (en ? 'What we offer: ' : 'اللي نقدّمه لك: ') + esc(n[i]) + ' · ' + esc(t[i]) + '</h3>' +
-        '<ul class="ticks">' + list.map(function (s) { return '<li>' + esc(s[i]) + '</li>'; }).join('') + '</ul>' +
-        '<div class="cta-row"><a class="btn btn-primary" href="contact.html?for=' + pick.type + '&svc=' + pick.need + '#quoteForm">' + (en ? 'Send your request' : 'أرسل طلبك') + '</a>' +
-        '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + wa(msg) + '">' + WAI + (en ? 'Send on WhatsApp' : 'أرسل عبر واتساب') + '</a>' +
-        ('<a class="btn btn-line" href="' + n[2] + '">' + (en ? 'Details' : 'التفاصيل') + '</a>') + '</div></div>';
+      var html = '<div class="finder-res"><h3>' + (en ? 'What we offer: ' : 'اللي نقدّمه لك: ') + esc(n[i]) + ' · ' + esc(t[i]) + '</h3>' +
+        '<ul class="ticks">' + list.map(function (s) { return '<li>' + esc(s[i]) + '</li>'; }).join('') + '</ul>';
+      if (F.sent) {
+        var wmsg = en ? 'Hello,\nI sent a request on your website.\nReference number: ' + F.sent : 'مرحبًا،\nأرسلت طلبًا عبر موقعكم.\nرقم الطلب: ' + F.sent;
+        html += '<div class="lead-ok" role="status" tabindex="-1"><div class="ok-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>' +
+          '<h3>' + (en ? 'Your request has been sent' : 'تم إرسال طلبك') + '</h3><p>' + (en ? 'One of our specialists will contact you soon.' : 'سيتواصل معك أحد مختصينا في أقرب وقت.') + '</p>' +
+          refBox(F.sent, en) + '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + wa(wmsg) + '">' + WAI + (en ? 'Follow up on WhatsApp' : 'تابع طلبك عبر واتساب') + '</a></div>';
+      } else if (F.open) {
+        var opt = CITIES.map(function (c, k) { return '<option value="' + k + '"' + (String(k) === F.v.city ? ' selected' : '') + '>' + c[i] + '</option>'; }).join('');
+        html += '<form class="lead-form" novalidate><p class="lead-sum">' + (en ? 'Just a few details to send your request:' : 'باقي بعض البيانات عشان نرسل طلبك:') + '</p><div class="fgrid">' +
+          '<div class="field"><label for="lfName">' + (en ? 'Full name' : 'الاسم الكامل') + '</label><input id="lfName" name="name" autocomplete="name" required value="' + esc(F.v.name) + '"></div>' +
+          '<div class="field"><label for="lfPhone">' + (en ? 'Mobile number' : 'رقم الجوال') + '</label><input id="lfPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xxxxxxxx" required value="' + esc(F.v.phone) + '"></div>' +
+          '<div class="field full"><label for="lfCity">' + (en ? 'City' : 'المدينة') + '</label><select id="lfCity" name="city">' + opt + '</select></div>' +
+          '<div class="field full"><label for="lfMsg">' + (en ? 'Details (optional)' : 'التفاصيل (اختياري)') + '</label><textarea id="lfMsg" name="msg">' + esc(F.v.msg) + '</textarea></div></div>' +
+          '<p class="lead-err" role="alert">' + esc(F.err) + '</p>' +
+          '<div class="cta-row"><button type="submit" class="btn btn-primary"' + (F.busy ? ' disabled' : '') + '>' + (F.busy ? (en ? 'Sending…' : 'جارٍ الإرسال…') : (en ? 'Send request' : 'إرسال الطلب')) + '</button>' +
+          '<button type="button" class="btn btn-line" data-lead="back">' + (en ? 'Back' : 'رجوع') + '</button></div></form>';
+      } else {
+        html += '<div class="cta-row"><button type="button" class="btn btn-primary" data-lead="open">' + (en ? 'Send your request' : 'أرسل طلبك') + '</button>' +
+          '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + wa(msg) + '">' + WAI + (en ? 'Send on WhatsApp' : 'أرسل عبر واتساب') + '</a>' +
+          '<a class="btn btn-line" href="' + n[2] + '">' + (en ? 'Details' : 'التفاصيل') + '</a></div>';
+      }
+      finder.innerHTML = html + '</div>';
       if (scroll && finder.getBoundingClientRect().top > window.innerHeight - 120) finder.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     };
+    finder.addEventListener('input', function (e) {
+      if (e.target.name && e.target.name in F.v) F.v[e.target.name] = e.target.value;
+      if (F.err) { F.err = ''; var er = finder.querySelector('.lead-err'); if (er) er.textContent = ''; }
+    });
+    finder.addEventListener('change', function (e) { if (e.target.name && e.target.name in F.v) F.v[e.target.name] = e.target.value; });
+    finder.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-lead]'); if (!b) return;
+      var en = document.documentElement.lang === 'en';
+      F.open = b.getAttribute('data-lead') === 'open'; F.err = '';
+      renderFinder(en, false);
+      var f = finder.querySelector(F.open ? '#lfName' : '[data-lead="open"]'); if (f) f.focus();
+    });
+    finder.addEventListener('submit', function (e) {
+      e.preventDefault(); if (F.busy) return;
+      var en = document.documentElement.lang === 'en';
+      F.err = !F.v.name.trim() ? (en ? 'Please enter your name.' : 'فضلًا اكتب اسمك.') : !validPhone(F.v.phone) ? (en ? 'Please enter a valid mobile number.' : 'فضلًا أدخل رقم جوال صحيح.') : '';
+      if (F.err) { renderFinder(en, false); var bad = finder.querySelector(F.v.name.trim() ? '#lfPhone' : '#lfName'); if (bad) bad.focus(); return; }
+      var ref = makeRef(); F.busy = true; renderFinder(en, false);
+      sendLead({ ref: ref, name: F.v.name.trim(), phone: F.v.phone.trim(), city: CITIES[+F.v.city][0], type: TYPES[pick.type][0], service: NEEDS[pick.need][0] + ' (الدليل السريع)', details: F.v.msg.trim() })
+        .then(function () { F.busy = false; F.sent = ref; F.open = false; renderFinder(en, false); var ok = finder.querySelector('.lead-ok'); if (ok) ok.focus(); })
+        .catch(function () { F.busy = false; F.err = en ? 'Sending failed. Please try again or contact us on WhatsApp.' : 'تعذّر الإرسال. حاول مرة أخرى أو تواصل معنا عبر واتساب.'; renderFinder(en, false); });
+    });
     HOOKS.push(function (en) { renderFinder(en, false); });
   }
 
@@ -387,35 +460,26 @@
   preset('fFor', QS.get('for'));
   preset('fSvc', { fix: 'tech' }[QS.get('svc')] || QS.get('svc'));
   var form = document.getElementById('quoteForm');
-  /* ---------- Google Forms connection ---------- */
-  var GF = {
-    action: 'https://docs.google.com/forms/d/e/1FAIpQLSelebci6NyLK1aqt2hoZHARp2XyeTo6Q-Y6yF1sjhHowdHgvw/formResponse',
-    name: 'entry.2070584688', phone: 'entry.1332491611', city: 'entry.850383722',
-    type: 'entry.1865738174', service: 'entry.1878773108', details: ''   /* add the 6th entry id here if needed */
-  };
   if (form) form.addEventListener('submit', function (ev) {
     ev.preventDefault();
     var en = document.documentElement.lang === 'en';
     function v(id) { var e = document.getElementById(id); return e.tagName === 'SELECT' ? e.options[e.selectedIndex].text : e.value.trim(); }
-    var phone = v('fPhone').replace(/[^0-9٠-٩+]/g, '');
-    if (phone.length < 9) { alert(en ? 'Please enter a valid mobile number.' : 'فضلًا أدخل رقم جوال صحيح.'); document.getElementById('fPhone').focus(); return; }
-    var service = v('fSvc') + (pickedPlan ? ' — ' + pickedPlan[en ? 1 : 0] : '');
-    var details = v('fMsg');
-    var data = new URLSearchParams();
-    data.append(GF.name, v('fName'));
-    data.append(GF.phone, v('fPhone'));
-    data.append(GF.city, v('fCity'));
-    data.append(GF.type, v('fFor'));
-    if (GF.details) { data.append(GF.service, service); if (details) data.append(GF.details, details); }
-    else data.append(GF.service, details ? service + ' | ' + details : service);
+    if (!validPhone(v('fPhone'))) { alert(en ? 'Please enter a valid mobile number.' : 'فضلًا أدخل رقم جوال صحيح.'); document.getElementById('fPhone').focus(); return; }
+    var ref = makeRef();
     var btn = form.querySelector('button[type=submit]');
     var old = btn.innerHTML; btn.disabled = true;
     btn.textContent = en ? 'Sending…' : 'جارٍ الإرسال…';
-    fetch(GF.action, { method: 'POST', mode: 'no-cors', body: data })
+    sendLead({ ref: ref, name: v('fName'), phone: v('fPhone'), city: v('fCity'), type: v('fFor'), service: v('fSvc') + (pickedPlan ? ' — ' + pickedPlan[0] : ''), details: v('fMsg') })
       .then(function () {
         form.classList.add('sent');
         var ok = document.getElementById('formOk');
-        if (ok) { ok.hidden = false; ok.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        if (ok) {
+          var box = document.createElement('div'); box.className = 'ref-wrap'; box.innerHTML = refBox(ref, en);
+          var wmsg = en ? 'Hello,\nI sent a request on your website.\nReference number: ' + ref : 'مرحبًا،\nأرسلت طلبًا عبر موقعكم.\nرقم الطلب: ' + ref;
+          ok.insertBefore(box, ok.querySelector('.btn'));
+          ok.querySelectorAll('[data-wa]').forEach(function (w) { w.removeAttribute('data-wa'); w.href = wa(wmsg); w.target = '_blank'; w.rel = 'noopener'; });
+          ok.hidden = false; ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       })
       .catch(function () {
         btn.disabled = false; btn.innerHTML = old;
