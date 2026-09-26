@@ -8,7 +8,7 @@
   var LOGO = '<svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"><path d="M6 41V24l8-6 8 6v17"/><path d="M20 41V13l10-7 10 7v28"/><path d="M3 41h42"/></svg>';
   var WAI = '<svg width="28" height="28" viewBox="0 0 32 32"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.48.73 4.79 1.98 6.73L4 29l7.46-1.94a11.93 11.93 0 0 0 4.56.9c6.62 0 12.02-5.4 12.02-12.02C28.04 8.4 22.65 3 16.02 3zm7.03 17.15c-.3.83-1.72 1.58-2.37 1.68-.61.09-1.38.13-2.23-.14-.51-.16-1.17-.38-2.02-.75-3.55-1.53-5.87-5.1-6.05-5.34-.18-.24-1.44-1.92-1.44-3.66s.91-2.6 1.24-2.95c.32-.35.7-.44.94-.44l.68.01c.22.01.51-.08.8.61.3.7 1.02 2.44 1.1 2.61.09.18.15.39.03.63-.12.24-.18.39-.35.6-.18.21-.37.47-.53.63-.18.18-.36.37-.16.72.21.35.93 1.53 1.99 2.48 1.37 1.22 2.52 1.6 2.87 1.78.35.18.56.15.77-.09.21-.24.88-1.03 1.12-1.38.24-.35.47-.29.79-.18.32.12 2.05.97 2.4 1.14.35.18.59.26.67.41.09.15.09.85-.21 1.68z"/></svg>';
   var page = document.body.getAttribute('data-page');
-  var NAV = [['home','index.html','الرئيسية'],['solutions','#','الحلول'],['services','services.html','خدماتنا'],['products','products.html','المنتجات'],['packages','packages.html','الباقات'],['about','about.html','من نحن'],['contact','contact.html','تواصل معنا']];
+  var NAV = [['home','index.html','الرئيسية'],['solutions','#','الحلول'],['services','services.html','خدماتنا'],['packages','packages.html','الباقات'],['about','about.html','من نحن'],['contact','contact.html','تواصل معنا']];
   var SOL = [['owners.html','sol.own','ملاك العمائر والمستثمرون'],['associations.html','sol.asc','جمعيات الملاك والمجمعات'],['business.html','sol.biz','الشركات والمنشآت'],['homes.html','sol.hom','الفلل والمنازل']];
   var here = location.pathname.split('/').pop() || 'index.html';
   function links(mobile) {
@@ -42,7 +42,7 @@
   footer.innerHTML = '<div class="wrap"><div class="foot"><div>' + BRAND +
     '<p data-i18n="foot.about">شريكك في تشغيل وإدارة المرافق<br>في الرياض والمنطقة الشرقية.</p></div>' +
     '<div class="foot-links">' +
-      '<div><h4 data-i18n="foot.pages">الصفحات</h4><ul><li><a href="services.html" data-i18n="nav.services">خدماتنا</a></li><li><a href="products.html" data-i18n="nav.products">المنتجات</a></li><li><a href="packages.html" data-i18n="nav.packages">الباقات</a></li><li><a href="owners-association.html" data-i18n="nav.guide">دليل اتحاد الملاك</a></li><li><a href="about.html" data-i18n="nav.about">من نحن</a></li><li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li></ul></div>' +
+      '<div><h4 data-i18n="foot.pages">الصفحات</h4><ul><li><a href="services.html" data-i18n="nav.services">خدماتنا</a></li><li><a href="packages.html" data-i18n="nav.packages">الباقات</a></li><li><a href="owners-association.html" data-i18n="nav.guide">دليل اتحاد الملاك</a></li><li><a href="about.html" data-i18n="nav.about">من نحن</a></li><li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li></ul></div>' +
       '<div><h4 data-i18n="nav.solutions">الحلول</h4><ul>' + SOL.map(function (s) { return '<li><a href="' + s[0] + '" data-i18n="' + s[1] + '">' + s[2] + '</a></li>'; }).join('') + '</ul></div>' +
       '<div><h4 data-i18n="foot.reach">تواصل</h4><ul><li><a class="ltr" href="tel:' + PHONE + '">' + PHONE + '</a></li><li><a class="ltr" href="mailto:' + EMAIL + '">' + EMAIL + '</a></li></ul></div>' +
     '</div></div><div class="foot-bottom"><span>© ' + new Date().getFullYear() + ' <span data-i18n="foot.rights">سهم المرافق. جميع الحقوق محفوظة.</span></span>' +
@@ -97,27 +97,31 @@
     'fn.e':'Quick guide','fn.t':'What does your facility need?','fn.l':'Pick your site type and need, and we’ll show you what we can do.',
     'fn.s1':'Site type','fn.s2':'What do you need?','fn.hint':'Pick a site type and a need.',
     'fn.own':'Building / investment property','fn.asc':'Compound / owners’ association','fn.biz':'Company / facility','fn.hom':'Villa / home',
-    'fn.full':'Full operations','fn.fix':'Breakdowns & repairs','fn.clean':'Cleaning','fn.prod':'Products','fn.prop':'Property management',
+    'fn.full':'Full operations','fn.fix':'Breakdowns & repairs','fn.clean':'Cleaning','fn.prop':'Property management',
     'sv2.t':'What we offer',
     'sv2.tech.t':'Technical maintenance','sv2.tech.d':'Electrical, HVAC, plumbing, elevators and alarm systems.',
     'sv2.clean.t':'Cleaning','sv2.clean.d':'Residential buildings, offices, hospitals and façades.',
     'sv2.sec.t':'Security & CCTV','sv2.sec.d':'CCTV installation and maintenance.',
     'sv2.prop.t':'Property management','sv2.prop.d':'Units, tenants, contracts and collections.',
     'sv2.asc.t':'Owners’ associations','sv2.asc.d':'Activating the association and running shared facilities.',
-    'sv2.prod.t':'Products','sv2.prod.d':'Facility products with installation and maintenance.',
+    'sv2.mkt.t':'Real estate marketing','sv2.mkt.d':'Marketing your units and reducing vacancy.',
     'c.t3':'We visit your site and give you a clear quote','c.d3':'Call us or send your request, and we’ll arrange the visit.',
-    'pd.e':'Products','pd.t':'Products for your facility, with installation & maintenance','pd.l':'We supply selected facility products, and state for each one who it suits and whether it includes installation or maintenance.','pd.cta':'Browse products',
-    'pp2.t':'Products for your facility','pp2.l':'For each product: who it suits, key specifications, and whether it includes installation or maintenance. Ask about any product and we’ll reply on WhatsApp.',
-    'pp2.et':'Product list in preparation','pp2.ed':'We are preparing the list of approved products with photos and specifications. Looking for a specific product for your facility? Tell us what you need and we’ll get back to you.','pp2.ask':'Ask us about a product',
     'pr.e':'How we work','pr.t':'From the first visit to a clear report',
     'pr1.t':'Site visit & needs','pr1.d':'We visit the site, listen to you, and define the real need and the condition of the systems.',
     'pr2.t':'Plan & scope of work','pr2.d':'We hand you a plan with the scope, priorities and timeline before we start.',
     'pr3.t':'Operation & execution','pr3.d':'Our team carries out the work and follows every request until it is closed.',
     'pr4.t':'Report & review','pr4.d':'We share what was done and the state of your site, then review and adjust the plan with you.',
-    'o.full':'Full operations & maintenance','o.prod':'Products',
+    'o.full':'Full operations & maintenance',
     'ab.st.e':'Who we serve','ab.st.t':'Types of sites we serve',
     'st.a':'Residential buildings','st.b':'Corporate & commercial premises','st.c':'Hospitals & clinics','st.d':'Multi-owner compounds & associations','st.e':'Villas & homes',
-    'nav.home':'Home','nav.services':'Services','nav.products':'Products','nav.packages':'Plans','nav.guide':'Owners\u2019 association guide','nav.about':'About','nav.contact':'Contact',
+    'sv3.t':'What we offer','sv3.l':'Everything your facility needs, with one team, in Riyadh and the Eastern Province.',
+    'sv3.tech.t':'Technical maintenance','sv3.tech.d':'Preventive maintenance and repairs for building systems.','sv3.tech.1':'Electrical','sv3.tech.2':'HVAC','sv3.tech.3':'Plumbing & leaks','sv3.tech.4':'Elevators','sv3.tech.5':'Alarm & safety systems',
+    'sv3.support.t':'Cleaning','sv3.support.d':'Regular cleaning suited to your site.','sv3.support.1':'Residential buildings','sv3.support.2':'Offices','sv3.support.3':'Hospitals & clinics','sv3.support.4':'Façades',
+    'sv3.security.t':'Security & CCTV','sv3.security.d':'CCTV for your site.','sv3.security.1':'Camera installation','sv3.security.2':'Camera maintenance',
+    'sv3.property.t':'Property management','sv3.property.d':'We look after your property and its tenants for you.','sv3.property.1':'Units & tenants','sv3.property.2':'Contracts & collections','sv3.property.3':'Daily services',
+    'sv3.facilities.t':'Owners\u2019 associations','sv3.facilities.d':'Organising and running shared areas in buildings and compounds.','sv3.facilities.1':'Activating the association','sv3.facilities.2':'Running shared facilities','sv3.facilities.3':'Subscription follow-up',
+    'sv3.marketing.t':'Real estate marketing','sv3.marketing.d':'We market your units to the right tenant or buyer.','sv3.marketing.1':'Marketing units','sv3.marketing.2':'Reducing vacancy','sv3.marketing.3':'Following up leads',
+    'nav.home':'Home','nav.services':'Services','nav.packages':'Plans','nav.guide':'Owners\u2019 association guide','nav.about':'About','nav.contact':'Contact',
     'cta.book':'Book a site visit','cta.book2':'Book a visit for your property','cta.browse':'Explore services','cta.wa':'WhatsApp us','cta.call':'Call us','cta.all':'All services',
     'foot.about':'Your partner in facilities operations &amp; management<br>in Riyadh &amp; the Eastern Province.',
     'foot.pages':'Pages','foot.reach':'Contact','foot.rights':'Sahm Almarafiq. All rights reserved.',
@@ -228,7 +232,6 @@
       full: ['تشغيل شامل', 'Full operations', [['تشغيل يومي للموقع', 'Daily site operations'], ['صيانة دورية للتكييف والكهرباء والسباكة', 'Regular HVAC, electrical & plumbing maintenance'], ['متابعة كل بلاغ حتى يُقفل', 'Every request followed until it is closed']]],
       fix: ['أعطال وإصلاح', 'Breakdowns & repairs', [['إصلاح أعطال الكهرباء والتكييف والسباكة', 'Electrical, HVAC & plumbing repairs'], ['صيانة المصاعد وأنظمة الإنذار', 'Elevator & alarm system maintenance']]],
       clean: ['نظافة', 'Cleaning', [['تنظيف دوري للمبنى والمرافق المشتركة', 'Regular cleaning of the building & shared areas'], ['تنظيف الواجهات', 'Façade cleaning']]],
-      prod: ['منتجات', 'Products', [['منتجات للمرفق حسب احتياجك', 'Facility products for your needs'], ['مع التركيب والصيانة حسب المنتج', 'With installation & maintenance, depending on the product']]],
       prop: ['إدارة أملاك', 'Property management', [['إدارة الوحدات والمستأجرين', 'Units & tenant management'], ['متابعة العقود والتحصيل', 'Contracts & collections']]]
     };
     var EXTRA = {
@@ -257,33 +260,12 @@
         '<ul class="ticks">' + list.map(function (s) { return '<li>' + esc(s[i]) + '</li>'; }).join('') + '</ul>' +
         '<div class="cta-row"><a class="btn btn-primary" href="contact.html?for=' + pick.type + '&svc=' + pick.need + '">' + (en ? 'Send your request' : 'أرسل طلبك') + '</a>' +
         '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + wa(msg) + '">' + WAI + (en ? 'Send on WhatsApp' : 'أرسل عبر واتساب') + '</a>' +
-        (pick.need === 'prod' ? '<a class="btn btn-line" href="products.html">' + (en ? 'Browse products' : 'تصفّح المنتجات') + '</a>' : '<a class="btn btn-line" href="' + t[2] + '">' + (en ? 'More about this solution' : 'تفاصيل الحل') + '</a>') + '</div></div>';
+        ('<a class="btn btn-line" href="' + t[2] + '">' + (en ? 'More about this solution' : 'تفاصيل الحل') + '</a>') + '</div></div>';
       if (scroll && finder.getBoundingClientRect().top > window.innerHeight - 120) finder.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     };
     HOOKS.push(function (en) { renderFinder(en, false); });
   }
 
-  /* ---------- Products ---------- */
-  var prodBox = document.getElementById('products');
-  if (prodBox) {
-    var PRODUCTS = window.SAHM_PRODUCTS || [];
-    var renderProducts = function (en) {
-      if (!PRODUCTS.length) { prodBox.hidden = true; document.getElementById('prodEmpty').hidden = false; return; }
-      function f(p, k) { return en && p[k + '_en'] ? p[k + '_en'] : p[k]; }
-      prodBox.innerHTML = PRODUCTS.map(function (p) {
-        var name = f(p, 'name'), specs = f(p, 'specs') || [];
-        var msg = en ? 'Hello,\nI would like to ask about the product: ' + name : 'مرحبًا،\nأرغب بالاستفسار عن المنتج: ' + name;
-        var tag = function (on, ar, enT) { return '<span class="tag' + (on ? ' on' : '') + '">' + (on ? '✓ ' : '— ') + (en ? enT : ar) + '</span>'; };
-        return '<article class="product">' + (p.image ? '<div class="img"><img src="' + esc(p.image) + '" alt="' + esc(name) + '" loading="lazy" decoding="async"></div>' : '') +
-          '<div class="body"><h3>' + esc(name) + '</h3>' +
-          (f(p, 'for') ? '<p class="for"><b>' + (en ? 'Suits: ' : 'يناسب: ') + '</b>' + esc(f(p, 'for')) + '</p>' : '') +
-          (specs.length ? '<ul class="ticks">' + specs.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>' : '') +
-          '<div class="tags">' + tag(p.install, 'يشمل التركيب', 'Installation included') + tag(p.maintenance, 'يشمل الصيانة', 'Maintenance included') + '</div>' +
-          '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + wa(msg) + '">' + WAI + (en ? 'Ask about this product' : 'استفسر عن المنتج') + '</a></div></article>';
-      }).join('');
-    };
-    HOOKS.push(renderProducts);
-  }
 
   var saved = 'ar'; try { saved = localStorage.getItem('sahm-lang') || 'ar'; } catch (e) {}
   setLang(saved);
