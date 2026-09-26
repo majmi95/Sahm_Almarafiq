@@ -280,3 +280,7 @@ html[dir="ltr"] input[type="tel"]{text-align:left}
   .svc .ticks{grid-template-columns:1fr 1fr;gap:8px 12px}
   .svc .ticks li{font-size:.84rem}
 }
+.hero-img img{object-position:center 18%}
+/* fix: menu button text + WhatsApp icon colour */
+.mobile-nav a.btn-primary{display:flex;padding:0 22px;color:#fff;border-bottom:none;justify-content:center}
+.btn-wa svg{fill:#fff}
