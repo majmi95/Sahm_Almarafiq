@@ -306,14 +306,15 @@ html[dir="ltr"] .cta-box::before{background-position:right -20px bottom -30px}
 
 /* ===== v5: plans + guide ===== */
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
-.plan{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:32px 28px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .3s,transform .3s}
-.plan:hover{box-shadow:var(--sh);transform:translateY(-4px)}
+.plan{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:32px 28px;display:flex;flex-direction:column;gap:10px;cursor:pointer;transition:box-shadow .3s,transform .3s,border-color .3s,background .3s}
 .plan h2{font-size:1.6rem}
 .plan>p{color:var(--muted);font-size:.93rem}
 .plan .ticks{flex:1;margin:10px 0 18px;padding-top:18px;border-top:1px solid var(--line)}
 .plan .btn{width:100%}
 .plan-tag{font-size:.8rem;font-weight:600;color:var(--copper-d)}
-.plan.featured{border:2px solid var(--copper);box-shadow:var(--sh);background:linear-gradient(180deg,#fff 0%,#FCF6EE 100%)}
+.plan.selected,.plan:focus-within{border-color:var(--copper);box-shadow:0 0 0 1px var(--copper),var(--sh);background:linear-gradient(180deg,#fff 0%,#FCF6EE 100%);transform:translateY(-4px)}
+@media(hover:hover){.plan:hover{border-color:var(--copper);box-shadow:0 0 0 1px var(--copper),var(--sh);background:linear-gradient(180deg,#fff 0%,#FCF6EE 100%);transform:translateY(-4px)}.plan:hover .btn{background:var(--copper)}}
+.plan.selected .btn,.plan:focus-within .btn{background:var(--copper)}
 .plan-badge{position:absolute;top:-13px;inset-inline-start:24px;background:var(--copper);color:#fff;font-size:.76rem;font-weight:600;padding:5px 12px;border-radius:999px}
 .plans-note{text-align:center;color:var(--muted);font-size:.9rem;margin-top:28px}
 .plan-box{display:flex;align-items:center;gap:12px;background:var(--tint);border:1.5px solid var(--copper);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:.84rem;color:var(--copper-d)}
@@ -516,7 +517,7 @@ html.a11y-contrast .cta-box p,html.a11y-contrast .cta-box h2{color:#fff}
 /* stop motion */
 html.a11y-nomotion,html.a11y-nomotion *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
 html.a11y-nomotion .reveal{opacity:1!important;transform:none!important}
-html.a11y-nomotion .card:hover,html.a11y-nomotion .persona:hover,html.a11y-nomotion .plan:hover{transform:none}
+html.a11y-nomotion .card:hover,html.a11y-nomotion .persona:hover,html.a11y-nomotion .plan:hover,html.a11y-nomotion .plan.selected,html.a11y-nomotion .plan:focus-within{transform:none}
 
 /* highlight links */
 html.a11y-links a:not(.btn):not(.brand):not(.skip-link):not(.card):not(.wa-fab):not(.channel):not(.img){text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
@@ -540,5 +541,6 @@ html.a11y-links a.btn,html.a11y-links a.channel{outline:2px dashed var(--copper)
 html.a11y-dark .ok-ic{background:rgba(31,168,85,.18)}
 html.a11y-dark .lead-err{color:#F29B84}
 @media(max-width:640px){.lead-form .cta-row{flex-direction:column}.lead-form .cta-row .btn{width:100%;flex:none}.lead-ok .btn{width:100%}}
-html.a11y-dark .plan.featured{background:linear-gradient(180deg,var(--surface) 0%,var(--tint) 100%)}
+html.a11y-dark .plan.selected,html.a11y-dark .plan:focus-within{background:linear-gradient(180deg,var(--surface) 0%,var(--tint) 100%)}
+@media(hover:hover){html.a11y-dark .plan:hover{background:linear-gradient(180deg,var(--surface) 0%,var(--tint) 100%)}}
 html.a11y-dark .btn-copper{color:#15110D}

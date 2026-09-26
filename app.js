@@ -447,6 +447,10 @@
     rv.forEach(function (r) { io.observe(r); });
   } else rv.forEach(function (r) { r.classList.add('in'); });
 
+  /* packages: highlight the chosen plan */
+  document.querySelectorAll('.plans .plan').forEach(function (pl, _, all) {
+    pl.addEventListener('click', function () { all.forEach(function (o) { o.classList.toggle('selected', o === pl); }); });
+  });
   var PLANS = { basic: ['باقة المنزل','Home plan'], complete: ['باقة المباني','Buildings plan'], custom: ['باقة إدارة الأملاك','Property management plan'] };
   var planKey = (new URLSearchParams(location.search).get('plan') || '').toLowerCase();
   var pickedPlan = PLANS[planKey] || null;
