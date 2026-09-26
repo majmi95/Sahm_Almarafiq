@@ -40,7 +40,7 @@
   var footer = document.createElement('footer');
   footer.className = 'site-footer';
   footer.innerHTML = '<div class="wrap"><div class="foot"><div>' + BRAND +
-    '<p data-i18n="foot.about">شريكك في تشغيل وإدارة المرافق<br>في الرياض والمنطقة الشرقية.</p></div>' +
+    '<p data-i18n="foot.about">حلول متكاملة للقطاع السكني والتجاري:<br>إدارة أملاك، تشغيل وصيانة، وخدمات عقارية.</p></div>' +
     '<div class="foot-links">' +
       '<div><h4 data-i18n="foot.pages">الصفحات</h4><ul><li><a href="services.html" data-i18n="nav.services">خدماتنا</a></li><li><a href="packages.html" data-i18n="nav.packages">الباقات</a></li><li><a href="owners-association.html" data-i18n="nav.guide">دليل اتحاد الملاك</a></li><li><a href="about.html" data-i18n="nav.about">من نحن</a></li><li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li></ul></div>' +
       '<div><h4 data-i18n="nav.solutions">الحلول</h4><ul>' + SOL.map(function (s) { return '<li><a href="' + s[0] + '" data-i18n="' + s[1] + '">' + s[2] + '</a></li>'; }).join('') + '</ul></div>' +
@@ -91,39 +91,72 @@
     'o.own':'Building / investment property','o.asc':'Compound / owners\u2019 association','o.biz':'Company / facility','o.hom':'Villa / home',
     'o.tech':'Technical maintenance','o.sup':'Cleaning & security','o.fac':'Facilities / owners\u2019 association','o.unsure':'Not sure — I need advice',
     'q3':'How do I get started?','a3':'Talk to one of our specialists via the form or WhatsApp. We arrange a visit to your property, then share a plan tailored to it.',
-    'h.t':'Maintenance and operation of your facilities, <em>with one team</em>',
-    'h.l':'Operations, maintenance, cleaning and property management in Riyadh and the Eastern Province.',
+    'h.t':'Integrated solutions <em>for the residential and commercial sectors</em>',
+    'h.l':'Property management, operations & maintenance, and real estate services — with professionalism and precision in Riyadh and the Eastern Province.',
     'cta.quote':'Request a quote','cta.guide':'What does your facility need?',
     'fn.e':'Quick guide','fn.t':'What does your facility need?','fn.l':'Pick your site type and need, and we’ll show you what we can do.',
     'fn.s1':'Site type','fn.s2':'What do you need?','fn.hint':'Pick a site type and a need.',
     'fn.own':'Building / investment property','fn.asc':'Compound / owners’ association','fn.biz':'Company / facility','fn.hom':'Villa / home',
-    'fn.full':'Full operations','fn.fix':'Breakdowns & repairs','fn.clean':'Cleaning','fn.prop':'Property management',
-    'sv2.t':'What we offer',
-    'sv2.tech.t':'Technical maintenance','sv2.tech.d':'Electrical, HVAC, plumbing, elevators and alarm systems.',
-    'sv2.clean.t':'Cleaning','sv2.clean.d':'Residential buildings, offices, hospitals and façades.',
-    'sv2.sec.t':'Security & CCTV','sv2.sec.d':'CCTV installation and maintenance.',
-    'sv2.prop.t':'Property management','sv2.prop.d':'Units, tenants, contracts and collections.',
-    'sv2.asc.t':'Owners’ associations','sv2.asc.d':'Activating the association and running shared facilities.',
-    'sv2.mkt.t':'Real estate marketing','sv2.mkt.d':'Marketing your units and reducing vacancy.',
+    'fn.prop':'Property management','fn.full':'Operations & maintenance','fn.periodic':'Periodic maintenance','fn.fix':'Fix a fault','fn.clean':'Cleaning',
     'c.t3':'We visit your site and give you a clear quote','c.d3':'Call us or send your request, and we’ll arrange the visit.',
     'pr.e':'How we work','pr.t':'From the first visit to a clear report',
     'pr1.t':'Site visit & needs','pr1.d':'We visit the site, listen to you, and define the real need and the condition of the systems.',
     'pr2.t':'Plan & scope of work','pr2.d':'We hand you a plan with the scope, priorities and timeline before we start.',
     'pr3.t':'Operation & execution','pr3.d':'Our team carries out the work and follows every request until it is closed.',
     'pr4.t':'Report & review','pr4.d':'We share what was done and the state of your site, then review and adjust the plan with you.',
-    'o.full':'Full operations & maintenance',
+    'o.full':'Operations & maintenance',
     'ab.st.e':'Who we serve','ab.st.t':'Types of sites we serve',
     'st.a':'Residential buildings','st.b':'Corporate & commercial premises','st.c':'Hospitals & clinics','st.d':'Multi-owner compounds & associations','st.e':'Villas & homes',
-    'sv3.t':'What we offer','sv3.l':'Everything your facility needs, with one team, in Riyadh and the Eastern Province.',
-    'sv3.tech.t':'Technical maintenance','sv3.tech.d':'Preventive maintenance and repairs for building systems.','sv3.tech.1':'Electrical','sv3.tech.2':'HVAC','sv3.tech.3':'Plumbing & leaks','sv3.tech.4':'Elevators','sv3.tech.5':'Alarm & safety systems',
-    'sv3.support.t':'Cleaning','sv3.support.d':'Regular cleaning suited to your site.','sv3.support.1':'Residential buildings','sv3.support.2':'Offices','sv3.support.3':'Hospitals & clinics','sv3.support.4':'Façades',
-    'sv3.security.t':'Security & CCTV','sv3.security.d':'CCTV for your site.','sv3.security.1':'Camera installation','sv3.security.2':'Camera maintenance',
-    'sv3.property.t':'Property management','sv3.property.d':'We look after your property and its tenants for you.','sv3.property.1':'Units & tenants','sv3.property.2':'Contracts & collections','sv3.property.3':'Daily services',
-    'sv3.facilities.t':'Owners\u2019 associations','sv3.facilities.d':'Organising and running shared areas in buildings and compounds.','sv3.facilities.1':'Activating the association','sv3.facilities.2':'Running shared facilities','sv3.facilities.3':'Subscription follow-up',
-    'sv3.marketing.t':'Real estate marketing','sv3.marketing.d':'We market your units to the right tenant or buyer.','sv3.marketing.1':'Marketing units','sv3.marketing.2':'Reducing vacancy','sv3.marketing.3':'Following up leads',
+    
+    'cr.t':'Three services, one standard',
+    'cr1.tag':'For property owners','cr1.t':'Property management','cr1.d':'Hand us your property, and we manage it for you, end to end.','cr1.1':'Leasing units','cr1.2':'Contracts & collections','cr1.3':'Tenant follow-up','cr1.4':'Property & facilities maintenance','cr1.cta':'Property management details',
+    'cr2.tag':'For buildings, companies & homes','cr2.t':'Operations & maintenance','cr2.d':'Operation and maintenance of every facility in the building, plus periodic home maintenance.','cr2.1':'Electrical, HVAC & plumbing','cr2.2':'Elevators','cr2.3':'Cleaning & security','cr2.4':'Periodic home maintenance','cr2.cta':'Operations & maintenance details',
+    'cr3.tag':'For owners & owners’ associations','cr3.t':'Real estate services','cr3.d':'Marketing units, and owners’ association services.','cr3.1':'Marketing units for sale and rent','cr3.2':'Reducing vacancy','cr3.3':'Activating the owners’ association','cr3.cta':'Real estate services details',
+    'wy.t':'Professionalism and precision in every detail','wy.l':'We treat your property as if it were ours: organised work, and follow-up until every request is done.',
+    'wy1.t':'Professionalism','wy1.d':'A trained team and an organised way of working on every visit.','wy2.t':'Precision','wy2.d':'We follow every request until it is closed, and show you what was done.',
+    'wy3.t':'One team','wy3.d':'Management, maintenance and follow-up with one accountable team.','wy4.t':'Local coverage','wy4.d':'Riyadh, Dammam, Khobar and Dhahran.',
+    'sx.t':'Our services','sx.l':'Integrated solutions for the residential and commercial sectors: property management, operations & maintenance, and real estate services.',
+    'gx.property.who':'For residential & commercial property owners','gx.property.t':'Property management','gx.property.d':'Hand us your property, and we manage it end to end: leasing, collections, maintenance and follow-up.',
+    'gx.facilities.who':'For buildings, compounds & companies','gx.facilities.t':'Facilities maintenance','gx.facilities.d':'Maintenance and operation of every facility in the building, with one accountable team.',
+    'gx.periodic.who':'For individuals & homes','gx.periodic.t':'Periodic maintenance','gx.periodic.d':'Open to any client: regular maintenance visits for your home, and repairs.',
+    'sx.manage.t':'Managing your property for you','sx.manage.d':'Day-to-day management of your building, compound or commercial property on the owner’s behalf.','sx.manage.1':'Leasing units','sx.manage.2':'Contracts & collections','sx.manage.3':'Tenant follow-up','sx.manage.4':'Property & facilities maintenance',
+    'sx.marketing.t':'Real estate marketing','sx.marketing.d':'We market vacant units to the right tenant or buyer.','sx.marketing.1':'Marketing units for sale and rent','sx.marketing.2':'Professional unit presentation','sx.marketing.3':'Reducing vacancy',
+    'sx.associations.t':'Owners’ associations','sx.associations.d':'Organising and running shared areas in multi-owner buildings and compounds.','sx.associations.1':'Help activating the association','sx.associations.2':'Running shared facilities','sx.associations.3':'Subscription follow-up',
+    'sx.tech.t':'Technical & elevator maintenance','sx.tech.d':'Preventive maintenance and repairs for building systems.','sx.tech.1':'Electrical','sx.tech.2':'HVAC','sx.tech.3':'Plumbing & leaks','sx.tech.4':'Elevators',
+    'sx.elevators.t':'Elevator maintenance','sx.elevators.d':'Regular inspection and repairs for safe operation.','sx.elevators.1':'Regular inspection','sx.elevators.2':'Fault repairs','sx.elevators.3':'Operation follow-up',
+    'sx.cleaning.t':'Cleaning','sx.cleaning.d':'Regular cleaning suited to your site.','sx.cleaning.1':'Residential buildings & offices','sx.cleaning.2':'Hospitals & clinics','sx.cleaning.3':'Shared areas','sx.cleaning.4':'Façades',
+    'sx.security.t':'Security & CCTV','sx.security.d':'Surveillance systems that protect your site.','sx.security.1':'Camera installation','sx.security.2':'Camera maintenance','sx.security.3':'Alarm devices',
+    'sx.home.t':'Regular maintenance for your home','sx.home.d':'Technicians visit your home on a fixed schedule and fix faults before they grow.','sx.home.1':'Scheduled maintenance visits','sx.home.2':'HVAC, electrical & plumbing checks','sx.home.3':'Repairs when needed','sx.home.4':'Plans that suit your home','sx.home.cta':'See the plans',
+    'pk.e2':'Plans','pk.t2':'Choose the right plan for you','pk.l2':'A plan for every kind of client: your home, your building, or the building you want us to manage for you.',
+    'pk.note2':'Every plan starts with a site visit; scope and price are then set clearly. You can add or remove any service.','pl.ask':'Request this plan',
+    'p1.tag':'For individuals & homes','p1.t':'Home plan','p1.d':'Periodic maintenance for your home or villa, with regular visits.','p1.1':'Scheduled maintenance visits','p1.2':'HVAC, electrical & plumbing checks','p1.3':'Repairs when needed','p1.4':'Technical notes after every visit',
+    'p2.tag':'For residential & commercial buildings','p2.t':'Building plan','p2.d':'Maintenance and operation of every facility in the building, with one team.','p2.1':'Preventive electrical, HVAC & plumbing maintenance','p2.2':'Elevator maintenance','p2.3':'Shared-area cleaning','p2.4':'CCTV & alarm maintenance','p2.5':'Every request followed until closed',
+    'p3.tag':'For property owners','p3.t':'Building management plan','p3.d':'Hand us your building, and we manage it for you, end to end.','p3.1':'Everything in the Building plan','p3.2':'Leasing and marketing units','p3.3':'Contracts & collections','p3.4':'Tenant follow-up','p3.5':'Regular statement for the owner',
+    'pa1b':'Price depends on the site type, size and needs; we give you a clear quote after the visit.',
+    'pq3b':'What is the difference between the Building plan and the Building management plan?','pa3b':'The Building plan covers facility maintenance and operation. With Building management we take over the whole building: leasing, collections and tenant follow-up, plus maintenance.',
+    'pq4':'Who is the Home plan for?','pa4':'Anyone with a home or villa who wants regular maintenance instead of waiting for faults.',
+    'o.periodic':'Periodic home maintenance','o.fix':'Fix a fault',
+    'cr.t2':'Our main services',
+    'cr3.4':'Running shared facilities',
+    'fn.re':'Real estate services',
+    'gx.operations.who':'For the residential & commercial sectors',
+    'gx.operations.t':'Operations & maintenance',
+    'gx.operations.d':'Operation and maintenance of every facility in the building with one accountable team, plus periodic home maintenance.',
+    'gx.realestate.who':'For owners & owners’ associations',
+    'gx.realestate.t':'Real estate services',
+    'gx.realestate.d':'Services that help you invest in your property and organise its management.',
+    'sx.manage.5':'Regular statement for the owner',
+    'sx.tech.5':'Alarm & safety systems',
+    'sx.periodic.t':'Periodic home maintenance',
+    'sx.periodic.d':'Open to any client: regular visits to your home, fixing faults before they grow.',
+    'sx.periodic.1':'Scheduled maintenance visits',
+    'sx.periodic.2':'HVAC, electrical & plumbing checks',
+    'sx.periodic.3':'Repairs when needed',
+    'sx.marketing.4':'Following up leads',
+    'o.re':'Real estate services',
     'nav.home':'Home','nav.services':'Services','nav.packages':'Plans','nav.guide':'Owners\u2019 association guide','nav.about':'About','nav.contact':'Contact',
     'cta.book':'Book a site visit','cta.book2':'Book a visit for your property','cta.browse':'Explore services','cta.wa':'WhatsApp us','cta.call':'Call us','cta.all':'All services',
-    'foot.about':'Your partner in facilities operations &amp; management<br>in Riyadh &amp; the Eastern Province.',
+    'foot.about':'Integrated solutions for the residential and commercial sectors:<br>property management, operations &amp; maintenance, and real estate services.',
     'foot.pages':'Pages','foot.reach':'Contact','foot.rights':'Sahm Almarafiq. All rights reserved.',
     /* home */
     'h.b1':'Operations & maintenance','h.b2':'Riyadh · Eastern Province',
@@ -148,9 +181,6 @@
     
     
     
-    
-    
-    
     'g.t':'Real estate marketing','g.d':'Effective marketing that connects your property with the right people.',
     'g.1':'Marketing plans','g.2':'Reducing vacancy','g.3':'Professional unit presentation','g.4':'Lead follow-up',
     'se.e':'Sectors','se.t':'Who we serve',
@@ -169,7 +199,6 @@
     /* contact */
     'co.e':'Contact','co.t':'Contact the Sahm Almarafiq team','co.l':'Choose the channel that suits you, or send your request directly.',
     'ch.wa':'WhatsApp','ch.wa2':'The fastest way to reach us','ch.ph':'Phone','ch.em':'Email','ch.cv':'Coverage','ch.cv2':'Riyadh · Dammam · Khobar · Dhahran',
-    
     'f.name':'Full name','f.phone':'Mobile','f.city':'City','f.msg':'Details (optional)',
     'f.ph.name':'Your name','f.ph.msg':'Tell us briefly about your property',
     'f.send':'Send request',
@@ -178,12 +207,9 @@
     'fq.e':'FAQ',
     'pk.e':'Maintenance plans','pk.t':'Choose the right plan for your property','pk.l':'Three clear plans that cover every property\u2019s needs — each one tailored after a site visit.',
     'pl.rec':'Recommended',
-    'p1.tag':'Regular care','p1.t':'Essential','p1.d':'Regular preventive maintenance that keeps your property ready and reduces breakdowns.',
-    'p1.1':'Scheduled preventive visits','p1.2':'Electrical, HVAC and plumbing checks','p1.3':'Response to emergency requests','p1.4':'Follow-up on every request until closed',
-    'p2.tag':'Standalone buildings','p2.t':'Complete','p2.d':'Everything a building needs — operations, maintenance and cleaning — under one team.',
-    'p2.1':'Everything in Essential','p2.2':'Elevator maintenance','p2.3':'Regular cleaning of common areas','p2.4':'Alarm and CCTV system maintenance','p2.5':'Priority response',
-    'p3.tag':'Compounds & owners\u2019 associations','p3.t':'Tailored','p3.d':'Integrated management of shared facilities, designed around your compound\u2019s size and needs.',
-    'p3.1':'Everything in Complete','p3.2':'Shared facilities management','p3.3':'Help activating the owners\u2019 association','p3.4':'Property management, contracts and collections','p3.5':'Marketing vacant units',
+    
+    
+    
     'pk.note':'Every plan starts with a site visit; scope and pricing are then set out clearly.',
     'pk.fq':'Questions about plans',
     'pq1':'How much does a plan cost?','pa1':'Pricing depends on the property\u2019s type, size and needs. We share a clear proposal after the site visit.',
@@ -229,16 +255,16 @@
   if (finder) {
     var TYPES = { own: ['عمارة / عقار استثماري', 'Building / investment property', 'owners.html'], asc: ['مجمع / جمعية ملاك', 'Compound / owners’ association', 'associations.html'], biz: ['شركة / منشأة', 'Company / facility', 'business.html'], hom: ['فيلا / منزل', 'Villa / home', 'homes.html'] };
     var NEEDS = {
-      full: ['تشغيل شامل', 'Full operations', [['تشغيل يومي للموقع', 'Daily site operations'], ['صيانة دورية للتكييف والكهرباء والسباكة', 'Regular HVAC, electrical & plumbing maintenance'], ['متابعة كل بلاغ حتى يُقفل', 'Every request followed until it is closed']]],
-      fix: ['أعطال وإصلاح', 'Breakdowns & repairs', [['إصلاح أعطال الكهرباء والتكييف والسباكة', 'Electrical, HVAC & plumbing repairs'], ['صيانة المصاعد وأنظمة الإنذار', 'Elevator & alarm system maintenance']]],
-      clean: ['نظافة', 'Cleaning', [['تنظيف دوري للمبنى والمرافق المشتركة', 'Regular cleaning of the building & shared areas'], ['تنظيف الواجهات', 'Façade cleaning']]],
-      prop: ['إدارة أملاك', 'Property management', [['إدارة الوحدات والمستأجرين', 'Units & tenant management'], ['متابعة العقود والتحصيل', 'Contracts & collections']]]
+      prop: ['إدارة أملاك', 'Property management', 'services.html#property', [['تأجير الوحدات', 'Leasing units'], ['العقود والتحصيل', 'Contracts & collections'], ['متابعة المستأجرين وصيانة العقار', 'Tenant follow-up and property maintenance']]],
+      full: ['تشغيل وصيانة', 'Operations & maintenance', 'services.html#operations', [['صيانة الكهرباء والتكييف والسباكة والمصاعد', 'Electrical, HVAC, plumbing & elevator maintenance'], ['النظافة والأمن', 'Cleaning & security'], ['متابعة كل بلاغ حتى يُقفل', 'Every request followed until it is closed']]],
+      periodic: ['صيانة دورية', 'Periodic maintenance', 'packages.html', [['زيارات صيانة مجدولة', 'Scheduled maintenance visits'], ['فحص التكييف والكهرباء والسباكة', 'HVAC, electrical & plumbing checks'], ['إصلاح الأعطال عند الحاجة', 'Repairs when needed']]],
+      re: ['خدمات عقارية', 'Real estate services', 'services.html#realestate', [['تسويق الوحدات للبيع والإيجار', 'Marketing units for sale and rent'], ['تقليل فترات الشغور', 'Reducing vacancy']]],
+      fix: ['إصلاح عطل', 'Fix a fault', 'services.html#tech', [['إصلاح أعطال الكهرباء والتكييف والسباكة', 'Electrical, HVAC & plumbing repairs'], ['صيانة المصاعد وأنظمة الإنذار', 'Elevator & alarm system maintenance']]]
     };
     var EXTRA = {
-      asc: { full: ['تشغيل المداخل والمصاعد والممرات', 'Entrances, elevators & corridors'], prop: ['المساعدة في تفعيل جمعية الملاك', 'Help activating the owners’ association'] },
-      biz: { clean: ['تنظيف المكاتب والعيادات', 'Office & clinic cleaning'], fix: ['تركيب وصيانة كاميرات المراقبة', 'CCTV installation & maintenance'] },
-      own: { prop: ['تسويق الوحدات الشاغرة', 'Marketing vacant units'] },
-      hom: { full: ['زيارات صيانة دورية لمنزلك', 'Regular maintenance visits for your home'] }
+      asc: { full: ['صيانة المداخل والمصاعد والممرات', 'Entrances, elevators & corridors'], re: ['تفعيل جمعية الملاك وتشغيل المرافق المشتركة', 'Activating the owners’ association and running shared facilities'] },
+      biz: { full: ['تركيب وصيانة كاميرات المراقبة', 'CCTV installation & maintenance'] },
+      hom: { periodic: ['باقة المنزل تناسبك', 'The Home plan suits you'] }
     };
     var pick = { type: null, need: null };
     var chipsAll = document.querySelectorAll('.finder .chip');
@@ -254,13 +280,13 @@
     var renderFinder = function (en, scroll) {
       if (!pick.type || !pick.need) return;
       var i = en ? 1 : 0, t = TYPES[pick.type], n = NEEDS[pick.need];
-      var list = n[2].slice(); var x = EXTRA[pick.type] && EXTRA[pick.type][pick.need]; if (x) list.push(x);
+      var list = n[3].slice(); var x = EXTRA[pick.type] && EXTRA[pick.type][pick.need]; if (x) list.push(x);
       var msg = en ? 'Hello,\nSite type: ' + t[1] + '\nNeed: ' + n[1] + '\nI would like a quote for my facility.' : 'مرحبًا،\nنوع الموقع: ' + t[0] + '\nالاحتياج: ' + n[0] + '\nأرغب بعرض لمرفقي.';
       finder.innerHTML = '<div class="finder-res"><h3>' + (en ? 'What we offer: ' : 'اللي نقدّمه لك: ') + esc(n[i]) + ' · ' + esc(t[i]) + '</h3>' +
         '<ul class="ticks">' + list.map(function (s) { return '<li>' + esc(s[i]) + '</li>'; }).join('') + '</ul>' +
         '<div class="cta-row"><a class="btn btn-primary" href="contact.html?for=' + pick.type + '&svc=' + pick.need + '">' + (en ? 'Send your request' : 'أرسل طلبك') + '</a>' +
         '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + wa(msg) + '">' + WAI + (en ? 'Send on WhatsApp' : 'أرسل عبر واتساب') + '</a>' +
-        ('<a class="btn btn-line" href="' + t[2] + '">' + (en ? 'More about this solution' : 'تفاصيل الحل') + '</a>') + '</div></div>';
+        ('<a class="btn btn-line" href="' + n[2] + '">' + (en ? 'Details' : 'التفاصيل') + '</a>') + '</div></div>';
       if (scroll && finder.getBoundingClientRect().top > window.innerHeight - 120) finder.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     };
     HOOKS.push(function (en) { renderFinder(en, false); });
@@ -277,7 +303,7 @@
     rv.forEach(function (r) { io.observe(r); });
   } else rv.forEach(function (r) { r.classList.add('in'); });
 
-  var PLANS = { basic: ['الباقة الأساسية','Essential plan'], complete: ['الباقة الشاملة','Complete plan'], custom: ['الباقة المخصصة','Tailored plan'] };
+  var PLANS = { basic: ['باقة المنزل','Home plan'], complete: ['باقة المبنى','Building plan'], custom: ['باقة إدارة العمارة','Building management plan'] };
   var planKey = (new URLSearchParams(location.search).get('plan') || '').toLowerCase();
   var pickedPlan = PLANS[planKey] || null;
   var planBox = document.getElementById('planBox');
@@ -289,7 +315,7 @@
   var QS = new URLSearchParams(location.search);
   function preset(id, val) { var s = document.getElementById(id); if (!s || !val) return; for (var k = 0; k < s.options.length; k++) if (s.options[k].value === val) { s.selectedIndex = k; return; } }
   preset('fFor', QS.get('for'));
-  preset('fSvc', { fix: 'tech', clean: 'sup' }[QS.get('svc')] || QS.get('svc'));
+  preset('fSvc', { fix: 'tech' }[QS.get('svc')] || QS.get('svc'));
   var form = document.getElementById('quoteForm');
   /* ---------- Google Forms connection ---------- */
   var GF = {
