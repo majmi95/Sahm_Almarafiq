@@ -196,10 +196,10 @@
     'pk.e2':'Plans','pk.t2':'Choose the right plan for you','pk.l2':'A plan for every kind of client: your home, your building, or the building you want us to manage for you.',
     'pk.note2':'Every plan starts with a site visit; scope and price are then set clearly. You can add or remove any service.','pl.ask':'Request this plan',
     'p1.tag':'For individuals & homes','p1.t':'Home plan','p1.d':'Periodic maintenance for your home or villa, with regular visits.','p1.1':'Scheduled maintenance visits','p1.2':'HVAC, electrical & plumbing checks','p1.3':'Repairs when needed','p1.4':'Technical notes after every visit',
-    'p2.tag':'For residential & commercial buildings','p2.t':'Building plan','p2.d':'Maintenance and operation of every facility in the building, with one team.','p2.1':'Preventive electrical, HVAC & plumbing maintenance','p2.2':'Elevator maintenance','p2.3':'Shared-area cleaning','p2.4':'CCTV & alarm maintenance','p2.5':'Every request followed until closed',
-    'p3.tag':'For property owners','p3.t':'Building management plan','p3.d':'Hand us your building, and we manage it for you, end to end.','p3.1':'Everything in the Building plan','p3.2':'Leasing and marketing units','p3.3':'Contracts & collections','p3.4':'Tenant follow-up','p3.5':'Regular statement for the owner',
+    'p2.tag':'For residential & commercial buildings','p2.t':'Buildings plan','p2.d':'Maintenance and operation of every facility in the building, with one team.','p2.1':'Preventive electrical, HVAC & plumbing maintenance','p2.2':'Elevator maintenance','p2.3':'Shared-area cleaning','p2.4':'CCTV & alarm maintenance','p2.5':'Every request followed until closed',
+    'p3.tag':'For property owners','p3.t':'Property management plan','p3.d':'Hand us your building, and we manage it for you, end to end.','p3.1':'Everything in the Buildings plan','p3.2':'Leasing and marketing units','p3.3':'Contracts & collections','p3.4':'Tenant follow-up','p3.5':'Regular statement for the owner',
     'pa1b':'Price depends on the site type, size and needs; we give you a clear quote after the visit.',
-    'pq3b':'What is the difference between the Building plan and the Building management plan?','pa3b':'The Building plan covers facility maintenance and operation. With Building management we take over the whole building: leasing, collections and tenant follow-up, plus maintenance.',
+    'pq3b':'What is the difference between the Buildings plan and the Property management plan?','pa3b':'The Buildings plan covers facility maintenance and operation. With Property management we take over the whole building: leasing, collections and tenant follow-up, plus maintenance.',
     'pq4':'Who is the Home plan for?','pa4':'Anyone with a home or villa who wants regular maintenance instead of waiting for faults.',
     'o.periodic':'Periodic home maintenance','o.fix':'Fix a fault',
     'cr.t2':'Our main services',
@@ -447,7 +447,7 @@
     rv.forEach(function (r) { io.observe(r); });
   } else rv.forEach(function (r) { r.classList.add('in'); });
 
-  var PLANS = { basic: ['باقة المنزل','Home plan'], complete: ['باقة المبنى','Building plan'], custom: ['باقة إدارة العمارة','Building management plan'] };
+  var PLANS = { basic: ['باقة المنزل','Home plan'], complete: ['باقة المباني','Buildings plan'], custom: ['باقة إدارة الأملاك','Property management plan'] };
   var planKey = (new URLSearchParams(location.search).get('plan') || '').toLowerCase();
   var pickedPlan = PLANS[planKey] || null;
   var planBox = document.getElementById('planBox');

@@ -540,3 +540,5 @@ html.a11y-links a.btn,html.a11y-links a.channel{outline:2px dashed var(--copper)
 html.a11y-dark .ok-ic{background:rgba(31,168,85,.18)}
 html.a11y-dark .lead-err{color:#F29B84}
 @media(max-width:640px){.lead-form .cta-row{flex-direction:column}.lead-form .cta-row .btn{width:100%;flex:none}.lead-ok .btn{width:100%}}
+html.a11y-dark .plan.featured{background:linear-gradient(180deg,var(--surface) 0%,var(--tint) 100%)}
+html.a11y-dark .btn-copper{color:#15110D}
