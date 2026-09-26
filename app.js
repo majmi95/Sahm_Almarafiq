@@ -163,7 +163,7 @@
     'pq1':'How much does a plan cost?','pa1':'Pricing depends on the property\u2019s type, size and needs. We share a clear proposal after the site visit.',
     'pq2':'Can I customise a plan?','pa2':'Yes — every plan is customisable; we add or remove services to fit your property.',
     'pq3':'What\u2019s the difference between Complete and Tailored?','pa3':'Complete suits standalone buildings; Tailored is designed for compounds and multi-owner buildings that need shared-facility management.',
-    'f.plan':'Selected plan',
+    'f.plan':'Selected plan','ok.t':'Your request has been received','ok.d':'One of our specialists will contact you shortly.','ok.wa':'Need a faster reply? WhatsApp us',
     'gd.e':'Quick guide','gd.t':'Owners\u2019 associations: what you need to know','gd.l':'If you own an apartment or unit in a shared building, this guide explains how common areas are managed properly.',
     'gd.q1':'What is an owners\u2019 association?','gd.a1':'An owners\u2019 association — now called an <b>owners\u2019 society</b> — brings together the unit owners of a building to organise the management and maintenance of shared parts such as entrances, elevators, corridors and the roof, and to share their costs fairly.',
     'gd.q2':'Why does it matter?','gd.b1':'It protects every owner\u2019s rights and clarifies responsibilities.','gd.b2':'It ensures regular maintenance of elevators, entrances and shared facilities.','gd.b3':'It reduces disputes through clear, approved decisions.','gd.b4':'It preserves — and grows — the property\u2019s value.',
@@ -218,15 +218,39 @@
   var fFor = document.getElementById('fFor');
   if (fFor && forKey in FOR) fFor.selectedIndex = FOR[forKey];
   var form = document.getElementById('quoteForm');
+  /* ---------- Google Forms connection ---------- */
+  var GF = {
+    action: 'https://docs.google.com/forms/d/e/1FAIpQLSelebci6NyLK1aqt2hoZHARp2XyeTo6Q-Y6yF1sjhHowdHgvw/formResponse',
+    name: 'entry.2070584688', phone: 'entry.1332491611', city: 'entry.850383722',
+    type: 'entry.1865738174', service: 'entry.1878773108', details: ''   /* add the 6th entry id here if needed */
+  };
   if (form) form.addEventListener('submit', function (ev) {
     ev.preventDefault();
     var en = document.documentElement.lang === 'en';
     function v(id) { var e = document.getElementById(id); return e.tagName === 'SELECT' ? e.options[e.selectedIndex].text : e.value.trim(); }
-    var L = en
-      ? ['Hello Sahm Almarafiq,', 'I would like to speak with a specialist.', '', 'Name: ' + v('fName'), 'Mobile: ' + v('fPhone'), 'City: ' + v('fCity'), 'Property type: ' + v('fFor'), 'Service: ' + v('fSvc')]
-      : ['مرحبًا سهم المرافق،', 'أرغب بالتحدث مع أحد المختصين.', '', 'الاسم: ' + v('fName'), 'الجوال: ' + v('fPhone'), 'المدينة: ' + v('fCity'), 'نوع العقار: ' + v('fFor'), 'الخدمة: ' + v('fSvc')];
-    if (pickedPlan) L.push((en ? 'Plan: ' : 'الباقة: ') + pickedPlan[en ? 1 : 0]);
-    if (v('fMsg')) L.push((en ? 'Details: ' : 'التفاصيل: ') + v('fMsg'));
-    window.open(wa(L.join('\n')), '_blank');
+    var phone = v('fPhone').replace(/[^0-9٠-٩+]/g, '');
+    if (phone.length < 9) { alert(en ? 'Please enter a valid mobile number.' : 'فضلًا أدخل رقم جوال صحيح.'); document.getElementById('fPhone').focus(); return; }
+    var service = v('fSvc') + (pickedPlan ? ' — ' + pickedPlan[en ? 1 : 0] : '');
+    var details = v('fMsg');
+    var data = new URLSearchParams();
+    data.append(GF.name, v('fName'));
+    data.append(GF.phone, v('fPhone'));
+    data.append(GF.city, v('fCity'));
+    data.append(GF.type, v('fFor'));
+    if (GF.details) { data.append(GF.service, service); if (details) data.append(GF.details, details); }
+    else data.append(GF.service, details ? service + ' | ' + details : service);
+    var btn = form.querySelector('button[type=submit]');
+    var old = btn.innerHTML; btn.disabled = true;
+    btn.textContent = en ? 'Sending…' : 'جارٍ الإرسال…';
+    fetch(GF.action, { method: 'POST', mode: 'no-cors', body: data })
+      .then(function () {
+        form.classList.add('sent');
+        var ok = document.getElementById('formOk');
+        if (ok) { ok.hidden = false; ok.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      })
+      .catch(function () {
+        btn.disabled = false; btn.innerHTML = old;
+        alert(en ? 'Sending failed. Please try again or contact us on WhatsApp.' : 'تعذّر الإرسال. حاول مرة أخرى أو تواصل معنا عبر واتساب.');
+      });
   });
 })();
