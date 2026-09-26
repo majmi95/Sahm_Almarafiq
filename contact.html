@@ -11,7 +11,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%23A8703E' stroke-width='3.4'%3E%3Cpath d='M6 41V24l8-6 8 6v17M20 41V13l10-7 10 7v28M3 41h42'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body data-page="contact" data-title-en="Contact | Sahm Almarafiq">
 <main>
@@ -21,10 +21,10 @@
 <a href="#" data-wa class="channel wa reveal"><div class="ico" data-wa-icon></div><div><b data-i18n="ch.wa">واتساب</b><span data-i18n="ch.wa2">أسرع طريقة للتواصل معنا</span></div></a>
 <a href="tel:0510105266" class="channel reveal d1"><div class="ico"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div><div><b data-i18n="ch.ph">الهاتف</b><span class="ltr">0510105266 · 0544447611</span></div></a>
 <a href="mailto:info@sahmalmarafiq.com" class="channel reveal d2"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><div><b data-i18n="ch.em">البريد الإلكتروني</b><span class="ltr">info@sahmalmarafiq.com</span></div></a>
-<div class="channel reveal d3"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div><div><b data-i18n="ch.cv">التغطية</b><span data-i18n="ch.cv2">الرياض · الدمام · الخبر · الظهران</span></div></div>
 </div>
 <form class="form reveal d1" id="quoteForm">
-<h2 data-i18n="f.t">اطلب عرض سعر</h2><p data-i18n="f.d">يُفتح طلبك في واتساب جاهزًا للإرسال.</p>
+<h2 data-i18n="f.t">احجز معاينة لعقارك</h2><p data-i18n="f.d">عبّئ البيانات، ويوصلنا طلبك مباشرة عبر واتساب.</p>
+<div class="plan-box" id="planBox" hidden><span data-i18n="f.plan">الباقة المختارة</span><b></b></div>
 <div class="fgrid">
 <div class="field"><label for="fName" data-i18n="f.name">الاسم الكامل</label><input id="fName" required autocomplete="name" data-i18n-ph="f.ph.name" placeholder="اسمك"></div>
 <div class="field"><label for="fPhone" data-i18n="f.phone">رقم الجوال</label><input id="fPhone" type="tel" inputmode="tel" required autocomplete="tel" placeholder="05xxxxxxxx"></div>
@@ -33,14 +33,14 @@
 <div class="field full"><label for="fMsg" data-i18n="f.msg">التفاصيل (اختياري)</label><textarea id="fMsg" data-i18n-ph="f.ph.msg" placeholder="أخبرنا باختصار عن عقارك"></textarea></div>
 </div>
 <button type="submit" class="btn btn-primary" data-i18n="f.send">إرسال الطلب</button>
-<p class="note" data-i18n="f.note">نرد عليك بأسرع وقت.</p>
+<p class="note" data-i18n="f.note">يتواصل معك فريقنا لتأكيد موعد الزيارة.</p>
 </form>
 </div></section>
 <section class="soft"><div class="wrap">
 <div class="head reveal" style="margin-bottom:8px"><div><span class="eyebrow" data-i18n="fq.e">الأسئلة الشائعة</span><h2 class="h2" data-i18n="fq.t">أسئلة متكررة</h2></div></div>
-<div class="faq reveal"><details><summary data-i18n="q1">ما المدن التي تغطونها؟</summary><p data-i18n="a1">الرياض والمنطقة الشرقية، بما فيها الدمام والخبر والظهران.</p></details><details><summary data-i18n="q2">ما أنواع العقارات التي تخدمونها؟</summary><p data-i18n="a2">المباني السكنية، والمقرات المؤسسية والتجارية، والمستشفيات، والمجمعات متعددة الملاك.</p></details><details><summary data-i18n="q3">كيف أحصل على عرض سعر؟</summary><p data-i18n="a3">أرسل طلبك عبر النموذج أو واتساب، ونرتّب معاينة ثم نشاركك خطة مخصصة لعقارك.</p></details></div>
+<div class="faq reveal"><details><summary data-i18n="q1">ما المدن التي تغطونها؟</summary><p data-i18n="a1">الرياض والمنطقة الشرقية، بما فيها الدمام والخبر والظهران.</p></details><details><summary data-i18n="q2">ما أنواع العقارات التي تخدمونها؟</summary><p data-i18n="a2">المباني السكنية، والمقرات المؤسسية والتجارية، والمستشفيات، والمجمعات متعددة الملاك.</p></details><details><summary data-i18n="q3">كيف أبدأ؟</summary><p data-i18n="a3">احجز معاينة عبر النموذج أو واتساب، ونزور عقارك ثم نشاركك خطة مخصصة له.</p></details></div>
 </div></section>
 </main>
-<script src="app.js?v=3"></script>
+<script src="app.js?v=5"></script>
 </body>
 </html>
