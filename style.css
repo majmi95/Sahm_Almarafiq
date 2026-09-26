@@ -316,8 +316,11 @@ html[dir="ltr"] .cta-box::before{background-position:right -20px bottom -30px}
 .plan.featured{border:2px solid var(--copper);box-shadow:var(--sh);background:linear-gradient(180deg,#fff 0%,#FCF6EE 100%)}
 .plan-badge{position:absolute;top:-13px;inset-inline-start:24px;background:var(--copper);color:#fff;font-size:.76rem;font-weight:600;padding:5px 12px;border-radius:999px}
 .plans-note{text-align:center;color:var(--muted);font-size:.9rem;margin-top:28px}
-.plan-box{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--tint);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:.9rem;color:var(--copper-d)}
-.plan-box b{color:var(--ink)}
+.plan-box{display:flex;align-items:center;gap:12px;background:var(--tint);border:1.5px solid var(--copper);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-size:.84rem;color:var(--copper-d)}
+.plan-box>div{flex:1;display:flex;flex-direction:column;line-height:1.4}
+.plan-box b{color:var(--ink);font-size:1rem}
+.plan-box .pb-ic{width:28px;height:28px;border-radius:50%;background:var(--copper);color:#fff;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.plan-box a{font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .plan-box[hidden]{display:none}
 .guide{display:grid;grid-template-columns:1.4fr .8fr;gap:48px;align-items:start}
 .prose h2{font-size:1.45rem;margin:0 0 12px}
@@ -460,3 +463,4 @@ html[dir="ltr"] .cta-box::before{background-position:right -20px bottom -30px}
 .jump a:hover{border-color:var(--copper);color:var(--copper-d)}
 @media(max-width:640px){.svc-group+.svc-group{padding-top:56px}.core h3{font-size:1.08rem}}
 @media(max-width:640px){.core-cards{display:grid;grid-template-columns:1fr;overflow:visible;margin:0;padding:0;gap:14px}.core-cards .card{flex:none}}
+#quoteForm{scroll-margin-top:88px}
