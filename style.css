@@ -83,7 +83,10 @@ html[dir="rtl"] .link:hover svg{transform:scaleX(-1) translateX(3px)}
 .hero::before{content:"";position:absolute;width:680px;height:680px;border-radius:50%;background:radial-gradient(circle,rgba(201,154,107,.22),transparent 65%);top:-300px;inset-inline-start:-240px;z-index:-1}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
 .tagline{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.82rem;color:var(--muted)}
+.tagline{flex-wrap:wrap;row-gap:4px;color:var(--ink);font-weight:600}
 .tagline i{width:7px;height:7px;border-radius:50%;background:var(--copper)}
+.tag-loc{display:inline-flex;align-items:center;gap:5px;padding-inline-start:10px;border-inline-start:1px solid var(--line-2);color:var(--copper-d);font-weight:500}
+.tag-loc svg{flex-shrink:0}
 .hero h1{margin:22px 0 18px}
 .hero h1 em{font-style:normal;color:var(--copper)}
 .hero .lead{margin-bottom:32px}
@@ -415,4 +418,4 @@ html[dir="ltr"] .cta-box::before{background-position:right -20px bottom -30px}
 .form-ok h2{font-size:1.4rem;margin-bottom:8px}
 .form-ok p{color:var(--muted);margin-bottom:22px}
 .form-ok .btn{width:auto}
-.form.sent>*:not(.form-ok){display:none}
+.form.sent>*:not(.form-ok){display:none}@media (max-width:480px){.tagline{border-radius:14px}.tag-loc{flex-basis:100%;border:0;padding-inline-start:15px}}
