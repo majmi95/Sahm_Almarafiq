@@ -29,8 +29,7 @@
   header.className = 'site-header';
   header.innerHTML = '<div class="wrap nav">' + BRAND + '<nav class="nav-links">' + links() + '</nav>' +
     '<div class="nav-actions"><button class="lang-btn" id="langBtn">EN</button>' +
-    '<a href="contact.html" class="btn btn-copper btn-sm" data-i18n="cta.talk">تحدّث مع مختص</a>' +
-    '<button class="burger" id="burger" aria-label="Menu"><span></span></button></div></div>' +
+        '<button class="burger" id="burger" aria-label="Menu"><span></span></button></div></div>' +
     '<nav class="mobile-nav">' + links(true) + '<div class="menu-foot"><a href="tel:' + P1 + '" class="ltr">' + P1 + '</a><a href="mailto:' + EMAIL + '" class="ltr">' + EMAIL + '</a></div></nav>';
   document.body.insertBefore(header, document.body.firstChild);
   header.querySelectorAll('.dd-btn').forEach(function (b) { b.addEventListener('click', function (e) { e.stopPropagation(); b.parentNode.classList.toggle('open'); }); });
@@ -87,7 +86,7 @@
     'm.1':'Units & tenant management','m.2':'Contracts & collections','m.3':'Daily services management','m.4':'Raising operational quality',
     'fm.t':'Facilities & owners\u2019 associations','fm.d':'Organising and operating shared areas in multi-owner buildings and compounds.',
     'fm.1':'Help activating the owners\u2019 society','fm.2':'Shared facilities operation','fm.3':'Subscription follow-up','fm.4':'Elevator & entrance maintenance',
-    'f.t':'Talk to a specialist','f.d':'Leave your details and one of our specialists will contact you on WhatsApp.','f.note':'We reply as soon as possible during working hours.',
+    'f.t':'Get started','f.d':'Leave your details and one of our specialists will contact you on WhatsApp.','f.note':'We reply as soon as possible during working hours.',
     'f.for':'Property type','f.svc':'Service needed',
     'o.own':'Building / investment property','o.asc':'Compound / owners\u2019 association','o.biz':'Company / facility','o.hom':'Villa / home',
     'o.tech':'Technical maintenance','o.sup':'Cleaning & security','o.fac':'Facilities / owners\u2019 association','o.unsure':'Not sure — I need advice',
