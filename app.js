@@ -450,34 +450,40 @@
     rv.forEach(function (r) { io.observe(r); });
   } else rv.forEach(function (r) { r.classList.add('in'); });
 
-  /* ---------- packages: request a plan in a dialog ---------- */
-  var planLinks = document.querySelectorAll('.plans a[href^="contact.html?plan="]');
-  if (planLinks.length && window.HTMLDialogElement) {
+  /* ---------- request dialog: plans, "talk to a specialist", "request a visit" ---------- */
+  var leadLinks = document.querySelectorAll('main a.btn[href^="contact.html"]');
+  if (leadLinks.length && window.HTMLDialogElement) {
     var PL = { basic: ['باقة المنزل', 'Home plan', 'hom'], complete: ['باقة المباني', 'Buildings plan', 'own'], custom: ['باقة إدارة الأملاك', 'Property management plan', 'own'] };
-    var D = { plan: null, sent: null, busy: false, err: '', v: { name: '', phone: '', city: '0', site: 'own', msg: '' } };
+    var SVCS = [['prop', 'إدارة الأملاك', 'Property management'], ['full', 'التشغيل والصيانة', 'Operations & maintenance'], ['periodic', 'الصيانة الدورية للمنزل', 'Periodic home maintenance'], ['re', 'الخدمات العقارية', 'Real estate services'], ['unsure', 'غير متأكد — أحتاج استشارة', 'Not sure — I need advice']];
+    var PAGE_SITE = { 'owners.html': 'own', 'associations.html': 'asc', 'business.html': 'biz', 'homes.html': 'hom' };
+    var PAGE_AR = { 'index.html': 'الرئيسية', 'services.html': 'خدماتنا', 'packages.html': 'الباقات', 'about.html': 'من نحن', 'owners.html': 'ملاك العمائر', 'associations.html': 'جمعيات الملاك', 'business.html': 'الشركات والمنشآت', 'homes.html': 'الفلل والمنازل', 'owners-association.html': 'دليل اتحاد الملاك', 'sectors.html': 'القطاعات' };
+    var D = { cfg: null, sentFor: null, sent: null, busy: false, err: '', v: { name: '', phone: '', city: '0', site: 'own', svc: 'unsure', msg: '' } };
     var dlg = document.createElement('dialog');
     dlg.className = 'lead-dlg'; dlg.setAttribute('aria-labelledby', 'dlgTitle');
     document.body.appendChild(dlg);
+    var sel = function (id, name, list, cur, i) {
+      return '<select id="' + id + '" name="' + name + '">' + list.map(function (o) { return '<option value="' + o[0] + '"' + (String(o[0]) === String(cur) ? ' selected' : '') + '>' + o[i + 1] + '</option>'; }).join('') + '</select>';
+    };
     var renderDlg = function (en) {
-      if (!D.plan) return;
-      var i = en ? 1 : 0, pn = PL[D.plan][i];
-      var head = '<div class="dlg-head"><h2 id="dlgTitle">' + (D.sent ? (en ? 'Request sent' : 'تم إرسال طلبك') : (en ? 'Request: ' : 'طلب ') + esc(pn)) + '</h2>' +
+      var c = D.cfg; if (!c) return;
+      var i = en ? 1 : 0, sent = D.sent && D.sentFor === c.key;
+      var head = '<div class="dlg-head"><h2 id="dlgTitle">' + (sent ? (en ? 'Request sent' : 'تم إرسال طلبك') : esc(c.title[i])) + '</h2>' +
         '<button type="button" class="a11y-x" data-dlg="close"><span aria-hidden="true">×</span><span class="sr-only">' + (en ? 'Close' : 'إغلاق') + '</span></button></div>';
       var body;
-      if (D.sent) {
-        var wm = en ? 'Hello,\nI requested the ' + pn + ' on your website.\nReference number: ' + D.sent : 'مرحبًا،\nطلبت ' + pn + ' عبر موقعكم.\nرقم الطلب: ' + D.sent;
-        body = '<div class="lead-ok dlg-ok">' + OKI + '<p>' + (en ? 'One of our specialists will contact you soon about the ' + esc(pn) + '.' : 'سيتواصل معك أحد مختصينا قريبًا بخصوص ' + esc(pn) + '.') + '</p>' +
+      if (sent) {
+        var wm = en ? 'Hello,\nI sent a request on your website (' + c.about[1] + ').\nReference number: ' + D.sent : 'مرحبًا،\nأرسلت طلبًا عبر موقعكم (' + c.about[0] + ').\nرقم الطلب: ' + D.sent;
+        body = '<div class="lead-ok dlg-ok">' + OKI + '<p>' + (en ? 'One of our specialists will contact you soon.' : 'سيتواصل معك أحد مختصينا في أقرب وقت.') + '</p>' +
           refBox(D.sent, en) + '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + wa(wm) + '">' + WAI + (en ? 'Follow up on WhatsApp' : 'تابع طلبك عبر واتساب') + '</a>' +
           '<button type="button" class="btn btn-line" data-dlg="close">' + (en ? 'Close' : 'إغلاق') + '</button></div>';
       } else {
-        var wmsg = en ? 'Hello,\nI would like to request the ' + pn + '.' : 'مرحبًا،\nأرغب بطلب ' + pn + '.';
-        var cities = CITIES.map(function (c, k) { return '<option value="' + k + '"' + (String(k) === D.v.city ? ' selected' : '') + '>' + c[i] + '</option>'; }).join('');
-        var sites = SITES.map(function (s) { return '<option value="' + s[0] + '"' + (s[0] === D.v.site ? ' selected' : '') + '>' + s[i + 1] + '</option>'; }).join('');
-        body = '<form class="lead-form dlg-form" novalidate><p class="lead-sum">' + (en ? 'Leave your details and we’ll contact you about the plan.' : 'اترك بياناتك ونتواصل معك بخصوص الباقة.') + '</p><div class="fgrid">' +
+        var wmsg = en ? 'Hello,\n' + c.wa[1] : 'مرحبًا،\n' + c.wa[0];
+        var cities = CITIES.map(function (x, k) { return [k, x[0], x[1]]; });
+        body = '<form class="lead-form dlg-form" novalidate><p class="lead-sum">' + esc(c.lead[i]) + '</p><div class="fgrid">' +
           '<div class="field"><label for="dgName">' + (en ? 'Full name' : 'الاسم الكامل') + '</label><input id="dgName" name="name" autocomplete="name" required value="' + esc(D.v.name) + '"></div>' +
           '<div class="field"><label for="dgPhone">' + (en ? 'Mobile number' : 'رقم الجوال') + '</label><input id="dgPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xxxxxxxx" required value="' + esc(D.v.phone) + '"></div>' +
-          '<div class="field"><label for="dgCity">' + (en ? 'City' : 'المدينة') + '</label><select id="dgCity" name="city">' + cities + '</select></div>' +
-          '<div class="field"><label for="dgSite">' + (en ? 'Site type' : 'نوع الموقع') + '</label><select id="dgSite" name="site">' + sites + '</select></div>' +
+          '<div class="field"><label for="dgCity">' + (en ? 'City' : 'المدينة') + '</label>' + sel('dgCity', 'city', cities, D.v.city, i) + '</div>' +
+          '<div class="field"><label for="dgSite">' + (en ? 'Site type' : 'نوع الموقع') + '</label>' + sel('dgSite', 'site', SITES, D.v.site, i) + '</div>' +
+          (c.plan ? '' : '<div class="field full"><label for="dgSvc">' + (en ? 'Service needed' : 'الخدمة المطلوبة') + '</label>' + sel('dgSvc', 'svc', SVCS, D.v.svc, i) + '</div>') +
           '<div class="field full"><label for="dgMsg">' + (en ? 'Details (optional)' : 'التفاصيل (اختياري)') + '</label><textarea id="dgMsg" name="msg">' + esc(D.v.msg) + '</textarea></div></div>' +
           '<p class="lead-err" role="alert">' + esc(D.err) + '</p>' +
           '<div class="dlg-actions"><button type="submit" class="btn btn-primary"' + (D.busy ? ' disabled' : '') + '>' + (D.busy ? (en ? 'Sending…' : 'جارٍ الإرسال…') : (en ? 'Send request' : 'إرسال الطلب')) + '</button>' +
@@ -485,15 +491,31 @@
       }
       dlg.innerHTML = head + '<div class="dlg-body">' + body + '</div>';
     };
-    planLinks.forEach(function (lnk) {
+    var cfgFor = function (lnk) {
+      var qs = new URLSearchParams((lnk.getAttribute('href').split('?')[1] || '').split('#')[0]);
+      var file = location.pathname.split('/').pop() || 'index.html', page = PAGE_AR[file] || file;
+      var plan = qs.get('plan');
+      if (plan && PL[plan]) return { key: 'plan-' + plan, plan: plan, site: qs.get('for') || PL[plan][2],
+        title: [(PL[plan][0].indexOf('باقة') === 0 ? 'طلب ' : '') + PL[plan][0], 'Request: ' + PL[plan][1]],
+        lead: ['اترك بياناتك ونتواصل معك بخصوص الباقة.', 'Leave your details and we’ll contact you about the plan.'],
+        wa: ['أرغب بطلب ' + PL[plan][0] + '.', 'I would like to request the ' + PL[plan][1] + '.'],
+        about: [PL[plan][0], PL[plan][1]], source: PL[plan][0] + ' (صفحة الباقات)' };
+      var span = lnk.querySelector('[data-i18n]'), k = span ? span.getAttribute('data-i18n') : '';
+      var ar = span ? (span.getAttribute('data-ar') || span.textContent) : 'تحدّث مع مختص', enT = EN[k] || 'Talk to a specialist';
+      return { key: 'talk', site: qs.get('for') || PAGE_SITE[file] || null,
+        title: [ar, enT], lead: ['اترك بياناتك ويتواصل معك أحد مختصينا.', 'Leave your details and one of our specialists will contact you.'],
+        wa: ['أرغب بالتحدث مع مختص بخصوص خدماتكم.', 'I would like to talk to a specialist about your services.'],
+        about: [ar, enT], source: ar + ' (' + page + ')' };
+    };
+    leadLinks.forEach(function (lnk) {
       lnk.addEventListener('click', function (e) {
         e.preventDefault();
-        var key = (new URLSearchParams(lnk.getAttribute('href').split('?')[1].split('#')[0])).get('plan');
-        if (D.plan !== key) { D.sent = null; D.v.site = PL[key][2]; }
-        D.plan = key; D.err = '';
+        var c = cfgFor(lnk);
+        if (c.site) D.v.site = c.site;
+        D.cfg = c; D.err = '';
         renderDlg(document.documentElement.lang === 'en');
         dlg.showModal();
-        var f = dlg.querySelector(D.sent ? '.lead-ok .btn' : '#dgName'); if (f) f.focus();
+        var f = dlg.querySelector(D.sent && D.sentFor === c.key ? '.lead-ok .btn' : '#dgName'); if (f) f.focus();
       });
     });
     dlg.addEventListener('click', function (e) {
@@ -506,13 +528,14 @@
     dlg.addEventListener('change', function (e) { if (e.target.name && e.target.name in D.v) D.v[e.target.name] = e.target.value; });
     dlg.addEventListener('submit', function (e) {
       e.preventDefault(); if (D.busy) return;
-      var en = document.documentElement.lang === 'en';
+      var en = document.documentElement.lang === 'en', c = D.cfg;
       D.err = !D.v.name.trim() ? (en ? 'Please enter your name.' : 'فضلًا اكتب اسمك.') : !validPhone(D.v.phone) ? (en ? 'Please enter a valid mobile number.' : 'فضلًا أدخل رقم جوال صحيح.') : '';
       if (D.err) { renderDlg(en); var bad = dlg.querySelector(D.v.name.trim() ? '#dgPhone' : '#dgName'); if (bad) bad.focus(); return; }
-      var ref = makeRef(), site = SITES.filter(function (s) { return s[0] === D.v.site; })[0];
+      var ref = makeRef(), site = SITES.filter(function (s) { return s[0] === D.v.site; })[0], svc = SVCS.filter(function (s) { return s[0] === D.v.svc; })[0];
       D.busy = true; renderDlg(en);
-      sendLead({ ref: ref, name: D.v.name.trim(), phone: D.v.phone.trim(), city: CITIES[+D.v.city][0], type: site ? site[1] : '', service: PL[D.plan][0] + ' (صفحة الباقات)', details: D.v.msg.trim() })
-        .then(function () { D.busy = false; D.sent = ref; renderDlg(en); var b = dlg.querySelector('.lead-ok .btn'); if (b) b.focus(); })
+      sendLead({ ref: ref, name: D.v.name.trim(), phone: D.v.phone.trim(), city: CITIES[+D.v.city][0], type: site ? site[1] : '',
+        service: c.plan ? c.source : (svc ? svc[1] : '') + ' — ' + c.source, details: D.v.msg.trim() })
+        .then(function () { D.busy = false; D.sent = ref; D.sentFor = c.key; renderDlg(en); var b = dlg.querySelector('.lead-ok .btn'); if (b) b.focus(); })
         .catch(function () { D.busy = false; D.err = en ? 'Sending failed. Please try again or contact us on WhatsApp.' : 'تعذّر الإرسال. حاول مرة أخرى أو تواصل معنا عبر واتساب.'; renderDlg(en); });
     });
     HOOKS.push(function (en) { if (dlg.open) renderDlg(en); });
