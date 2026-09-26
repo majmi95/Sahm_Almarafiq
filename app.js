@@ -1,6 +1,6 @@
 /* ===== Sahm Almarafiq — layout, language switch, motion ===== */
 (function () {
-  var P1 = '0510105266', P2 = '0544447611', EMAIL = 'info@sahmalmarafiq.com';
+  var PHONE = '0544447611', EMAIL = 'info@sahmalmarafiq.com';
   var WA_AR = 'مرحبًا،\nأرغب بالاستفسار عن خدمات سهم المرافق';
   var WA_EN = 'Hello,\nI would like to inquire about Sahm Almarafiq services';
   function wa(msg) { return 'https://wa.me/966510105266?text=' + encodeURIComponent(msg); }
@@ -30,7 +30,7 @@
   header.innerHTML = '<div class="wrap nav">' + BRAND + '<nav class="nav-links">' + links() + '</nav>' +
     '<div class="nav-actions"><button class="lang-btn" id="langBtn">EN</button>' +
         '<button class="burger" id="burger" aria-label="Menu"><span></span></button></div></div>' +
-    '<nav class="mobile-nav">' + links(true) + '<div class="menu-foot"><a href="tel:' + P1 + '" class="ltr">' + P1 + '</a><a href="mailto:' + EMAIL + '" class="ltr">' + EMAIL + '</a></div></nav>';
+    '<nav class="mobile-nav">' + links(true) + '<div class="menu-foot"><a href="tel:' + PHONE + '" class="ltr">' + PHONE + '</a><a href="mailto:' + EMAIL + '" class="ltr">' + EMAIL + '</a></div></nav>';
   document.body.insertBefore(header, document.body.firstChild);
   header.querySelectorAll('.dd-btn').forEach(function (b) { b.addEventListener('click', function (e) { e.stopPropagation(); b.parentNode.classList.toggle('open'); }); });
   document.addEventListener('click', function () { header.querySelectorAll('.dd.open').forEach(function (d) { d.classList.remove('open'); }); });
@@ -44,7 +44,7 @@
     '<div class="foot-links">' +
       '<div><h4 data-i18n="foot.pages">الصفحات</h4><ul><li><a href="services.html" data-i18n="nav.services">خدماتنا</a></li><li><a href="packages.html" data-i18n="nav.packages">الباقات</a></li><li><a href="owners-association.html" data-i18n="nav.guide">دليل اتحاد الملاك</a></li><li><a href="about.html" data-i18n="nav.about">من نحن</a></li><li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li></ul></div>' +
       '<div><h4 data-i18n="nav.solutions">الحلول</h4><ul>' + SOL.map(function (s) { return '<li><a href="' + s[0] + '" data-i18n="' + s[1] + '">' + s[2] + '</a></li>'; }).join('') + '</ul></div>' +
-      '<div><h4 data-i18n="foot.reach">تواصل</h4><ul><li><a class="ltr" href="tel:' + P1 + '">' + P1 + '</a></li><li><a class="ltr" href="tel:' + P2 + '">' + P2 + '</a></li><li><a class="ltr" href="mailto:' + EMAIL + '">' + EMAIL + '</a></li></ul></div>' +
+      '<div><h4 data-i18n="foot.reach">تواصل</h4><ul><li><a class="ltr" href="tel:' + PHONE + '">' + PHONE + '</a></li><li><a class="ltr" href="mailto:' + EMAIL + '">' + EMAIL + '</a></li></ul></div>' +
     '</div></div><div class="foot-bottom"><span>© ' + new Date().getFullYear() + ' <span data-i18n="foot.rights">سهم المرافق. جميع الحقوق محفوظة.</span></span>' +
     '<a href="https://www.instagram.com/sahmalmarafiq" target="_blank" rel="noopener">Instagram @sahmalmarafiq</a></div></div>';
   document.body.appendChild(footer);
