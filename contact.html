@@ -4,105 +4,44 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>تواصل معنا | سهم المرافق</title>
+<meta name="description" content="سهم المرافق — تشغيل وصيانة وإدارة أملاك ومرافق في الرياض والمنطقة الشرقية.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%23A8703E' stroke-width='3'%3E%3Cpath d='M6 41V24l8-6 8 6v17M20 41V13l10-7 10 7v28M3 41h42'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-<header>
-  <div class="nav">
-    <div class="brand">
-      <svg viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="2.3"><path d="M8 40V22l8-6 8 6v18"/><path d="M22 40V14l9-7 9 7v26"/></g></svg>
-      سهم المرافق
+<body data-page="contact" data-title-en="Contact | Sahm Almarafiq">
+<main><section class="page-hero"><div class="wrap">
+  <div class="crumbs"><a href="index.html" data-i18n="nav.home">الرئيسية</a> / <span data-i18n="co.crumb">تواصل معنا</span></div>
+  <h1 class="h-xl" data-i18n="co.t">لنتحدث عن عقارك</h1><p class="lead" data-i18n="co.l">تواصل معنا عبر أي قناة أدناه، أو أرسل طلبك وسيعود لك فريقنا قريبًا.</p>
+</div></section>
+<section style="padding-top:60px"><div class="wrap contact-grid">
+  <div class="channels">
+    <a href="#" data-wa class="channel wa reveal"><div class="ico"><svg viewBox="0 0 32 32"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.48.73 4.79 1.98 6.73L4 29l7.46-1.94a11.93 11.93 0 0 0 4.56.9c6.62 0 12.02-5.4 12.02-12.02C28.04 8.4 22.65 3 16.02 3z"/></svg></div><div><b data-i18n="ch.wa">واتساب</b><span data-i18n="ch.wa2">أسرع طريقة للتواصل معنا</span></div></a>
+    <a href="tel:0510105266" class="channel reveal d1"><div class="ico"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div><div><b data-i18n="ch.ph">الهاتف</b><span>0510105266 · 0544447611</span></div></a>
+    <a href="mailto:info@sahmalmarafiq.com" class="channel reveal d2"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><div><b data-i18n="ch.em">البريد الإلكتروني</b><span>info@sahmalmarafiq.com</span></div></a>
+    <div class="channel reveal d3"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div><div><b data-i18n="ch.br">التغطية</b><span style="direction:inherit" data-i18n="foot.cities">الرياض · الدمام · الخبر · الظهران</span></div></div>
+  </div>
+  <form class="form-card reveal d1" id="quoteForm">
+    <h2 data-i18n="f.t">اطلب عرض سعر</h2><p data-i18n="f.d">عبّئ البيانات — ويُفتح طلبك مباشرة في واتساب.</p>
+    <div class="fgrid">
+      <div class="field"><label for="fName" data-i18n="f.name">الاسم الكامل</label><input id="fName" required data-i18n-ph="f.ph.name" placeholder="مثال: محمد أحمد"></div>
+      <div class="field"><label for="fPhone" data-i18n="f.phone">رقم الجوال</label><input id="fPhone" type="tel" required placeholder="05xxxxxxxx"></div>
+      <div class="field"><label for="fCity" data-i18n="f.city">المدينة</label><select id="fCity"><option data-i18n="opt.ruh">الرياض</option><option data-i18n="opt.dmm">الدمام</option><option data-i18n="opt.khb">الخبر</option><option data-i18n="opt.dhr">الظهران</option><option data-i18n="opt.oth">أخرى</option></select></div>
+      <div class="field"><label for="fType" data-i18n="f.type">نوع العقار</label><select id="fType"><option data-i18n="opt.res">سكني</option><option data-i18n="opt.corp">مؤسسي / تجاري</option><option data-i18n="opt.hosp">رعاية صحية</option><option data-i18n="opt.comm">مجمع / اتحاد ملاك</option></select></div>
+      <div class="field full"><label for="fSvc" data-i18n="f.svc">الخدمة المطلوبة</label><select id="fSvc"><option data-i18n="opt.ops">التشغيل والصيانة</option><option data-i18n="opt.prop">إدارة الأملاك</option><option data-i18n="opt.fac">إدارة المرافق / اتحاد الملاك</option><option data-i18n="opt.clean">التنظيف</option><option data-i18n="opt.sec">أنظمة الأمن</option><option data-i18n="opt.mkt">التسويق العقاري</option></select></div>
+      <div class="field full"><label for="fMsg" data-i18n="f.msg">التفاصيل</label><textarea id="fMsg" data-i18n-ph="f.ph.msg" placeholder="أخبرنا باختصار عن عقارك واحتياجك"></textarea></div>
     </div>
-    <nav class="links">
-      <a href="index.html">الرئيسية</a>
-      <a href="about.html">من نحن</a>
-      <a href="services.html">خدماتنا</a>
-      <a href="contact.html" class="active">تواصل معنا</a>
-    </nav>
-    <a href="contact.html" class="nav-cta">تواصل معنا الآن</a>
-    <button class="menu-toggle" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="فتح القائمة">&#9776;</button>
-  </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">الرئيسية</a>
-    <a href="about.html">من نحن</a>
-    <a href="services.html">خدماتنا</a>
-    <a href="contact.html">تواصل معنا</a>
-  </div>
-</header>
-
-<div class="page-hero">
-  <div class="wrap">
-    <div class="eyebrow">تواصل معنا</div>
-    <h1>خدماتنا كلها بمكالمة وحدة</h1>
-    <p>اتصل بنا أو عبّي النموذج وفريقنا يرجع لك بأقرب وقت.</p>
-  </div>
-</div>
-
-<section>
-  <div class="wrap contact-grid">
-    <div class="contact-info">
-      <div><b>الهاتف</b><a href="tel:0510105266">0510105266</a> · <a href="tel:0544447611">0544447611</a></div>
-      <div><b>واتساب</b><a href="https://wa.me/966510105266?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%B3%D9%87%D9%85%20%D8%A7%D9%84%D9%85%D8%B1%D8%A7%D9%81%D9%82%D8%8C%20%D8%A3%D8%A8%D9%8A%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%83%D9%85" target="_blank" rel="noopener">تواصل مباشر عبر واتساب</a></div>
-      <div><b>البريد الإلكتروني</b><a href="mailto:info@sahmalmarafiq.com">info@sahmalmarafiq.com</a></div>
-      <div><b>المملكة العربية السعودية</b><span>خدمات تشغيل وصيانة وإدارة أملاك ومرافق</span></div>
-    </div>
-    <form onsubmit="event.preventDefault(); this.querySelector('.btn').textContent='تم الإرسال، شكرًا لك';">
-      <input type="text" placeholder="الاسم الكامل" required>
-      <input type="tel" placeholder="رقم الجوال" required>
-      <textarea placeholder="اكتب رسالتك أو استفسارك"></textarea>
-      <button type="submit" class="btn btn-primary">إرسال الطلب</button>
-    </form>
-  </div>
-</section>
-
-<section style="background:var(--cream-2);padding-top:0;">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">الأسئلة الشائعة</div>
-      <h2>أسئلة يتكرر سؤالنا عنها</h2>
-    </div>
-    <div class="faq-list">
-      <details open>
-        <summary>ما هي إدارة المرافق؟</summary>
-        <p>هي تشغيل وإدارة الأنظمة والخدمات اليومية للمبنى — من الصيانة والتنظيف إلى الأمن — لرفع جودة التشغيل وراحة بال الملاك والسكان.</p>
-      </details>
-      <details>
-        <summary>هل تخدمون المباني السكنية والمؤسسات والمستشفيات؟</summary>
-        <p>نعم، خدماتنا في التنظيف والصيانة تغطي المباني السكنية، المؤسسات، والمستشفيات بنفس مستوى الجودة والاستجابة.</p>
-      </details>
-      <details>
-        <summary>ماذا تشمل خدمة الصيانة السريعة؟</summary>
-        <p>صيانة شبكات الكهرباء، أنظمة التكييف، أنظمة الإنذار والأمن، السباكة والتسريبات، كاميرات المراقبة، وتنظيف وصيانة الواجهات والمرافق الداخلية.</p>
-      </details>
-      <details>
-        <summary>هل تساعدون في تفعيل اتحاد الملاك؟</summary>
-        <p>نعم، نقدّم خدمات تفعيل اتحاد الملاك وإدارة مرافق شاملة للمجمعات السكنية والتجارية.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <svg viewBox="0 0 48 48" width="26" height="26"><g fill="none" stroke="currentColor" stroke-width="2.3"><path d="M8 40V22l8-6 8 6v18"/><path d="M22 40V14l9-7 9 7v26"/></g></svg>
-        سهم المرافق
-      </div>
-      <div class="footer-links">
-        <a href="index.html">الرئيسية</a>
-        <a href="about.html">من نحن</a>
-        <a href="services.html">خدماتنا</a>
-        <a href="contact.html">تواصل معنا</a>
-      </div>
-    </div>
-    <div class="copyright">© سهم المرافق — 0510105266 / 0544447611 — info@sahmalmarafiq.com</div>
-  </div>
-</footer>
-
-<a class="whatsapp-fab" href="https://wa.me/966510105266?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%B3%D9%87%D9%85%20%D8%A7%D9%84%D9%85%D8%B1%D8%A7%D9%81%D9%82%D8%8C%20%D8%A3%D8%A8%D9%8A%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%83%D9%85" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب"><svg viewBox="0 0 32 32"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.48.73 4.79 1.98 6.73L4 29l7.46-1.94a11.93 11.93 0 0 0 4.56.9h.01c6.62 0 12.02-5.4 12.02-12.02C28.04 8.4 22.65 3 16.02 3zm7.03 17.15c-.3.83-1.72 1.58-2.37 1.68-.61.09-1.38.13-2.23-.14-.51-.16-1.17-.38-2.02-.75-3.55-1.53-5.87-5.1-6.05-5.34-.18-.24-1.44-1.92-1.44-3.66 0-1.74.91-2.6 1.24-2.95.32-.35.7-.44.94-.44.24 0 .47 0 .68.01.22.01.51-.08.8.61.3.7 1.02 2.44 1.1 2.61.09.18.15.39.03.63-.12.24-.18.39-.35.6-.18.21-.37.47-.53.63-.18.18-.36.37-.16.72.21.35.93 1.53 1.99 2.48 1.37 1.22 2.52 1.6 2.87 1.78.35.18.56.15.77-.09.21-.24.88-1.03 1.12-1.38.24-.35.47-.29.79-.18.32.12 2.05.97 2.4 1.14.35.18.59.26.67.41.09.15.09.85-.21 1.68z"/></svg></a>\n<script src="script.js"></script>
+    <button type="submit" class="btn btn-primary"><span data-i18n="f.send">إرسال عبر واتساب</span></button>
+    <p class="note" data-i18n="f.note">تُرسل بياناتك لفريقنا فقط عبر واتساب.</p>
+  </form>
+</div></section>
+<section class="band"><div class="wrap">
+  <div class="sec-head reveal"><div><span class="kicker" data-i18n="faq.k">الأسئلة الشائعة</span><h2 class="h-lg" data-i18n="faq.t">أسئلة يتكرر طرحها</h2></div></div>
+  <div class="faq reveal"><details open><summary data-i18n="q1">ما هي إدارة المرافق؟</summary><p data-i18n="a1">تشغيل وإدارة أنظمة المبنى وخدماته اليومية — الصيانة والتنظيف والأمن — لرفع جودة التشغيل وراحة بال الملاك والسكان.</p></details><details><summary data-i18n="q2">ما المدن التي تغطونها؟</summary><p data-i18n="a2">نعمل في الرياض والمنطقة الشرقية، بما فيها الدمام والخبر والظهران.</p></details><details><summary data-i18n="q3">ما أنواع العقارات التي تخدمونها؟</summary><p data-i18n="a3">المباني السكنية، والمقرات المؤسسية والتجارية، والمستشفيات، والمجمعات متعددة الملاك.</p></details><details><summary data-i18n="q4">هل تساعدون في تفعيل اتحاد الملاك؟</summary><p data-i18n="a4">نعم — نفعّل اتحادات الملاك وندير المرافق المشتركة من الألف إلى الياء.</p></details><details><summary data-i18n="q5">كيف أحصل على عرض سعر؟</summary><p data-i18n="a5">أرسل طلبك عبر النموذج أو واتساب، ونرتب معاينة ميدانية ثم نشاركك خطة مخصصة لعقارك.</p></details></div>
+</div></section>
+</main>
+<script src="app.js"></script>
 </body>
 </html>
