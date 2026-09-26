@@ -34,7 +34,8 @@
   document.body.insertBefore(header, document.body.firstChild);
   header.querySelectorAll('.dd-btn').forEach(function (b) { b.addEventListener('click', function (e) { e.stopPropagation(); b.parentNode.classList.toggle('open'); }); });
   document.addEventListener('click', function () { header.querySelectorAll('.dd.open').forEach(function (d) { d.classList.remove('open'); }); });
-  document.getElementById('burger').onclick = function () { header.classList.toggle('menu-open'); };
+  var burger = document.getElementById('burger'); burger.setAttribute('aria-expanded', 'false');
+  burger.onclick = function () { burger.setAttribute('aria-expanded', header.classList.toggle('menu-open') ? 'true' : 'false'); };
   window.addEventListener('scroll', function () { header.classList.toggle('scrolled', window.scrollY > 8); }, { passive: true });
 
   var footer = document.createElement('footer');
@@ -54,6 +55,70 @@
   fab.innerHTML = WAI;
   document.body.appendChild(fab);
   document.querySelectorAll('[data-wa-icon]').forEach(function (e) { e.innerHTML = WAI; });
+
+  /* ---------- Accessibility: skip link + settings panel ---------- */
+  var mainEl = document.querySelector('main');
+  if (mainEl) { mainEl.id = mainEl.id || 'main'; mainEl.setAttribute('tabindex', '-1'); }
+  var skip = document.createElement('a');
+  skip.className = 'skip-link'; skip.href = '#main'; skip.setAttribute('data-i18n', 'a11y.skip'); skip.textContent = 'تخطَّ إلى المحتوى';
+  document.body.insertBefore(skip, document.body.firstChild);
+  var A11Y_KEY = 'sahm-a11y', A11Y = { fs: 0, dark: false, contrast: false, motion: false, links: false };
+  try { var st = JSON.parse(localStorage.getItem(A11Y_KEY) || '{}'); for (var k in A11Y) if (k in st) A11Y[k] = st[k]; } catch (e) {}
+  var FS = [-1, 0, 1, 2, 3];
+  function applyA11y() {
+    var H = document.documentElement;
+    H.classList.remove('a11y-fs--1', 'a11y-fs-1', 'a11y-fs-2', 'a11y-fs-3');
+    if (A11Y.fs) H.classList.add('a11y-fs-' + A11Y.fs);
+    H.classList.toggle('a11y-dark', !!A11Y.dark);
+    H.classList.toggle('a11y-contrast', !!A11Y.contrast);
+    H.classList.toggle('a11y-nomotion', !!A11Y.motion);
+    H.classList.toggle('a11y-links', !!A11Y.links);
+    var meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.content = A11Y.dark ? '#15110D' : '#FAF7F2';
+    if (panel) {
+      panel.querySelector('.a11y-fs-val').textContent = Math.round(100 + A11Y.fs * 12.5) + '%';
+      panel.querySelector('[data-a11y="fs-down"]').disabled = A11Y.fs <= FS[0];
+      panel.querySelector('[data-a11y="fs-up"]').disabled = A11Y.fs >= FS[FS.length - 1];
+      panel.querySelectorAll('[data-toggle]').forEach(function (b) { b.setAttribute('aria-pressed', A11Y[b.getAttribute('data-toggle')] ? 'true' : 'false'); });
+    }
+    try { localStorage.setItem(A11Y_KEY, JSON.stringify(A11Y)); } catch (e) {}
+  }
+  var A11I = '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8" fill="currentColor" stroke="none"/><path d="M5 8.5l7 1.5 7-1.5M12 10v5M12 15l-3.5 6M12 15l3.5 6"/></svg>';
+  var tgl = function (key, lbl, icon) { return '<button type="button" class="a11y-opt" data-toggle="' + key + '" aria-pressed="false"><span class="a11y-oi" aria-hidden="true">' + icon + '</span><span data-i18n="a11y.' + key + '">' + lbl + '</span></button>'; };
+  var a11yBtn = document.createElement('button');
+  a11yBtn.type = 'button'; a11yBtn.className = 'a11y-btn'; a11yBtn.innerHTML = A11I;
+  a11yBtn.setAttribute('aria-haspopup', 'dialog'); a11yBtn.setAttribute('aria-expanded', 'false'); a11yBtn.setAttribute('aria-controls', 'a11yPanel');
+  var panel = document.createElement('div');
+  panel.className = 'a11y-panel'; panel.id = 'a11yPanel'; panel.hidden = true;
+  panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-labelledby', 'a11yTitle');
+  panel.innerHTML = '<div class="a11y-head"><b id="a11yTitle" data-i18n="a11y.t">إمكانية الوصول</b><button type="button" class="a11y-x" data-a11y="close"><span aria-hidden="true">×</span><span class="sr-only" data-i18n="a11y.close">إغلاق</span></button></div>' +
+    '<div class="a11y-fs"><span data-i18n="a11y.fs">حجم الخط</span><div class="a11y-fs-ctl"><button type="button" data-a11y="fs-down"><span aria-hidden="true">A−</span><span class="sr-only" data-i18n="a11y.fsd">تصغير الخط</span></button><output class="a11y-fs-val" aria-live="polite">100%</output><button type="button" data-a11y="fs-up"><span aria-hidden="true">A+</span><span class="sr-only" data-i18n="a11y.fsu">تكبير الخط</span></button></div></div>' +
+    '<div class="a11y-grid">' +
+      tgl('dark', 'الوضع الليلي', '<svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>') +
+      tgl('contrast', 'تباين عالي', '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18a9 9 0 0 0 0-18z" fill="currentColor"/></svg>') +
+      tgl('motion', 'إيقاف الحركة', '<svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>') +
+      tgl('links', 'تمييز الروابط', '<svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>') +
+    '</div><button type="button" class="a11y-reset" data-a11y="reset" data-i18n="a11y.reset">إعادة الضبط</button>';
+  document.body.appendChild(a11yBtn); document.body.appendChild(panel);
+  function setA11yLabel() { a11yBtn.setAttribute('aria-label', document.documentElement.lang === 'en' ? 'Accessibility options' : 'خيارات إمكانية الوصول'); }
+  function openA11y(open) {
+    panel.hidden = !open; a11yBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) panel.querySelector('.a11y-x').focus();
+  }
+  a11yBtn.addEventListener('click', function (e) { e.stopPropagation(); openA11y(panel.hidden); });
+  panel.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var b = e.target.closest('button'); if (!b) return;
+    var act = b.getAttribute('data-a11y'), t = b.getAttribute('data-toggle');
+    if (act === 'close') { openA11y(false); a11yBtn.focus(); return; }
+    if (act === 'fs-up') A11Y.fs = Math.min(A11Y.fs + 1, FS[FS.length - 1]);
+    if (act === 'fs-down') A11Y.fs = Math.max(A11Y.fs - 1, FS[0]);
+    if (act === 'reset') A11Y = { fs: 0, dark: false, contrast: false, motion: false, links: false };
+    if (t) A11Y[t] = !A11Y[t];
+    applyA11y();
+  });
+  document.addEventListener('click', function () { if (!panel.hidden) openA11y(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { openA11y(false); a11yBtn.focus(); } });
+  applyA11y();
 
   var EN = {
     'brand':'Sahm Almarafiq','cta.talk':'Talk to a specialist','nav.solutions':'Solutions',
@@ -155,6 +220,8 @@
     'sx.marketing.4':'Following up leads',
     'o.re':'Real estate services',
     'f.change':'Change',
+    'a11y.skip':'Skip to content','a11y.t':'Accessibility','a11y.close':'Close','a11y.fs':'Text size','a11y.fsd':'Smaller text','a11y.fsu':'Larger text',
+    'a11y.dark':'Dark mode','a11y.contrast':'High contrast','a11y.motion':'Stop motion','a11y.links':'Highlight links','a11y.reset':'Reset',
     'nav.home':'Home','nav.services':'Services','nav.packages':'Plans','nav.guide':'Owners\u2019 association guide','nav.about':'About','nav.contact':'Contact',
     'cta.book':'Book a site visit','cta.book2':'Book a visit for your property','cta.browse':'Explore services','cta.wa':'WhatsApp us','cta.call':'Call us','cta.all':'All services',
     'foot.about':'Integrated solutions for the residential and commercial sectors:<br>property management, operations &amp; maintenance, and real estate services.',
@@ -244,10 +311,12 @@
     ph.forEach(function (e) { var k = e.getAttribute('data-i18n-ph'); e.setAttribute('placeholder', en && EN[k] ? EN[k] : e.getAttribute('data-ar-ph')); });
     document.title = en ? (document.body.getAttribute('data-title-en') || T) : T;
     document.getElementById('langBtn').textContent = en ? 'ع' : 'EN';
+    document.getElementById('langBtn').setAttribute('aria-label', en ? 'التبديل إلى العربية' : 'Switch to English');
     var link = wa(en ? WA_EN : WA_AR);
     fab.href = link;
     document.querySelectorAll('[data-wa]').forEach(function (a) { a.href = link; a.target = '_blank'; a.rel = 'noopener'; });
     try { localStorage.setItem('sahm-lang', l); } catch (e) {}
+    setA11yLabel();
     HOOKS.forEach(function (f) { f(en); });
   }
 
