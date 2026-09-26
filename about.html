@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>من نحن | سهم المرافق</title>
+<title>سهم المرافق | تشغيل وصيانة وإدارة أملاك ومرافق</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -17,64 +17,123 @@
       سهم المرافق
     </div>
     <nav class="links">
-      <a href="index.html">الرئيسية</a>
-      <a href="about.html" class="active">من نحن</a>
+      <a href="index.html" class="active">الرئيسية</a>
+      <a href="about.html">من نحن</a>
       <a href="services.html">خدماتنا</a>
       <a href="contact.html">تواصل معنا</a>
     </nav>
     <a href="contact.html" class="nav-cta">تواصل معنا الآن</a>
+    <button class="menu-toggle" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="فتح القائمة">&#9776;</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">الرئيسية</a>
+    <a href="about.html">من نحن</a>
+    <a href="services.html">خدماتنا</a>
+    <a href="contact.html">تواصل معنا</a>
   </div>
 </header>
 
-<div class="page-hero">
+<section class="hero">
   <div class="wrap">
-    <div class="eyebrow">من نحن</div>
-    <h1>خدمة موثوقة وجودة ملموسة</h1>
-    <p>سهم المرافق شركة سعودية متخصصة في تشغيل وصيانة المرافق وإدارة الأملاك.</p>
+    <div class="fade-in">
+      <div class="eyebrow">سهم المرافق — تشغيل وصيانة وإدارة أملاك ومرافق</div>
+      <h1>أمان عقارك يبدأ من هنا</h1>
+      <p>حلول تشغيل وصيانة وإدارة أملاك بمعايير عالمية وخبرة محلية أصيلة — صيانة وقائية وتصحيحية، إدارة أملاك ومرافق، واتفاقيات مستوى خدمة واضحة، عبر فريق ميداني مدرّب يضمن لك كفاءة تشغيلية حقيقية وراحة بال دائمة.</p>
+      <div class="btn-row">
+        <a href="contact.html" class="btn btn-primary">تواصل معنا الآن</a>
+        <a href="services.html" class="btn btn-outline">تعرّف على خدماتنا</a>
+      </div>
+    </div>
+    <div class="hero-visual fade-in">
+      <div class="visual-card">
+        <svg class="skyline" viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg">
+          <rect class="fill" x="30" y="110" width="60" height="130" rx="2"/>
+          <rect class="fill" x="145" y="55" width="72" height="185" rx="2"/>
+          <rect class="fill" x="245" y="140" width="55" height="100" rx="2"/>
+          <path class="bld" d="M30 240V150l30-25 30 25v90"/>
+          <path class="bld" d="M145 240V85l36-30 36 30v155"/>
+          <path class="bld" d="M245 240V160l27-22 28 22v80"/>
+          <line class="bld" x1="15" y1="240" x2="320" y2="240"/>
+        </svg>
+      </div>
+      <div class="float-chip">
+        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+        <div><b>استجابة سريعة</b><span>لكل بلاغ صيانة</span></div>
+      </div>
+    </div>
   </div>
-</div>
+  <div class="pillars-strip">
+    <div class="wrap">
+      <div class="p-item"><b>تشغيل وصيانة</b><span>كهرباء، تكييف، ميكانيكا</span></div>
+      <div class="p-item"><b>إدارة أملاك</b><span>إشغال ثابت ومتابعة</span></div>
+      <div class="p-item"><b>إدارة مرافق</b><span>اتحاد الملاك والخدمات</span></div>
+      <div class="p-item"><b>التسويق العقاري</b><span>تسويق فعّال للعقار</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">لمحة من أعمالنا</div>
+      <h2>معرض أعمالنا</h2>
+      <p>هذي تصاميم مبدئية بانتظار صوركم الحقيقية — استبدل كل بطاقة بصورة فعلية من ميدان العمل بس حط الصورة داخل مجلد images وغيّر مسارها بالكود.</p>
+    </div>
+    <div class="carousel" id="carousel">
+      <div class="slide active" data-slide="0">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M4 20l6-6-2-2 5-5 2 2 3-3"/><path d="M15 4l5 5"/></svg></div>
+        <span>صيانة كهرباء وتكييف</span>
+      </div>
+      <div class="slide" data-slide="1">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="1"/><path d="M10 7h4M10 11h4"/></svg></div>
+        <span>صيانة المصاعد</span>
+      </div>
+      <div class="slide" data-slide="2">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M4 4h4v4H4zM10 4h4v4h-4zM16 4h4v4h-4zM4 10h4v4H4zM10 10h4v4h-4zM16 10h4v4h-4z"/></svg></div>
+        <span>التنظيف الاحترافي</span>
+      </div>
+      <div class="slide" data-slide="3">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M4 12a8 8 0 0116 0M2 12a10 10 0 0120 0"/></svg></div>
+        <span>أنظمة الأمن والمراقبة</span>
+      </div>
+      <div class="slide" data-slide="4">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10"/><path d="M9 20v-6h6v6"/></svg></div>
+        <span>إدارة الأملاك والمرافق</span>
+      </div>
+      <div class="carousel-dots" id="carouselDots">
+        <button class="dot active" data-index="0" aria-label="1"></button>
+        <button class="dot" data-index="1" aria-label="2"></button>
+        <button class="dot" data-index="2" aria-label="3"></button>
+        <button class="dot" data-index="3" aria-label="4"></button>
+        <button class="dot" data-index="4" aria-label="5"></button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="wrap about-grid">
     <div>
-      <p style="color:var(--ink-soft);margin-bottom:16px;">نغطي المباني السكنية والمؤسسات والمستشفيات بفرق ميدانية مدربة تتابع الأنظمة الكهربائية والميكانيكية وأنظمة التكييف والأمن أولاً بأول.</p>
-      <p style="color:var(--ink-soft);">لا تشيل هم الصيانة ولا هم التنظيف — من الاستجابة السريعة لأي عطل إلى إدارة اتحاد الملاك والتسويق العقاري، نتولى كل تفصيل يحافظ على عقارك ويطيل عمره التشغيلي.</p>
+      <div class="section-head" style="margin-bottom:20px;">
+        <div class="eyebrow">من نحن</div>
+        <h2>خدمة موثوقة وجودة ملموسة</h2>
+      </div>
+      <p>سهم المرافق شركة سعودية تطبّق أفضل ممارسات إدارة المرافق المعتمدة عالميًا بخبرة محلية، ونغطي المباني السكنية والمؤسسات والمستشفيات بفرق ميدانية مدربة ومعايير تشغيل موحّدة.</p>
+      <a href="about.html" class="btn btn-outline">اقرأ المزيد عنا</a>
     </div>
     <div class="pillars reveal">
-      <div class="pillar"><div><b>صيانة وقائية وتصحيحية</b><span>فحص دوري يقلّل الأعطال ويزيد عمر المكان قبل ما تتفاقم المشكلة.</span></div></div>
-      <div class="pillar"><div><b>استجابة سريعة</b><span>فرق جاهزة للتعامل مع أي عطل كهربائي أو ميكانيكي أو في المصاعد بسرعة.</span></div></div>
-      <div class="pillar"><div><b>استثمار لأمانك</b><span>تركيب وصيانة كاميرات مراقبة وأجهزة إنذار تحمي عقارك على مدار الساعة.</span></div></div>
+      <div class="pillar"><div><b>صيانة وقائية وتصحيحية</b><span>فحص دوري يقلّل الأعطال ويزيد عمر المكان.</span></div></div>
+      <div class="pillar"><div><b>استجابة سريعة</b><span>فرق جاهزة للتعامل مع أي عطل بسرعة.</span></div></div>
+      <div class="pillar"><div><b>استثمار لأمانك</b><span>كاميرات مراقبة وأجهزة إنذار تحمي عقارك.</span></div></div>
     </div>
   </div>
 </section>
 
-<section class="process" style="padding-top:0;">
+<section class="cta-band">
   <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">آلية العمل</div>
-      <h2>أربع خطوات بيننا وبين راحة بالك</h2>
-    </div>
-    <div class="process-grid reveal">
-      <div class="step"><div class="step-num">1</div><h4>تواصل معنا</h4><p>تتصل بنا أو تعبّي نموذج التواصل بتفاصيل عقارك واحتياجك.</p></div>
-      <div class="step"><div class="step-num">2</div><h4>معاينة ميدانية</h4><p>فريقنا يزور الموقع ويقيّم حالة الأنظمة والاحتياج الفعلي.</p></div>
-      <div class="step"><div class="step-num">3</div><h4>خطة تشغيل مخصصة</h4><p>نجهز خطة صيانة وإدارة تناسب نوع عقارك وميزانيتك.</p></div>
-      <div class="step"><div class="step-num">4</div><h4>تشغيل ومتابعة مستمرة</h4><p>نبدأ التنفيذ مع متابعة دورية وتقارير تحدّثك أول بأول.</p></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">لماذا سهم المرافق</div>
-      <h2>اشتري راحة بالك مع سهم المرافق</h2>
-    </div>
-    <div class="why-grid reveal">
-      <div class="why-card"><div class="icon-badge"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div><span>صيانة سريعة تحفظ كفاءة عقارك وتقلّل الأعطال الطارئة.</span></div>
-      <div class="why-card"><div class="icon-badge"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div><span>عمالة مدربة وجودة ملموسة في كل زيارة صيانة.</span></div>
-      <div class="why-card"><div class="icon-badge"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div><span>تغطية شاملة: مباني سكنية، مؤسسات، ومستشفيات.</span></div>
-      <div class="why-card"><div class="icon-badge"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div><span>خدمات متكاملة من الصيانة إلى إدارة الأملاك والتسويق.</span></div>
-    </div>
+    <h2>مهما كانت مؤسستك، لا تشيل هم التنظيف والصيانة</h2>
+    <p>تواصل معنا الآن ودعنا نتولى تشغيل وصيانة وإدارة عقارك من الألف إلى الياء.</p>
+    <a href="contact.html" class="btn btn-primary">تواصل معنا</a>
   </div>
 </section>
 
@@ -96,6 +155,6 @@
   </div>
 </footer>
 
-<a class="whatsapp-fab" href="https://wa.me/966510105266" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب"><svg viewBox="0 0 32 32"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.48.73 4.79 1.98 6.73L4 29l7.46-1.94a11.93 11.93 0 0 0 4.56.9h.01c6.62 0 12.02-5.4 12.02-12.02C28.04 8.4 22.65 3 16.02 3zm7.03 17.15c-.3.83-1.72 1.58-2.37 1.68-.61.09-1.38.13-2.23-.14-.51-.16-1.17-.38-2.02-.75-3.55-1.53-5.87-5.1-6.05-5.34-.18-.24-1.44-1.92-1.44-3.66 0-1.74.91-2.6 1.24-2.95.32-.35.7-.44.94-.44.24 0 .47 0 .68.01.22.01.51-.08.8.61.3.7 1.02 2.44 1.1 2.61.09.18.15.39.03.63-.12.24-.18.39-.35.6-.18.21-.37.47-.53.63-.18.18-.36.37-.16.72.21.35.93 1.53 1.99 2.48 1.37 1.22 2.52 1.6 2.87 1.78.35.18.56.15.77-.09.21-.24.88-1.03 1.12-1.38.24-.35.47-.29.79-.18.32.12 2.05.97 2.4 1.14.35.18.59.26.67.41.09.15.09.85-.21 1.68z"/></svg></a>\n<script src="script.js"></script>
+<a class="whatsapp-fab" href="https://wa.me/966510105266?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%B3%D9%87%D9%85%20%D8%A7%D9%84%D9%85%D8%B1%D8%A7%D9%81%D9%82%D8%8C%20%D8%A3%D8%A8%D9%8A%20%D8%A3%D8%B3%D8%AA%D9%81%D8%B3%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%83%D9%85" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب"><svg viewBox="0 0 32 32"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.48.73 4.79 1.98 6.73L4 29l7.46-1.94a11.93 11.93 0 0 0 4.56.9h.01c6.62 0 12.02-5.4 12.02-12.02C28.04 8.4 22.65 3 16.02 3zm7.03 17.15c-.3.83-1.72 1.58-2.37 1.68-.61.09-1.38.13-2.23-.14-.51-.16-1.17-.38-2.02-.75-3.55-1.53-5.87-5.1-6.05-5.34-.18-.24-1.44-1.92-1.44-3.66 0-1.74.91-2.6 1.24-2.95.32-.35.7-.44.94-.44.24 0 .47 0 .68.01.22.01.51-.08.8.61.3.7 1.02 2.44 1.1 2.61.09.18.15.39.03.63-.12.24-.18.39-.35.6-.18.21-.37.47-.53.63-.18.18-.36.37-.16.72.21.35.93 1.53 1.99 2.48 1.37 1.22 2.52 1.6 2.87 1.78.35.18.56.15.77-.09.21-.24.88-1.03 1.12-1.38.24-.35.47-.29.79-.18.32.12 2.05.97 2.4 1.14.35.18.59.26.67.41.09.15.09.85-.21 1.68z"/></svg></a>\n<script src="script.js"></script>
 </body>
 </html>
