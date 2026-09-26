@@ -163,6 +163,7 @@
     'fn.s1':'Site type','fn.s2':'What do you need?','fn.hint':'Pick a site type and a need.',
     'fn.own':'Building / investment property','fn.asc':'Compound / owners’ association','fn.biz':'Company / facility','fn.hom':'Villa / home',
     'fn.prop':'Property management','fn.full':'Operations & maintenance','fn.periodic':'Periodic maintenance','fn.fix':'Fix a fault','fn.clean':'Cleaning',
+    'c.t4':'We visit your site and understand its needs','cta.visit':'Request a visit',
     'c.t3':'We visit your site and give you a clear quote','c.d3':'Call us or send your request, and we’ll arrange the visit.',
     'pr.e':'How we work','pr.t':'From the first visit to a clear report',
     'pr1.t':'Site visit & needs','pr1.d':'We visit the site, listen to you, and define the real need and the condition of the systems.',
