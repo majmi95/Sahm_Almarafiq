@@ -141,7 +141,7 @@
     'rg1.t':'Riyadh','rg1.d':'Central Region — residential, commercial and institutional properties.',
     'rg2.t':'Eastern Province','rg2.d':'Dammam · Khobar · Dhahran.',
     /* contact */
-    'co.e':'Contact','co.t':'Let\u2019s talk about your property','co.l':'Choose the channel that suits you, or send your request directly.',
+    'co.e':'Contact','co.t':'Contact the Sahm Almarafiq team','co.l':'Choose the channel that suits you, or send your request directly.',
     'ch.wa':'WhatsApp','ch.wa2':'The fastest way to reach us','ch.ph':'Phone','ch.em':'Email','ch.cv':'Coverage','ch.cv2':'Riyadh · Dammam · Khobar · Dhahran',
     
     'f.name':'Full name','f.phone':'Mobile','f.city':'City','f.msg':'Details (optional)',
