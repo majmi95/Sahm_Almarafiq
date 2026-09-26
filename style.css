@@ -408,3 +408,11 @@ html[dir="ltr"] .cta-box::before{background-position:right -20px bottom -30px}
 }
 /* remove decorative arrows */
 .persona .go,.btn .arrow{display:none}
+/* form success state */
+.form-ok{text-align:center;padding:24px 8px}
+.form-ok[hidden]{display:none}
+.ok-ic{width:64px;height:64px;border-radius:50%;background:#E6F6EC;color:#1FA855;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.form-ok h2{font-size:1.4rem;margin-bottom:8px}
+.form-ok p{color:var(--muted);margin-bottom:22px}
+.form-ok .btn{width:auto}
+.form.sent>*:not(.form-ok){display:none}
