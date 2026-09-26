@@ -40,7 +40,7 @@
   var footer = document.createElement('footer');
   footer.className = 'site-footer';
   footer.innerHTML = '<div class="wrap"><div class="foot"><div>' + BRAND +
-    '<p data-i18n="foot.about">تشغيل وصيانة وإدارة أملاك ومرافق في الرياض والمنطقة الشرقية.</p></div>' +
+    '<p data-i18n="foot.about">شريكك في تشغيل وإدارة المرافق<br>في الرياض والمنطقة الشرقية.</p></div>' +
     '<div class="foot-links">' +
       '<div><h4 data-i18n="foot.pages">الصفحات</h4><ul><li><a href="services.html" data-i18n="nav.services">خدماتنا</a></li><li><a href="packages.html" data-i18n="nav.packages">الباقات</a></li><li><a href="owners-association.html" data-i18n="nav.guide">دليل اتحاد الملاك</a></li><li><a href="about.html" data-i18n="nav.about">من نحن</a></li><li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li></ul></div>' +
       '<div><h4 data-i18n="nav.solutions">الحلول</h4><ul>' + SOL.map(function (s) { return '<li><a href="' + s[0] + '" data-i18n="' + s[1] + '">' + s[2] + '</a></li>'; }).join('') + '</ul></div>' +
@@ -93,10 +93,9 @@
     'q3':'How do I get started?','a3':'Talk to one of our specialists via the form or WhatsApp. We arrange a visit to your property, then share a plan tailored to it.',
     'nav.home':'Home','nav.services':'Services','nav.packages':'Plans','nav.guide':'Owners\u2019 association guide','nav.about':'About','nav.contact':'Contact',
     'cta.book':'Book a site visit','cta.book2':'Book a visit for your property','cta.browse':'Explore services','cta.wa':'WhatsApp us','cta.call':'Call us','cta.all':'All services',
-    'foot.about':'Operations, maintenance, property and facilities management in Riyadh and the Eastern Province.',
+    'foot.about':'Your partner in facilities operations &amp; management<br>in Riyadh &amp; the Eastern Province.',
     'foot.pages':'Pages','foot.reach':'Contact','foot.rights':'Sahm Almarafiq. All rights reserved.',
     /* home */
-    'h.tag':'Your partner in facilities operations & management','h.loc':'Riyadh · Eastern Province',
     'h.t':'We run your property. <em>We protect its value.</em>',
     'h.l':'Operations and maintenance, cleaning, and property &amp; facilities management — one accountable team with fast response.',
     'h.p1':'Preventive maintenance','h.p2':'Fast response','h.p3':'Continuous follow-up',
