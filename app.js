@@ -91,23 +91,21 @@
     'o.own':'Building / investment property','o.asc':'Compound / owners\u2019 association','o.biz':'Company / facility','o.hom':'Villa / home',
     'o.tech':'Technical maintenance','o.sup':'Cleaning & security','o.fac':'Facilities / owners\u2019 association','o.unsure':'Not sure — I need advice',
     'q3':'How do I get started?','a3':'Talk to one of our specialists via the form or WhatsApp. We arrange a visit to your property, then share a plan tailored to it.',
-    'h.t':'We manage your facilities <em>from request to resolution</em>',
-    'h.l':'Operations, maintenance, cleaning and facilities management, with a clear plan, continuous follow-up and reports that show you the state of your site.',
-    'h.p1':'A clear work plan','h.p2':'Continuous follow-up','h.p3':'Reports on your site',
-    'cta.quote':'Request a quote for your facility','cta.explore':'Explore services & products',
-    'nd.e':'Our solutions','nd.t':'Solutions that start from your need','nd.l':'Pick the problem you want solved, and see what you actually receive.','nd.get':'What you receive',
-    'nd1.t':'Run your facility with confidence','nd1.d':'Daily operations, preventive maintenance, breakdown handling and supplier follow-up.',
-    'nd1.g1':'A preventive maintenance schedule for your facility','nd1.g2':'A log of breakdowns and what was done','nd1.g3':'One party following up suppliers for you',
-    'nd2.t':'Take back control of requests','nd2.d':'Receiving requests, setting priority, following execution and closing with documentation.',
-    'nd2.g1':'One channel for all maintenance requests','nd2.g2':'A clear priority and status for every request','nd2.g3':'Documented closure of every request',
-    'nd3.t':'Protect the asset’s value','nd3.d':'Inspecting the facility, defining the work needed, and a maintenance plan that helps reduce recurring breakdowns.',
-    'nd3.g1':'A facility condition report after inspection','nd3.g2':'A prioritised list of required works','nd3.g3':'A maintenance plan for the coming period',
-    'nd4.t':'Get the place ready for its users','nd4.d':'Cleaning, readiness of shared facilities, and a better experience for residents, staff or visitors.',
-    'nd4.g1':'A regular cleaning schedule for your facility','nd4.g2':'Follow-up on entrances, elevators and shared areas','nd4.g3':'One point of contact for your feedback',
-    'fn.e':'Quick guide','fn.t':'What does your facility need?','fn.l':'Choose your site type and need, and we’ll suggest the right services.',
-    'fn.s1':'Site type','fn.s2':'What do you need?','fn.hint':'Choose a site type and a need to see the matching services.',
+    'h.t':'Maintenance and operation of your facilities, <em>with one team</em>',
+    'h.l':'Operations, maintenance, cleaning and property management in Riyadh and the Eastern Province.',
+    'cta.quote':'Request a quote','cta.guide':'What does your facility need?',
+    'fn.e':'Quick guide','fn.t':'What does your facility need?','fn.l':'Pick your site type and need, and we’ll show you what we can do.',
+    'fn.s1':'Site type','fn.s2':'What do you need?','fn.hint':'Pick a site type and a need.',
     'fn.own':'Building / investment property','fn.asc':'Compound / owners’ association','fn.biz':'Company / facility','fn.hom':'Villa / home',
     'fn.full':'Full operations','fn.fix':'Breakdowns & repairs','fn.clean':'Cleaning','fn.prod':'Products','fn.prop':'Property management',
+    'sv2.t':'What we offer',
+    'sv2.tech.t':'Technical maintenance','sv2.tech.d':'Electrical, HVAC, plumbing, elevators and alarm systems.',
+    'sv2.clean.t':'Cleaning','sv2.clean.d':'Residential buildings, offices, hospitals and façades.',
+    'sv2.sec.t':'Security & CCTV','sv2.sec.d':'CCTV installation and maintenance.',
+    'sv2.prop.t':'Property management','sv2.prop.d':'Units, tenants, contracts and collections.',
+    'sv2.asc.t':'Owners’ associations','sv2.asc.d':'Activating the association and running shared facilities.',
+    'sv2.prod.t':'Products','sv2.prod.d':'Facility products with installation and maintenance.',
+    'c.t3':'We visit your site and give you a clear quote','c.d3':'Call us or send your request, and we’ll arrange the visit.',
     'pd.e':'Products','pd.t':'Products for your facility, with installation & maintenance','pd.l':'We supply selected facility products, and state for each one who it suits and whether it includes installation or maintenance.','pd.cta':'Browse products',
     'pp2.t':'Products for your facility','pp2.l':'For each product: who it suits, key specifications, and whether it includes installation or maintenance. Ask about any product and we’ll reply on WhatsApp.',
     'pp2.et':'Product list in preparation','pp2.ed':'We are preparing the list of approved products with photos and specifications. Looking for a specific product for your facility? Tell us what you need and we’ll get back to you.','pp2.ask':'Ask us about a product',
@@ -116,7 +114,6 @@
     'pr2.t':'Plan & scope of work','pr2.d':'We hand you a plan with the scope, priorities and timeline before we start.',
     'pr3.t':'Operation & execution','pr3.d':'Our team carries out the work and follows every request until it is closed.',
     'pr4.t':'Report & review','pr4.d':'We share what was done and the state of your site, then review and adjust the plan with you.',
-    'c.t2':'Let’s get to know your facility',
     'o.full':'Full operations & maintenance','o.prod':'Products',
     'ab.st.e':'Who we serve','ab.st.t':'Types of sites we serve',
     'st.a':'Residential buildings','st.b':'Corporate & commercial premises','st.c':'Hospitals & clinics','st.d':'Multi-owner compounds & associations','st.e':'Villas & homes',
@@ -228,16 +225,16 @@
   if (finder) {
     var TYPES = { own: ['عمارة / عقار استثماري', 'Building / investment property', 'owners.html'], asc: ['مجمع / جمعية ملاك', 'Compound / owners’ association', 'associations.html'], biz: ['شركة / منشأة', 'Company / facility', 'business.html'], hom: ['فيلا / منزل', 'Villa / home', 'homes.html'] };
     var NEEDS = {
-      full: ['تشغيل شامل', 'Full operations', [['تشغيل يومي للمرفق', 'Daily facility operations'], ['صيانة وقائية مجدولة للأنظمة', 'Scheduled preventive maintenance'], ['إدارة الأعطال ومتابعة الموردين', 'Breakdown handling & supplier follow-up'], ['تقارير عن حالة الموقع', 'Reports on the state of your site']]],
-      fix: ['أعطال وإصلاح', 'Breakdowns & repairs', [['تشخيص العطل وإصلاحه', 'Diagnosing and fixing the fault'], ['الكهرباء والتكييف والسباكة', 'Electrical, HVAC & plumbing'], ['صيانة المصاعد وأنظمة الإنذار والسلامة', 'Elevators, alarm & safety systems'], ['توثيق إغلاق كل بلاغ', 'Documented closure of every request']]],
-      clean: ['نظافة', 'Cleaning', [['تنظيف دوري للمبنى والمرافق', 'Regular cleaning of the building and facilities'], ['تنظيف الواجهات', 'Façade cleaning'], ['جدول نظافة يناسب طبيعة الموقع', 'A cleaning schedule suited to your site']]],
-      prod: ['منتجات', 'Products', [['منتجات مختارة حسب احتياج المرفق', 'Selected products for your facility’s needs'], ['توضيح التركيب والصيانة لكل منتج', 'Installation and maintenance stated per product']]],
-      prop: ['إدارة أملاك', 'Property management', [['إدارة الوحدات والمستأجرين', 'Units & tenant management'], ['متابعة العقود والتحصيل', 'Contracts & collections'], ['إدارة الخدمات اليومية', 'Daily services management']]]
+      full: ['تشغيل شامل', 'Full operations', [['تشغيل يومي للموقع', 'Daily site operations'], ['صيانة دورية للتكييف والكهرباء والسباكة', 'Regular HVAC, electrical & plumbing maintenance'], ['متابعة كل بلاغ حتى يُقفل', 'Every request followed until it is closed']]],
+      fix: ['أعطال وإصلاح', 'Breakdowns & repairs', [['إصلاح أعطال الكهرباء والتكييف والسباكة', 'Electrical, HVAC & plumbing repairs'], ['صيانة المصاعد وأنظمة الإنذار', 'Elevator & alarm system maintenance']]],
+      clean: ['نظافة', 'Cleaning', [['تنظيف دوري للمبنى والمرافق المشتركة', 'Regular cleaning of the building & shared areas'], ['تنظيف الواجهات', 'Façade cleaning']]],
+      prod: ['منتجات', 'Products', [['منتجات للمرفق حسب احتياجك', 'Facility products for your needs'], ['مع التركيب والصيانة حسب المنتج', 'With installation & maintenance, depending on the product']]],
+      prop: ['إدارة أملاك', 'Property management', [['إدارة الوحدات والمستأجرين', 'Units & tenant management'], ['متابعة العقود والتحصيل', 'Contracts & collections']]]
     };
     var EXTRA = {
-      asc: { full: ['تشغيل المرافق المشتركة: المداخل والمصاعد والممرات', 'Shared areas: entrances, elevators and corridors'], prop: ['المساعدة في تفعيل جمعية الملاك', 'Help activating the owners’ association'] },
-      biz: { clean: ['تنظيف المكاتب والمستشفيات والعيادات', 'Offices, hospitals & clinics cleaning'], fix: ['تركيب وصيانة كاميرات المراقبة', 'CCTV installation & maintenance'] },
-      own: { prop: ['التسويق العقاري وتقليل فترات الشغور', 'Real estate marketing to reduce vacancy'] },
+      asc: { full: ['تشغيل المداخل والمصاعد والممرات', 'Entrances, elevators & corridors'], prop: ['المساعدة في تفعيل جمعية الملاك', 'Help activating the owners’ association'] },
+      biz: { clean: ['تنظيف المكاتب والعيادات', 'Office & clinic cleaning'], fix: ['تركيب وصيانة كاميرات المراقبة', 'CCTV installation & maintenance'] },
+      own: { prop: ['تسويق الوحدات الشاغرة', 'Marketing vacant units'] },
       hom: { full: ['زيارات صيانة دورية لمنزلك', 'Regular maintenance visits for your home'] }
     };
     var pick = { type: null, need: null };
@@ -256,7 +253,7 @@
       var i = en ? 1 : 0, t = TYPES[pick.type], n = NEEDS[pick.need];
       var list = n[2].slice(); var x = EXTRA[pick.type] && EXTRA[pick.type][pick.need]; if (x) list.push(x);
       var msg = en ? 'Hello,\nSite type: ' + t[1] + '\nNeed: ' + n[1] + '\nI would like a quote for my facility.' : 'مرحبًا،\nنوع الموقع: ' + t[0] + '\nالاحتياج: ' + n[0] + '\nأرغب بعرض لمرفقي.';
-      finder.innerHTML = '<div class="finder-res"><h3>' + (en ? 'Suggested for ' : 'المقترح لـ') + esc(t[i]) + ' · ' + esc(n[i]) + '</h3>' +
+      finder.innerHTML = '<div class="finder-res"><h3>' + (en ? 'What we offer: ' : 'اللي نقدّمه لك: ') + esc(n[i]) + ' · ' + esc(t[i]) + '</h3>' +
         '<ul class="ticks">' + list.map(function (s) { return '<li>' + esc(s[i]) + '</li>'; }).join('') + '</ul>' +
         '<div class="cta-row"><a class="btn btn-primary" href="contact.html?for=' + pick.type + '&svc=' + pick.need + '">' + (en ? 'Send your request' : 'أرسل طلبك') + '</a>' +
         '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + wa(msg) + '">' + WAI + (en ? 'Send on WhatsApp' : 'أرسل عبر واتساب') + '</a>' +
