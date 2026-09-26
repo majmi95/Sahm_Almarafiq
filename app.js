@@ -8,7 +8,7 @@
   var LOGO = '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"><path d="M6 41V24l8-6 8 6v17"/><path d="M20 41V13l10-7 10 7v28"/><path d="M3 41h42"/></svg>';
   var WAI = '<svg viewBox="0 0 32 32"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.48.73 4.79 1.98 6.73L4 29l7.46-1.94a11.93 11.93 0 0 0 4.56.9c6.62 0 12.02-5.4 12.02-12.02C28.04 8.4 22.65 3 16.02 3zm7.03 17.15c-.3.83-1.72 1.58-2.37 1.68-.61.09-1.38.13-2.23-.14-.51-.16-1.17-.38-2.02-.75-3.55-1.53-5.87-5.1-6.05-5.34-.18-.24-1.44-1.92-1.44-3.66s.91-2.6 1.24-2.95c.32-.35.7-.44.94-.44l.68.01c.22.01.51-.08.8.61.3.7 1.02 2.44 1.1 2.61.09.18.15.39.03.63-.12.24-.18.39-.35.6-.18.21-.37.47-.53.63-.18.18-.36.37-.16.72.21.35.93 1.53 1.99 2.48 1.37 1.22 2.52 1.6 2.87 1.78.35.18.56.15.77-.09.21-.24.88-1.03 1.12-1.38.24-.35.47-.29.79-.18.32.12 2.05.97 2.4 1.14.35.18.59.26.67.41.09.15.09.85-.21 1.68z"/></svg>';
   var page = document.body.getAttribute('data-page');
-  var NAV = [['home','index.html','الرئيسية'],['services','services.html','خدماتنا'],['about','about.html','من نحن'],['contact','contact.html','تواصل معنا']];
+  var NAV = [['home','index.html','الرئيسية'],['services','services.html','خدماتنا'],['packages','packages.html','الباقات'],['about','about.html','من نحن'],['contact','contact.html','تواصل معنا']];
   function links() { return NAV.map(function (n) { return '<a href="' + n[1] + '" data-i18n="nav.' + n[0] + '"' + (n[0] === page ? ' class="active"' : '') + '>' + n[2] + '</a>'; }).join(''); }
   var BRAND = '<a href="index.html" class="brand" aria-label="Sahm Almarafiq">' + LOGO + '<div><b data-i18n="brand">سهم المرافق</b><small>SAHM ALMARAFIQ</small></div></a>';
 
@@ -16,9 +16,9 @@
   header.className = 'site-header';
   header.innerHTML = '<div class="wrap nav">' + BRAND + '<nav class="nav-links">' + links() + '</nav>' +
     '<div class="nav-actions"><button class="lang-btn" id="langBtn">EN</button>' +
-    '<a href="contact.html" class="btn btn-primary" data-i18n="cta.quote">اطلب عرض سعر</a>' +
+    '<a href="contact.html" class="btn btn-copper btn-sm" data-i18n="cta.book">احجز معاينة</a>' +
     '<button class="burger" id="burger" aria-label="Menu"><span></span></button></div></div>' +
-    '<nav class="mobile-nav">' + links() + '<a href="contact.html" class="btn btn-primary" data-i18n="cta.quote">اطلب عرض سعر</a></nav>';
+    '<nav class="mobile-nav">' + links() + '<div class="menu-foot"><a href="tel:' + P1 + '" class="ltr">' + P1 + '</a><a href="mailto:' + EMAIL + '" class="ltr">' + EMAIL + '</a></div></nav>';
   document.body.insertBefore(header, document.body.firstChild);
   document.getElementById('burger').onclick = function () { header.classList.toggle('menu-open'); };
   window.addEventListener('scroll', function () { header.classList.toggle('scrolled', window.scrollY > 8); }, { passive: true });
@@ -28,7 +28,7 @@
   footer.innerHTML = '<div class="wrap"><div class="foot"><div>' + BRAND +
     '<p data-i18n="foot.about">تشغيل وصيانة وإدارة أملاك ومرافق في الرياض والمنطقة الشرقية.</p></div>' +
     '<div class="foot-links">' +
-      '<div><h4 data-i18n="foot.pages">الصفحات</h4><ul><li><a href="services.html" data-i18n="nav.services">خدماتنا</a></li><li><a href="about.html" data-i18n="nav.about">من نحن</a></li><li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li></ul></div>' +
+      '<div><h4 data-i18n="foot.pages">الصفحات</h4><ul><li><a href="services.html" data-i18n="nav.services">خدماتنا</a></li><li><a href="packages.html" data-i18n="nav.packages">الباقات</a></li><li><a href="owners-association.html" data-i18n="nav.guide">دليل اتحاد الملاك</a></li><li><a href="about.html" data-i18n="nav.about">من نحن</a></li><li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li></ul></div>' +
       '<div><h4 data-i18n="foot.reach">تواصل</h4><ul><li><a class="ltr" href="tel:' + P1 + '">' + P1 + '</a></li><li><a class="ltr" href="tel:' + P2 + '">' + P2 + '</a></li><li><a class="ltr" href="mailto:' + EMAIL + '">' + EMAIL + '</a></li></ul></div>' +
     '</div></div><div class="foot-bottom"><span>© ' + new Date().getFullYear() + ' <span data-i18n="foot.rights">سهم المرافق. جميع الحقوق محفوظة.</span></span>' +
     '<a href="https://www.instagram.com/sahmalmarafiq" target="_blank" rel="noopener">Instagram @sahmalmarafiq</a></div></div>';
@@ -41,8 +41,8 @@
   document.querySelectorAll('[data-wa-icon]').forEach(function (e) { e.innerHTML = WAI; });
 
   var EN = {
-    'brand':'Sahm Almarafiq','nav.home':'Home','nav.services':'Services','nav.about':'About','nav.contact':'Contact',
-    'cta.quote':'Request a quote','cta.wa':'WhatsApp us','cta.call':'Call us','cta.all':'All services',
+    'brand':'Sahm Almarafiq','nav.home':'Home','nav.services':'Services','nav.packages':'Plans','nav.guide':'Owners\u2019 association guide','nav.about':'About','nav.contact':'Contact',
+    'cta.book':'Book a site visit','cta.book2':'Book a visit for your property','cta.browse':'Explore services','cta.wa':'WhatsApp us','cta.call':'Call us','cta.all':'All services',
     'foot.about':'Operations, maintenance, property and facilities management in Riyadh and the Eastern Province.',
     'foot.pages':'Pages','foot.reach':'Contact','foot.rights':'Sahm Almarafiq. All rights reserved.',
     /* home */
@@ -58,7 +58,7 @@
     's4.t':'Professional cleaning','s4.d':'Residential buildings, corporate premises and hospitals.',
     's5.t':'Property & facilities','s5.d':'Stable occupancy, tenant follow-up and owners\u2019 associations.',
     's6.t':'Real estate marketing','s6.d':'Reaching the right tenant or buyer, faster.',
-    'w.e':'Why Sahm Almarafiq','w.t':'A partner you can rely on',
+    'w.pk':'Explore our maintenance plans','w.e':'Why Sahm Almarafiq','w.t':'A partner you can rely on',
     'w.l':'We take the day-to-day off your hands with clear standards, a trained team and continuous follow-up — so your property keeps its value.',
     'w.s':'We serve',
     'w1.t':'Proactive','w1.d':'Scheduled maintenance that prevents breakdowns.',
@@ -66,7 +66,7 @@
     'w3.t':'Transparent','w3.d':'Clear follow-up until every request is closed.',
     'w4.t':'Local coverage','w4.d':'Riyadh, Dammam, Khobar and Dhahran.',
     'sec1':'Residential','sec2':'Corporate & commercial','sec3':'Healthcare','sec4':'Communities & owners\u2019 associations',
-    'c.t':'Book a site survey for your property','c.d':'Tell us what you need and our team will get back to you quickly.',
+    'c.k':'Your first step','c.t':'Your property deserves better care','c.d':'Our team visits your property, assesses it, and gives you a clear plan tailored to it.',
     /* services */
     'sv.e':'Services','sv.t':'Integrated services, one accountable partner','sv.l':'Four service lines covering the full life-cycle of your property.',
     'o.t':'Operations & maintenance','o.d':'Preventive and corrective maintenance that reduces breakdowns and extends your building\u2019s life.',
@@ -94,16 +94,40 @@
     /* contact */
     'co.e':'Contact','co.t':'Let\u2019s talk about your property','co.l':'Choose the channel that suits you, or send your request directly.',
     'ch.wa':'WhatsApp','ch.wa2':'The fastest way to reach us','ch.ph':'Phone','ch.em':'Email','ch.cv':'Coverage','ch.cv2':'Riyadh · Dammam · Khobar · Dhahran',
-    'f.t':'Request a quote','f.d':'Your request opens in WhatsApp, ready to send.',
+    'f.t':'Book a visit for your property','f.d':'Fill in your details and your request reaches us directly on WhatsApp.',
     'f.name':'Full name','f.phone':'Mobile','f.city':'City','f.svc':'Service','f.msg':'Details (optional)',
     'f.ph.name':'Your name','f.ph.msg':'Tell us briefly about your property',
-    'f.send':'Send request','f.note':'We reply as soon as possible.',
+    'f.send':'Send request','f.note':'Our team will contact you to confirm the visit.',
     'o.ruh':'Riyadh','o.dmm':'Dammam','o.khb':'Khobar','o.dhr':'Dhahran','o.oth':'Other',
     'o.ops':'Operations & maintenance','o.prop':'Property / facilities management','o.cln':'Cleaning','o.sec':'Security systems','o.mkt':'Real estate marketing',
-    'fq.e':'FAQ','fq.t':'Common questions',
+    'fq.e':'FAQ',
+    'pk.e':'Maintenance plans','pk.t':'Choose the right plan for your property','pk.l':'Three clear plans that cover every property\u2019s needs — each one tailored after a site visit.',
+    'pl.rec':'Recommended',
+    'p1.tag':'Regular care','p1.t':'Essential','p1.d':'Regular preventive maintenance that keeps your property ready and reduces breakdowns.',
+    'p1.1':'Scheduled preventive visits','p1.2':'Electrical, HVAC and plumbing checks','p1.3':'Response to emergency requests','p1.4':'Follow-up on every request until closed',
+    'p2.tag':'Standalone buildings','p2.t':'Complete','p2.d':'Everything a building needs — operations, maintenance and cleaning — under one team.',
+    'p2.1':'Everything in Essential','p2.2':'Elevator maintenance','p2.3':'Regular cleaning of common areas','p2.4':'Alarm and CCTV system maintenance','p2.5':'Priority response',
+    'p3.tag':'Compounds & owners\u2019 associations','p3.t':'Tailored','p3.d':'Integrated management of shared facilities, designed around your compound\u2019s size and needs.',
+    'p3.1':'Everything in Complete','p3.2':'Shared facilities management','p3.3':'Help activating the owners\u2019 association','p3.4':'Property management, contracts and collections','p3.5':'Marketing vacant units',
+    'pk.note':'Every plan starts with a site visit; scope and pricing are then set out clearly.',
+    'pk.fq':'Questions about plans',
+    'pq1':'How much does a plan cost?','pa1':'Pricing depends on the property\u2019s type, size and needs. We share a clear proposal after the site visit.',
+    'pq2':'Can I customise a plan?','pa2':'Yes — every plan is customisable; we add or remove services to fit your property.',
+    'pq3':'What\u2019s the difference between Complete and Tailored?','pa3':'Complete suits standalone buildings; Tailored is designed for compounds and multi-owner buildings that need shared-facility management.',
+    'f.plan':'Selected plan',
+    'gd.e':'Quick guide','gd.t':'Owners\u2019 associations: what you need to know','gd.l':'If you own an apartment or unit in a shared building, this guide explains how common areas are managed properly.',
+    'gd.q1':'What is an owners\u2019 association?','gd.a1':'An owners\u2019 association — now called an <b>owners\u2019 society</b> — brings together the unit owners of a building to organise the management and maintenance of shared parts such as entrances, elevators, corridors and the roof, and to share their costs fairly.',
+    'gd.q2':'Why does it matter?','gd.b1':'It protects every owner\u2019s rights and clarifies responsibilities.','gd.b2':'It ensures regular maintenance of elevators, entrances and shared facilities.','gd.b3':'It reduces disputes through clear, approved decisions.','gd.b4':'It preserves — and grows — the property\u2019s value.',
+    'gd.c.t':'We activate and operate it for you','gd.c.d':'We help you activate the owners\u2019 society, then operate and maintain shared facilities and follow up on subscriptions — so every owner can relax.','gd.c.l':'See the Tailored plan',
+    'gd.s.e':'Steps','gd.s.t':'How is an association activated?',
+    'g1.t':'Register on Mullak','g1.d':'Unit owners register on the electronic platform of the Real Estate General Authority.',
+    'g2.t':'Create the society','g2.d':'The building\u2019s owners\u2019 society is created online.',
+    'g3.t':'Choose the management','g3.d':'Owners nominate and vote for the society\u2019s chair and management.',
+    'g4.t':'Approve subscriptions','g4.d':'Owners agree on subscriptions that cover operating and maintaining shared parts.',
+    'gd.note':'This guide is for general awareness. For up-to-date regulatory requirements, refer to the Mullak platform of the Real Estate General Authority.','fq.t':'Common questions',
     'q1':'Which cities do you cover?','a1':'Riyadh and the Eastern Province, including Dammam, Khobar and Dhahran.',
     'q2':'Which properties do you serve?','a2':'Residential buildings, corporate and commercial premises, hospitals and multi-owner communities.',
-    'q3':'How do I get a quote?','a3':'Send your request via the form or WhatsApp. We arrange a site survey, then share a plan tailored to your property.'
+    'q3':'How do I get started?','a3':'Book a visit via the form or WhatsApp. We visit your property, then share a plan tailored to it.'
   };
 
   var nodes = document.querySelectorAll('[data-i18n]'), ph = document.querySelectorAll('[data-i18n-ph]'), T = document.title;
@@ -131,14 +155,24 @@
     rv.forEach(function (r) { io.observe(r); });
   } else rv.forEach(function (r) { r.classList.add('in'); });
 
+  var PLANS = { basic: ['الباقة الأساسية','Essential plan'], complete: ['الباقة الشاملة','Complete plan'], custom: ['الباقة المخصصة','Tailored plan'] };
+  var planKey = (new URLSearchParams(location.search).get('plan') || '').toLowerCase();
+  var pickedPlan = PLANS[planKey] || null;
+  var planBox = document.getElementById('planBox');
+  if (planBox && pickedPlan) {
+    planBox.hidden = false;
+    var sync = function () { planBox.querySelector('b').textContent = pickedPlan[document.documentElement.lang === 'en' ? 1 : 0]; };
+    sync(); document.getElementById('langBtn').addEventListener('click', sync);
+  }
   var form = document.getElementById('quoteForm');
   if (form) form.addEventListener('submit', function (ev) {
     ev.preventDefault();
     var en = document.documentElement.lang === 'en';
     function v(id) { var e = document.getElementById(id); return e.tagName === 'SELECT' ? e.options[e.selectedIndex].text : e.value.trim(); }
     var L = en
-      ? ['Hello Sahm Almarafiq,', 'I would like a quote.', '', 'Name: ' + v('fName'), 'Mobile: ' + v('fPhone'), 'City: ' + v('fCity'), 'Service: ' + v('fSvc')]
-      : ['مرحبًا سهم المرافق،', 'أرغب بطلب عرض سعر.', '', 'الاسم: ' + v('fName'), 'الجوال: ' + v('fPhone'), 'المدينة: ' + v('fCity'), 'الخدمة: ' + v('fSvc')];
+      ? ['Hello Sahm Almarafiq,', 'I would like to book a site visit.', '', 'Name: ' + v('fName'), 'Mobile: ' + v('fPhone'), 'City: ' + v('fCity'), 'Service: ' + v('fSvc')]
+      : ['مرحبًا سهم المرافق،', 'أرغب بحجز معاينة لعقاري.', '', 'الاسم: ' + v('fName'), 'الجوال: ' + v('fPhone'), 'المدينة: ' + v('fCity'), 'الخدمة: ' + v('fSvc')];
+    if (pickedPlan) L.push((en ? 'Plan: ' : 'الباقة: ') + pickedPlan[en ? 1 : 0]);
     if (v('fMsg')) L.push((en ? 'Details: ' : 'التفاصيل: ') + v('fMsg'));
     window.open(wa(L.join('\n')), '_blank');
   });
