@@ -5,8 +5,8 @@
   var WA_EN = 'Hello,\nI would like to inquire about Sahm Almarafiq services';
   function wa(msg) { return 'https://wa.me/966510105266?text=' + encodeURIComponent(msg); }
 
-  var LOGO = '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"><path d="M6 41V24l8-6 8 6v17"/><path d="M20 41V13l10-7 10 7v28"/><path d="M3 41h42"/></svg>';
-  var WAI = '<svg viewBox="0 0 32 32"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.48.73 4.79 1.98 6.73L4 29l7.46-1.94a11.93 11.93 0 0 0 4.56.9c6.62 0 12.02-5.4 12.02-12.02C28.04 8.4 22.65 3 16.02 3zm7.03 17.15c-.3.83-1.72 1.58-2.37 1.68-.61.09-1.38.13-2.23-.14-.51-.16-1.17-.38-2.02-.75-3.55-1.53-5.87-5.1-6.05-5.34-.18-.24-1.44-1.92-1.44-3.66s.91-2.6 1.24-2.95c.32-.35.7-.44.94-.44l.68.01c.22.01.51-.08.8.61.3.7 1.02 2.44 1.1 2.61.09.18.15.39.03.63-.12.24-.18.39-.35.6-.18.21-.37.47-.53.63-.18.18-.36.37-.16.72.21.35.93 1.53 1.99 2.48 1.37 1.22 2.52 1.6 2.87 1.78.35.18.56.15.77-.09.21-.24.88-1.03 1.12-1.38.24-.35.47-.29.79-.18.32.12 2.05.97 2.4 1.14.35.18.59.26.67.41.09.15.09.85-.21 1.68z"/></svg>';
+  var LOGO = '<svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"><path d="M6 41V24l8-6 8 6v17"/><path d="M20 41V13l10-7 10 7v28"/><path d="M3 41h42"/></svg>';
+  var WAI = '<svg width="28" height="28" viewBox="0 0 32 32"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.48.73 4.79 1.98 6.73L4 29l7.46-1.94a11.93 11.93 0 0 0 4.56.9c6.62 0 12.02-5.4 12.02-12.02C28.04 8.4 22.65 3 16.02 3zm7.03 17.15c-.3.83-1.72 1.58-2.37 1.68-.61.09-1.38.13-2.23-.14-.51-.16-1.17-.38-2.02-.75-3.55-1.53-5.87-5.1-6.05-5.34-.18-.24-1.44-1.92-1.44-3.66s.91-2.6 1.24-2.95c.32-.35.7-.44.94-.44l.68.01c.22.01.51-.08.8.61.3.7 1.02 2.44 1.1 2.61.09.18.15.39.03.63-.12.24-.18.39-.35.6-.18.21-.37.47-.53.63-.18.18-.36.37-.16.72.21.35.93 1.53 1.99 2.48 1.37 1.22 2.52 1.6 2.87 1.78.35.18.56.15.77-.09.21-.24.88-1.03 1.12-1.38.24-.35.47-.29.79-.18.32.12 2.05.97 2.4 1.14.35.18.59.26.67.41.09.15.09.85-.21 1.68z"/></svg>';
   var page = document.body.getAttribute('data-page');
   var NAV = [['home','index.html','الرئيسية'],['solutions','#','الحلول'],['services','services.html','خدماتنا'],['packages','packages.html','الباقات'],['about','about.html','من نحن'],['contact','contact.html','تواصل معنا']];
   var SOL = [['owners.html','sol.own','ملاك العمائر والمستثمرون'],['associations.html','sol.asc','جمعيات الملاك والمجمعات'],['business.html','sol.biz','الشركات والمنشآت'],['homes.html','sol.hom','الفلل والمنازل']];
@@ -18,7 +18,7 @@
         var sub = SOL.map(function (s) { return '<a href="' + s[0] + '" data-i18n="' + s[1] + '"' + (s[0] === here ? ' class="active"' : '') + '>' + s[2] + '</a>'; }).join('');
         return mobile
           ? '<div class="m-group"><span class="m-label" data-i18n="nav.solutions">الحلول</span>' + sub + '</div>'
-          : '<div class="dd' + act + '"><button class="dd-btn' + act + '" aria-haspopup="true"><span data-i18n="nav.solutions">الحلول</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="dd-menu">' + sub + '</div></div>';
+          : '<div class="dd' + act + '"><button class="dd-btn' + act + '" aria-haspopup="true"><span data-i18n="nav.solutions">الحلول</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="dd-menu">' + sub + '</div></div>';
       }
       return '<a href="' + n[1] + '" data-i18n="nav.' + n[0] + '"' + (act ? ' class="active"' : '') + '>' + n[2] + '</a>';
     }).join('');
