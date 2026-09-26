@@ -154,6 +154,7 @@
     'sx.periodic.3':'Repairs when needed',
     'sx.marketing.4':'Following up leads',
     'o.re':'Real estate services',
+    'f.change':'Change',
     'nav.home':'Home','nav.services':'Services','nav.packages':'Plans','nav.guide':'Owners\u2019 association guide','nav.about':'About','nav.contact':'Contact',
     'cta.book':'Book a site visit','cta.book2':'Book a visit for your property','cta.browse':'Explore services','cta.wa':'WhatsApp us','cta.call':'Call us','cta.all':'All services',
     'foot.about':'Integrated solutions for the residential and commercial sectors:<br>property management, operations &amp; maintenance, and real estate services.',
@@ -284,7 +285,7 @@
       var msg = en ? 'Hello,\nSite type: ' + t[1] + '\nNeed: ' + n[1] + '\nI would like a quote for my facility.' : 'مرحبًا،\nنوع الموقع: ' + t[0] + '\nالاحتياج: ' + n[0] + '\nأرغب بعرض لمرفقي.';
       finder.innerHTML = '<div class="finder-res"><h3>' + (en ? 'What we offer: ' : 'اللي نقدّمه لك: ') + esc(n[i]) + ' · ' + esc(t[i]) + '</h3>' +
         '<ul class="ticks">' + list.map(function (s) { return '<li>' + esc(s[i]) + '</li>'; }).join('') + '</ul>' +
-        '<div class="cta-row"><a class="btn btn-primary" href="contact.html?for=' + pick.type + '&svc=' + pick.need + '">' + (en ? 'Send your request' : 'أرسل طلبك') + '</a>' +
+        '<div class="cta-row"><a class="btn btn-primary" href="contact.html?for=' + pick.type + '&svc=' + pick.need + '#quoteForm">' + (en ? 'Send your request' : 'أرسل طلبك') + '</a>' +
         '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + wa(msg) + '">' + WAI + (en ? 'Send on WhatsApp' : 'أرسل عبر واتساب') + '</a>' +
         ('<a class="btn btn-line" href="' + n[2] + '">' + (en ? 'Details' : 'التفاصيل') + '</a>') + '</div></div>';
       if (scroll && finder.getBoundingClientRect().top > window.innerHeight - 120) finder.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
