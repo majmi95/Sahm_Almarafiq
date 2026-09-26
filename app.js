@@ -96,7 +96,7 @@
     'foot.about':'Operations, maintenance, property and facilities management in Riyadh and the Eastern Province.',
     'foot.pages':'Pages','foot.reach':'Contact','foot.rights':'Sahm Almarafiq. All rights reserved.',
     /* home */
-    'h.tag':'Integrated facilities management · Riyadh & Eastern Province',
+    'h.tag':'Your partner in facilities operations & management','h.loc':'Riyadh · Eastern Province',
     'h.t':'We run your property. <em>We protect its value.</em>',
     'h.l':'Operations and maintenance, cleaning, and property &amp; facilities management — one accountable team with fast response.',
     'h.p1':'Preventive maintenance','h.p2':'Fast response','h.p3':'Continuous follow-up',
