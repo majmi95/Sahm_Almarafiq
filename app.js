@@ -520,7 +520,15 @@
 
   /* packages: highlight the chosen plan */
   document.querySelectorAll('.plans .plan').forEach(function (pl, _, all) {
-    pl.addEventListener('click', function () { all.forEach(function (o) { o.classList.toggle('selected', o === pl); }); });
+    pl.addEventListener('click', function (e) {
+      all.forEach(function (o) { o.classList.toggle('selected', o === pl); });
+      if (e.target.closest('a, button')) return;
+      /* bring the chosen plan fully into view (below the sticky header) */
+      var r = pl.getBoundingClientRect(), top = header.offsetHeight + 12, room = window.innerHeight - top;
+      if (r.top >= top && r.bottom <= window.innerHeight) return;
+      var y = window.scrollY + r.top - top - (r.height < room ? (room - r.height) / 2 : 0);
+      window.scrollTo({ top: Math.max(0, y), behavior: document.documentElement.classList.contains('a11y-nomotion') ? 'auto' : 'smooth' });
+    });
   });
   var PLANS = { basic: ['باقة المنزل','Home plan'], complete: ['باقة المباني','Buildings plan'], custom: ['باقة إدارة الأملاك','Property management plan'] };
   var planKey = (new URLSearchParams(location.search).get('plan') || '').toLowerCase();
