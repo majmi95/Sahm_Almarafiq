@@ -242,7 +242,7 @@
     'pv.e':'Privacy','pv.t':'Privacy Policy','pv.l':'How we handle your data when you use the website and send requests.','pv.d':'Last updated: 27 September 2026','pv.l2':'Your privacy matters to us. Here is how we look after your information.',
     'pv.s.t':'In short','pv.s.1':'We only collect what we need to serve you.','pv.s.2':'We never sell your data.','pv.s.3':'Analytics tools only run with your consent.','pv.s.4':'You can ask us to delete your data at any time.','pv.s.cta':'Email us about your data',
     'cv.t':'Where we work','cv.l':'We serve residential and commercial properties in Riyadh and the Eastern Province.','cv.cities':'Cities','cv.central':'Central Region','cv.dmm':'Dammam','cv.khb':'Khobar','cv.dhr':'Dhahran','ab.st.t2':'Types of sites',
-    'nav.home':'Home','nav.services':'Services','nav.packages':'Plans','nav.guide':'Owners\u2019 association guide','nav.about':'About','w.more':'Learn more about us','nav.contact':'Contact',
+    'nav.home':'Home','nav.services':'Services','nav.packages':'Plans','nav.guide':'Owners\u2019 association guide','nav.about':'About','sv.req':'Request this service','w.more':'Learn more about us','nav.contact':'Contact',
     'cta.book':'Book a site visit','cta.book2':'Book a visit for your property','cta.browse':'Explore services','cta.wa':'WhatsApp us','cta.call':'Call us','cta.all':'All services',
     'foot.about':'Integrated solutions for the residential and commercial sectors:<br>property management, operations &amp; maintenance, and real estate services.',
     'foot.pages':'Pages','foot.reach':'Contact','foot.rights':'Sahm Almarafiq. All rights reserved.',
@@ -530,6 +530,11 @@
         lead: ['اترك بياناتك ونتواصل معك بخصوص الباقة.', 'Leave your details and we’ll contact you about the plan.'],
         wa: ['أرغب بطلب ' + PL[plan][0] + '.', 'I would like to request the ' + PL[plan][1] + '.'],
         about: [PL[plan][0], PL[plan][1]], source: PL[plan][0] + ' (صفحة الباقات)' };
+      var sv = SVCS.filter(function (s) { return s[0] === qs.get('svc'); })[0];
+      if (sv) return { key: 'svc-' + sv[0], svc: sv[0], site: qs.get('for') || PAGE_SITE[file] || null,
+        title: [(sv[0] === 're' ? 'طلب ' : 'طلب خدمة ') + sv[1], 'Request: ' + sv[2]], lead: ['اترك بياناتك ويتواصل معك أحد مختصينا بخصوص الخدمة.', 'Leave your details and one of our specialists will contact you about this service.'],
+        wa: ['أرغب بطلب ' + (sv[0] === 're' ? '' : 'خدمة ') + sv[1] + '.', 'I would like to request ' + sv[2] + '.'],
+        about: [sv[1], sv[2]], source: 'طلب خدمة (' + page + ')' };
       var span = lnk.querySelector('[data-i18n]'), k = span ? span.getAttribute('data-i18n') : '';
       var ar = span ? (span.getAttribute('data-ar') || span.textContent) : 'تحدّث مع مختص', enT = EN[k] || 'Talk to a specialist';
       return { key: 'talk', site: qs.get('for') || PAGE_SITE[file] || null,
@@ -542,6 +547,7 @@
         e.preventDefault();
         var c = cfgFor(lnk);
         if (c.site) D.v.site = c.site;
+        if (c.svc) D.v.svc = c.svc;
         D.cfg = c; D.err = '';
         renderDlg(document.documentElement.lang === 'en');
         dlg.showModal();
