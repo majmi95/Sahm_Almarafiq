@@ -734,10 +734,6 @@ html.a11y-nomotion .fn-in{animation:none}
 
 /* ---------- Packages: response row + included strip ---------- */
 .plan .ticks{margin-bottom:12px;align-content:start}
-.plan-sla{display:flex;gap:10px;align-items:flex-start;background:var(--sand);border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:.84rem;line-height:1.5}
-.plan-sla svg{flex-shrink:0;margin-top:2px;color:var(--copper-d)}
-.plan-sla b{display:block;color:var(--ink);font-size:.8rem}
-.plan-sla span{color:var(--text)}
 .plan-incl{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px 28px}
 .plan-incl h3{font-size:1.05rem;margin-bottom:16px}
 .pi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
