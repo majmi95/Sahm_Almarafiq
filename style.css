@@ -594,3 +594,18 @@ html[lang="en"] .only-ar,html:not([lang="en"]) .only-en{display:none}
 .socials svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:640px){.site-footer{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}}
 
+
+/* ===== v18: about coverage ===== */
+.coverage{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cv-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px 28px}
+.cv-card h3{font-size:1.15rem;margin-bottom:16px}
+.cv-region+.cv-region{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+.cv-reg{display:block;font-size:.82rem;font-weight:600;color:var(--copper-d);margin-bottom:10px}
+.cv-cities{display:flex;flex-wrap:wrap;gap:10px}
+.city{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:12px;background:var(--bg);border:1px solid var(--line-2);font-weight:600;color:var(--ink)}
+.city svg{width:18px;height:18px;fill:none;stroke:var(--copper);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.cv-types{list-style:none;display:grid;gap:10px}
+.cv-types li{display:flex;align-items:center;gap:12px;font-weight:500;color:var(--ink)}
+.cv-ic{width:36px;height:36px;border-radius:10px;background:var(--tint);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.cv-ic svg{width:18px;height:18px;fill:none;stroke:var(--copper-d);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:800px){.coverage{grid-template-columns:1fr;gap:12px}.cv-card{padding:20px}}
