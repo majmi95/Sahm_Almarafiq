@@ -575,3 +575,4 @@ html[lang="en"] .only-ar,html:not([lang="en"]) .only-en{display:none}
 .foot-meta a:hover{color:var(--copper-d)}
 .prose .ticks li{display:block;position:relative;padding-inline-start:28px}
 .prose .ticks li::before{position:absolute;inset-inline-start:0;top:5px;margin-top:0}
+.pv-wrap .prose{max-width:760px}
