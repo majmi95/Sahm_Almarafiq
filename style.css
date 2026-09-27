@@ -582,7 +582,7 @@ html[lang="en"] .only-ar,html:not([lang="en"]) .only-en{display:none}
 .rec{background:var(--tint);border-radius:var(--r);padding:22px 24px}
 .rec-k{font-size:.8rem;font-weight:700;color:var(--copper-d)}
 .rec h3{font-size:1.3rem;margin:4px 0 6px}
-.rec>p{color:var(--text);font-size:.93rem}
+.rec p{color:var(--text);font-size:.93rem}
 .rec .ticks{margin:14px 0 16px;grid-template-columns:1fr}
 .rec-form{border-top:0;padding-top:0;margin-top:0}
 @media(max-width:800px){.rec-grid{grid-template-columns:1fr;gap:16px}}
@@ -644,3 +644,49 @@ html[dir="ltr"] .hero-photo::after{background:linear-gradient(to right,color-mix
 @media (max-width:760px){.map-card{aspect-ratio:4/3}}
 .map-load small{color:var(--muted);font-size:.8rem}
 .map-dir{position:absolute;bottom:12px;inset-inline-end:12px;z-index:2;padding:10px 18px;font-size:.88rem}
+
+/* ---------- Why strip (homepage, compact) ---------- */
+.why-strip{text-align:center;display:flex;flex-direction:column;align-items:center}
+.why-pills{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:22px 0 20px}
+.why-pills li{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding-block:6px;padding-inline:8px 18px;font-weight:600;color:var(--ink);font-size:.95rem}
+.why-pills .ico{width:34px;height:34px;border-radius:50%}
+.why-pills .ico svg{width:18px;height:18px}
+@media (max-width:760px){.why-pills{display:grid;grid-template-columns:1fr 1fr;width:100%}.why-pills li{font-size:.88rem}}
+
+/* ---------- Finder, simplified ---------- */
+.finder{padding:32px}
+.finder-head{margin-bottom:6px}
+.finder-step{margin-top:18px}
+.finder-step>b{margin-bottom:10px}
+.finder-step[hidden]{display:none}
+.fn-in{animation:fnIn .35s ease}
+@keyframes fnIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.finder-out:empty{display:none}
+.finder-out{margin-top:22px;padding-top:20px}
+.rec-grid{grid-template-columns:1fr}
+.rec{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 24px;padding:18px 22px}
+.rec>div{min-width:0}
+.rec h3{margin:2px 0 4px}
+.rec p{margin:0}
+.fgrid.f3{grid-template-columns:1fr 1fr 1fr}
+@media (max-width:760px){.finder{padding:22px 16px}.fgrid.f3{grid-template-columns:1fr}.rec{display:block}.rec .link{margin-top:10px}}
+html.a11y-nomotion .fn-in{animation:none}
+
+/* ---------- Footer, compact ---------- */
+.site-footer{padding:30px 0 18px;font-size:.86rem}
+.foot{gap:20px 40px;padding-bottom:20px;align-items:flex-start}
+.foot p{margin-top:8px;font-size:.84rem;line-height:1.6}
+.foot-links{gap:20px 40px}
+.foot-links h4{font-size:.8rem;margin-bottom:8px}
+.foot-links ul{display:flex;flex-wrap:wrap;gap:2px 14px;max-width:250px;line-height:1.7}
+.socials{gap:8px}
+.socials a{width:36px;height:36px;border-radius:10px}
+.socials svg{width:17px;height:17px}
+.foot-bottom{padding-top:14px;font-size:.78rem}
+@media (max-width:760px){
+  .foot{flex-direction:column;gap:18px}
+  .foot-links{flex-direction:column;gap:16px}
+  .foot-links ul{max-width:none}
+}
+@media(max-width:640px){.site-footer{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
+@media (min-width:641px) and (max-width:1320px){.foot-bottom{padding-inline:64px}}

@@ -174,7 +174,7 @@
     'h.t':'Integrated solutions <em>for the residential and commercial sectors</em>',
     'h.l':'Property management, operations &amp; maintenance, and real estate services — everything your property needs, with one partner you can trust.',
     'cta.quote':'Request a quote','cta.guide':'What does your facility need?',
-    'fn.e':'Quick guide','fn.t':'What does your facility need?','fn.l':'Pick your site type and need, and we’ll show you what we can do.',
+    'fn.e':'Quick guide','fn.t':'What does your facility need?','fn.l':'Choose your site type and need, and we’ll suggest the right service.',
     'fn.s1':'Site type','fn.s2':'What do you need?','fn.hint':'Pick a site type and a need.',
     'fn.own':'Building / investment property','fn.asc':'Compound / owners’ association','fn.biz':'Company / facility','fn.hom':'Villa / home',
     'fn.prop':'Property management','fn.full':'Operations & maintenance','fn.periodic':'Periodic maintenance','fn.fix':'Fix a fault','fn.clean':'Cleaning',
@@ -242,7 +242,7 @@
     'pv.e':'Privacy','pv.t':'Privacy Policy','pv.l':'How we handle your data when you use the website and send requests.','pv.d':'Last updated: 27 September 2026','pv.l2':'Your privacy matters to us. Here is how we look after your information.',
     'pv.s.t':'In short','pv.s.1':'We only collect what we need to serve you.','pv.s.2':'We never sell your data.','pv.s.3':'Analytics tools only run with your consent.','pv.s.4':'You can ask us to delete your data at any time.','pv.s.cta':'Email us about your data',
     'cv.t':'Where we work','cv.l':'We serve residential and commercial properties in Riyadh and the Eastern Province.','cv.cities':'Cities','cv.central':'Central Region','cv.dmm':'Dammam','cv.khb':'Khobar','cv.dhr':'Dhahran','ab.st.t2':'Types of sites',
-    'nav.home':'Home','nav.services':'Services','nav.packages':'Plans','nav.guide':'Owners\u2019 association guide','nav.about':'About','nav.contact':'Contact',
+    'nav.home':'Home','nav.services':'Services','nav.packages':'Plans','nav.guide':'Owners\u2019 association guide','nav.about':'About','w.more':'Learn more about us','nav.contact':'Contact',
     'cta.book':'Book a site visit','cta.book2':'Book a visit for your property','cta.browse':'Explore services','cta.wa':'WhatsApp us','cta.call':'Call us','cta.all':'All services',
     'foot.about':'Integrated solutions for the residential and commercial sectors:<br>property management, operations &amp; maintenance, and real estate services.',
     'foot.pages':'Pages','foot.reach':'Contact','foot.rights':'Sahm Almarafiq. All rights reserved.',
@@ -397,6 +397,7 @@
         var g = c.hasAttribute('data-type') ? 'type' : 'need';
         pick[g] = c.getAttribute('data-' + g); if (F.sent) F.sent = null;
         document.querySelectorAll('.finder .chip[data-' + g + ']').forEach(function (o) { o.setAttribute('aria-pressed', o === c ? 'true' : 'false'); });
+        if (g === 'type') { var s2 = document.getElementById('fnStep2'); if (s2 && s2.hidden) { s2.hidden = false; s2.classList.add('fn-in'); } }
         renderFinder(document.documentElement.lang === 'en', true);
       });
     });
@@ -409,10 +410,10 @@
         why: ['صيانة وتشغيل كل مرافق المبنى مع فريق واحد مسؤول.', 'Maintenance and operation of every facility, with one accountable team.'],
         items: [['صيانة وقائية للكهرباء والتكييف والسباكة', 'Preventive electrical, HVAC & plumbing maintenance'], ['صيانة المصاعد والكاميرات', 'Elevator & CCTV maintenance'], ['نظافة المناطق المشتركة', 'Shared-area cleaning']] },
       home: { t: ['باقة المنزل', 'Home plan'], link: 'packages.html?rec=basic', lt: ['قارن مع باقي الباقات', 'Compare with the other plans'],
-        why: ['زيارات صيانة منتظمة لمنزلك بدل ما تنتظر العطل.', 'Regular maintenance visits instead of waiting for faults.'],
+        why: ['زيارات صيانة منتظمة لمنزلك قبل حدوث الأعطال.', 'Regular maintenance visits for your home before faults occur.'],
         items: [['زيارات صيانة مجدولة', 'Scheduled maintenance visits'], ['فحص التكييف والكهرباء والسباكة', 'HVAC, electrical & plumbing checks'], ['إصلاح الأعطال عند الحاجة', 'Repairs when needed']] },
       fix: { t: ['زيارة فني لإصلاح العطل', 'A technician visit to fix the fault'], link: 'services.html#tech', lt: ['استعرض باقي خدماتنا', 'Explore our other services'],
-        why: ['نرسل لك فني يشخّص العطل ويصلحه، ونتابع لين ينحل.', 'We send a technician to diagnose and fix it, and follow up until it is solved.'],
+        why: ['نرسل فنيًا لتشخيص العطل وإصلاحه، ونتابع حتى حلّه.', 'We send a technician to diagnose and fix the fault, and follow up until it is resolved.'],
         items: [['الكهرباء والتكييف والسباكة', 'Electrical, HVAC & plumbing'], ['المصاعد وأنظمة الإنذار', 'Elevators & alarm systems'], ['متابعة حتى إغلاق البلاغ', 'Follow-up until the request is closed']] },
       re: { t: ['الخدمات العقارية', 'Real estate services'], link: 'services.html#realestate', lt: ['استعرض باقي خدماتنا', 'Explore our other services'],
         why: ['نسوّق وحداتك ونساعدك في تنظيم جمعية الملاك.', 'We market your units and help organise the owners’ association.'],
@@ -428,8 +429,7 @@
       if (!pick.type || !pick.need) return;
       var i = en ? 1 : 0, t = TYPES[pick.type], n = NEEDS[pick.need], r = recFor(pick.type, pick.need);
       var msg = en ? 'Hello,\nI am interested in: ' + r.t[1] + '\nSite type: ' + t[1] + '\nNeed: ' + n[1] : 'مرحبًا،\nأرغب في: ' + r.t[0] + '\nنوع الموقع: ' + t[0] + '\nالاحتياج: ' + n[0];
-      var card = '<div class="rec"><span class="rec-k">' + (en ? 'We recommend' : 'ننصحك بـ') + '</span><h3>' + esc(r.t[i]) + '</h3><p>' + esc(r.why[i]) + '</p>' +
-        '<ul class="ticks">' + r.items.map(function (s) { return '<li>' + esc(s[i]) + '</li>'; }).join('') + '</ul>' +
+      var card = '<div class="rec"><div><span class="rec-k">' + (en ? 'Suggested for you' : 'الخدمة المقترحة') + '</span><h3>' + esc(r.t[i]) + '</h3><p>' + esc(r.why[i]) + '</p></div>' +
         '<a class="link" href="' + r.link + '">' + esc(r.lt[i]) + ' <svg width="16" height="16" class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>';
       var html = '<div class="finder-res">';
       if (F.sent) {
@@ -439,11 +439,11 @@
           refBox(F.sent, en) + '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + wa(wmsg) + '">' + WAI + (en ? 'Follow up on WhatsApp' : 'تابع طلبك عبر واتساب') + '</a></div>';
       } else {
         var opt = CITIES.map(function (c, k) { return '<option value="' + k + '"' + (String(k) === F.v.city ? ' selected' : '') + '>' + c[i] + '</option>'; }).join('');
-        html += '<div class="rec-grid">' + card + '<form class="lead-form rec-form" novalidate><p class="lead-sum">' + (en ? 'Send your request and we’ll contact you:' : 'أرسل طلبك ونتواصل معك:') + '</p><div class="fgrid">' +
+        html += '<div class="rec-grid">' + card + '<form class="lead-form rec-form" novalidate><p class="lead-sum">' + (en ? 'Send your request and we’ll contact you:' : 'أرسل طلبك ونتواصل معك:') + '</p><div class="fgrid f3">' +
           '<div class="field"><label for="lfName">' + (en ? 'Full name' : 'الاسم الكامل') + '</label><input id="lfName" name="name" autocomplete="name" required value="' + esc(F.v.name) + '"></div>' +
           '<div class="field"><label for="lfPhone">' + (en ? 'Mobile number' : 'رقم الجوال') + '</label><input id="lfPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xxxxxxxx" required value="' + esc(F.v.phone) + '"></div>' +
-          '<div class="field full"><label for="lfCity">' + (en ? 'City' : 'المدينة') + '</label><select id="lfCity" name="city">' + opt + '</select></div>' +
-          '<div class="field full"><label for="lfMsg">' + (en ? 'Details (optional)' : 'التفاصيل (اختياري)') + '</label><textarea id="lfMsg" name="msg">' + esc(F.v.msg) + '</textarea></div></div>' +
+          '<div class="field"><label for="lfCity">' + (en ? 'City' : 'المدينة') + '</label><select id="lfCity" name="city">' + opt + '</select></div>' +
+          '</div>' +
           consent(en) + '<p class="lead-err" role="alert">' + esc(F.err) + '</p>' +
           '<div class="dlg-actions"><button type="submit" class="btn btn-primary"' + (F.busy ? ' disabled' : '') + '>' + (F.busy ? (en ? 'Sending…' : 'جارٍ الإرسال…') : (en ? 'Send request' : 'إرسال الطلب')) + '</button>' +
           '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + wa(msg) + '">' + WAI + (en ? 'Send on WhatsApp' : 'أرسل عبر واتساب') + '</a></div></form></div>';
