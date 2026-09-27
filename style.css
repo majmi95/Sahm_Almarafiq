@@ -726,3 +726,11 @@ html.a11y-nomotion .fn-in{animation:none}
   .svc-group .head{flex-direction:column;align-items:stretch}
   .svc-req{align-self:flex-start}
 }
+
+/* ---------- Page heads: less empty space ---------- */
+.page-head{padding:40px 0 28px}
+.page-head .lead{margin-top:10px}
+.page-head .jump{margin-top:18px}
+.page-head+section{padding-top:40px}
+@media (max-width:760px){.page-head{padding:26px 0 20px}.page-head+section{padding-top:28px}}
+.page-head .h1{font-size:clamp(1.8rem,3.2vw,2.4rem)}
