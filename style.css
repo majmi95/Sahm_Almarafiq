@@ -576,3 +576,13 @@ html[lang="en"] .only-ar,html:not([lang="en"]) .only-en{display:none}
 .prose .ticks li{display:block;position:relative;padding-inline-start:28px}
 .prose .ticks li::before{position:absolute;inset-inline-start:0;top:5px;margin-top:0}
 .pv-wrap .prose{max-width:760px}
+
+/* ===== v15: quick-guide recommendation ===== */
+.rec-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:start}
+.rec{background:var(--tint);border-radius:var(--r);padding:22px 24px}
+.rec-k{font-size:.8rem;font-weight:700;color:var(--copper-d)}
+.rec h3{font-size:1.3rem;margin:4px 0 6px}
+.rec>p{color:var(--text);font-size:.93rem}
+.rec .ticks{margin:14px 0 16px;grid-template-columns:1fr}
+.rec-form{border-top:0;padding-top:0;margin-top:0}
+@media(max-width:800px){.rec-grid{grid-template-columns:1fr;gap:16px}}
