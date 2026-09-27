@@ -296,7 +296,7 @@
     'gd.e':'Quick guide','gd.t':'Owners\u2019 associations: what you need to know','gd.l':'If you own an apartment or unit in a shared building, this guide explains how common areas are managed properly.',
     'gd.q1':'What is an owners\u2019 association?','gd.a1':'An owners\u2019 association — now called an <b>owners\u2019 society</b> — brings together the unit owners of a building to organise the management and maintenance of shared parts such as entrances, elevators, corridors and the roof, and to share their costs fairly.',
     'gd.q2':'Why does it matter?','gd.b1':'It protects every owner\u2019s rights and clarifies responsibilities.','gd.b2':'It ensures regular maintenance of elevators, entrances and shared facilities.','gd.b3':'It reduces disputes through clear, approved decisions.','gd.b4':'It preserves — and grows — the property\u2019s value.',
-    'gd.c.t':'We activate and operate it for you','gd.c.d':'We help you activate the owners\u2019 society, then operate and maintain shared facilities and follow up on subscriptions — so every owner can relax.','gd.c.l':'View the Tailored plan',
+    'gd.c.t':'We activate and operate it for you','gd.c.d':'We help you activate the owners\u2019 society, then operate and maintain shared facilities and follow up on subscriptions — so every owner can relax.','gd.c.l':'See the Buildings plan',
     'v1.t':'Commitment','v1.d':'We deliver what we promise, on time.','v2.t':'Quality','v2.d':'Tangible results on every visit.','v3.t':'Transparency','v3.d':'Clear communication at every stage.','v4.t':'Responsiveness','v4.d':'Immediate action when it matters.','gd.s.e':'Steps','gd.s.t':'How is an association activated?',
     'g1.t':'Register on Mullak','g1.d':'Unit owners register on the electronic platform of the Real Estate General Authority.',
     'g2.t':'Create the society','g2.d':'The building\u2019s owners\u2019 society is created online.',
@@ -475,7 +475,7 @@
     var PL = { basic: ['باقة المنزل', 'Home plan', 'hom'], complete: ['باقة المباني', 'Buildings plan', 'own'], custom: ['باقة إدارة الأملاك', 'Property management plan', 'own'] };
     var SVCS = [['prop', 'إدارة الأملاك', 'Property management'], ['full', 'التشغيل والصيانة', 'Operations & maintenance'], ['periodic', 'الصيانة الدورية للمنزل', 'Periodic home maintenance'], ['re', 'الخدمات العقارية', 'Real estate services'], ['unsure', 'غير متأكد — أحتاج استشارة', 'Not sure — I need advice']];
     var PAGE_SITE = { 'owners.html': 'own', 'associations.html': 'asc', 'business.html': 'biz', 'homes.html': 'hom' };
-    var PAGE_AR = { 'index.html': 'الرئيسية', 'services.html': 'خدماتنا', 'packages.html': 'الباقات', 'about.html': 'من نحن', 'owners.html': 'ملاك العمائر', 'associations.html': 'جمعيات الملاك', 'business.html': 'الشركات والمنشآت', 'homes.html': 'الفلل والمنازل', 'owners-association.html': 'دليل اتحاد الملاك', 'sectors.html': 'القطاعات' };
+    var PAGE_AR = { 'index.html': 'الرئيسية', 'services.html': 'خدماتنا', 'packages.html': 'الباقات', 'about.html': 'من نحن', 'owners.html': 'ملاك العمائر', 'associations.html': 'جمعيات الملاك', 'business.html': 'الشركات والمنشآت', 'homes.html': 'الفلل والمنازل', 'owners-association.html': 'دليل اتحاد الملاك' };
     var D = { cfg: null, sentFor: null, sent: null, busy: false, err: '', v: { name: '', phone: '', city: '1', site: 'own', svc: 'unsure', msg: '' } };
     var dlg = document.createElement('dialog');
     dlg.className = 'lead-dlg'; dlg.setAttribute('aria-labelledby', 'dlgTitle');
