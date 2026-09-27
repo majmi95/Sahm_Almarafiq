@@ -47,7 +47,7 @@
       '<div><h4 data-i18n="nav.solutions">الحلول</h4><ul>' + SOL.map(function (s) { return '<li><a href="' + s[0] + '" data-i18n="' + s[1] + '">' + s[2] + '</a></li>'; }).join('') + '</ul></div>' +
       '<div><h4 data-i18n="foot.reach">تواصل</h4><ul><li><a class="ltr" href="tel:' + PHONE + '">' + PHONE + '</a></li><li><a class="ltr" href="mailto:' + EMAIL + '">' + EMAIL + '</a></li></ul></div>' +
     '</div></div><div class="foot-bottom"><span>© ' + new Date().getFullYear() + ' <span data-i18n="foot.rights">سهم المرافق. جميع الحقوق محفوظة.</span></span>' +
-    '<a href="https://www.instagram.com/sahmalmarafiq" target="_blank" rel="noopener">Instagram @sahmalmarafiq</a></div></div>';
+    '<span class="foot-meta"><a href="privacy.html" data-i18n="foot.privacy">سياسة الخصوصية</a><a href="https://www.instagram.com/sahmalmarafiq" target="_blank" rel="noopener">Instagram @sahmalmarafiq</a></span></div></div>';
   document.body.appendChild(footer);
 
   var fab = document.createElement('a');
@@ -223,6 +223,9 @@
     'f.change':'Change',
     'a11y.skip':'Skip to content','a11y.t':'Accessibility','a11y.close':'Close','a11y.fs':'Text size','a11y.fsd':'Smaller text','a11y.fsu':'Larger text',
     'a11y.dark':'Dark mode','a11y.contrast':'High contrast','a11y.motion':'Stop motion','a11y.links':'Highlight links','a11y.reset':'Reset',
+    'foot.privacy':'Privacy Policy','f.consent':'By sending your request you agree to our <a href="privacy.html">Privacy Policy</a>.',
+    'pv.e':'Privacy','pv.t':'Privacy Policy','pv.l':'How we handle your data when you use the website and send requests.','pv.d':'Last updated: 27 September 2026',
+    'pv.s.t':'In short','pv.s.1':'We only collect what we need to serve you.','pv.s.2':'We never sell your data.','pv.s.3':'Analytics tools only run with your consent.','pv.s.4':'You can ask us to delete your data at any time.','pv.s.cta':'Email us about your data',
     'nav.home':'Home','nav.services':'Services','nav.packages':'Plans','nav.guide':'Owners\u2019 association guide','nav.about':'About','nav.contact':'Contact',
     'cta.book':'Book a site visit','cta.book2':'Book a visit for your property','cta.browse':'Explore services','cta.wa':'WhatsApp us','cta.call':'Call us','cta.all':'All services',
     'foot.about':'Integrated solutions for the residential and commercial sectors:<br>property management, operations &amp; maintenance, and real estate services.',
@@ -341,6 +344,9 @@
     return fetch(GF.action, { method: 'POST', mode: 'no-cors', body: data });
   }
   function validPhone(s) { return s.replace(/[^0-9٠-٩]/g, '').length >= 9; }
+  function consent(en) {
+    return '<p class="consent">' + (en ? 'By sending your request you agree to our <a href="privacy.html">Privacy Policy</a>.' : 'بإرسالك الطلب، توافق على <a href="privacy.html">سياسة الخصوصية</a>.') + '</p>';
+  }
   function refBox(ref, en) {
     return '<div class="ref-box"><span>' + (en ? 'Your reference number' : 'رقم طلبك المرجعي') + '</span><b class="ltr">' + ref + '</b>' +
       '<button type="button" class="ref-copy" data-copy="' + ref + '">' + (en ? 'Copy' : 'نسخ') + '</button></div>' +
@@ -403,7 +409,7 @@
           '<div class="field"><label for="lfPhone">' + (en ? 'Mobile number' : 'رقم الجوال') + '</label><input id="lfPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xxxxxxxx" required value="' + esc(F.v.phone) + '"></div>' +
           '<div class="field full"><label for="lfCity">' + (en ? 'City' : 'المدينة') + '</label><select id="lfCity" name="city">' + opt + '</select></div>' +
           '<div class="field full"><label for="lfMsg">' + (en ? 'Details (optional)' : 'التفاصيل (اختياري)') + '</label><textarea id="lfMsg" name="msg">' + esc(F.v.msg) + '</textarea></div></div>' +
-          '<p class="lead-err" role="alert">' + esc(F.err) + '</p>' +
+          consent(en) + '<p class="lead-err" role="alert">' + esc(F.err) + '</p>' +
           '<div class="cta-row"><button type="submit" class="btn btn-primary"' + (F.busy ? ' disabled' : '') + '>' + (F.busy ? (en ? 'Sending…' : 'جارٍ الإرسال…') : (en ? 'Send request' : 'إرسال الطلب')) + '</button>' +
           '<button type="button" class="btn btn-line" data-lead="back">' + (en ? 'Back' : 'رجوع') + '</button></div></form>';
       } else {
@@ -485,7 +491,7 @@
           '<div class="field"><label for="dgSite">' + (en ? 'Site type' : 'نوع الموقع') + '</label>' + sel('dgSite', 'site', SITES, D.v.site, i) + '</div>' +
           (c.plan ? '' : '<div class="field full"><label for="dgSvc">' + (en ? 'Service needed' : 'الخدمة المطلوبة') + '</label>' + sel('dgSvc', 'svc', SVCS, D.v.svc, i) + '</div>') +
           '<div class="field full"><label for="dgMsg">' + (en ? 'Details (optional)' : 'التفاصيل (اختياري)') + '</label><textarea id="dgMsg" name="msg">' + esc(D.v.msg) + '</textarea></div></div>' +
-          '<p class="lead-err" role="alert">' + esc(D.err) + '</p>' +
+          consent(en) + '<p class="lead-err" role="alert">' + esc(D.err) + '</p>' +
           '<div class="dlg-actions"><button type="submit" class="btn btn-primary"' + (D.busy ? ' disabled' : '') + '>' + (D.busy ? (en ? 'Sending…' : 'جارٍ الإرسال…') : (en ? 'Send request' : 'إرسال الطلب')) + '</button>' +
           '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + wa(wmsg) + '">' + WAI + (en ? 'Send on WhatsApp' : 'أرسل عبر واتساب') + '</a></div></form>';
       }
