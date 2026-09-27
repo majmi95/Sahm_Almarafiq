@@ -162,7 +162,7 @@
     'o.tech':'Technical maintenance','o.sup':'Cleaning & security','o.fac':'Facilities / owners\u2019 association','o.unsure':'Not sure — I need advice',
     'q3':'How do I get started?','a3':'Talk to one of our specialists via the form or WhatsApp. We arrange a visit to your property, then share a plan tailored to it.',
     'h.t':'Integrated solutions <em>for the residential and commercial sectors</em>',
-    'h.l':'Property management, operations & maintenance, and real estate services — with professionalism and precision in Riyadh and the Eastern Province.',
+    'h.l':'Property management, operations &amp; maintenance, and real estate services — everything your property needs, with one partner you can trust.',
     'cta.quote':'Request a quote','cta.guide':'What does your facility need?',
     'fn.e':'Quick guide','fn.t':'What does your facility need?','fn.l':'Pick your site type and need, and we’ll show you what we can do.',
     'fn.s1':'Site type','fn.s2':'What do you need?','fn.hint':'Pick a site type and a need.',
