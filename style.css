@@ -586,3 +586,10 @@ html[lang="en"] .only-ar,html:not([lang="en"]) .only-en{display:none}
 .rec .ticks{margin:14px 0 16px;grid-template-columns:1fr}
 .rec-form{border-top:0;padding-top:0;margin-top:0}
 @media(max-width:800px){.rec-grid{grid-template-columns:1fr;gap:16px}}
+
+/* ===== v16: footer contact icons ===== */
+.socials{display:flex;gap:10px}
+.socials a{width:44px;height:44px;border-radius:12px;border:1px solid var(--line-2);background:var(--bg);display:inline-flex;align-items:center;justify-content:center;color:var(--copper-d);transition:.2s}
+.socials a:hover{background:var(--copper);border-color:var(--copper);color:#fff}
+.socials svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:640px){.site-footer{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}}
