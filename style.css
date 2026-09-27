@@ -690,3 +690,16 @@ html.a11y-nomotion .fn-in{animation:none}
 }
 @media(max-width:640px){.site-footer{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
 @media (min-width:641px) and (max-width:1320px){.foot-bottom{padding-inline:64px}}
+
+/* ---------- CTA band, compact ---------- */
+.cta-band{padding:0 0 64px}
+.cta-box{padding:28px 36px;gap:24px;border-radius:var(--r)}
+.cta-box h2{font-size:clamp(1.2rem,2vw,1.5rem)}
+.cta-box p{margin-top:4px;font-size:.92rem}
+.cta-box .btn{padding-block:11px}
+@media (max-width:760px){
+  .cta-band{padding:0 0 40px}
+  .cta-box{padding:22px 18px;gap:16px}
+}
+@media(max-width:640px){.cta-box .cta-row .btn{height:46px}}
+@media(max-width:640px){.cta-box .cta-row{flex-direction:row}.cta-box .cta-row .btn{flex:1;width:auto}}
