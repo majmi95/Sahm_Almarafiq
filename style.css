@@ -562,3 +562,16 @@ html.a11y-dark .btn-copper{color:#15110D}
   .dlg-form .fgrid{grid-template-columns:1fr}
   .dlg-actions{flex-direction:column}.dlg-actions .btn{width:100%;flex:none}
 }
+
+/* ===== v14: privacy ===== */
+html[lang="en"] .only-ar,html:not([lang="en"]) .only-en{display:none}
+.pv-date{margin-top:10px;font-size:.85rem;color:var(--muted)}
+.prose ul.ticks{margin:8px 0 6px}
+.prose a{color:var(--copper-d);text-decoration:underline;text-underline-offset:3px}
+.guide-card .ticks{margin-top:10px}
+.consent{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.consent a{color:var(--copper-d);text-decoration:underline;text-underline-offset:3px}
+.foot-meta{display:flex;gap:18px;flex-wrap:wrap}
+.foot-meta a:hover{color:var(--copper-d)}
+.prose .ticks li{display:block;position:relative;padding-inline-start:28px}
+.prose .ticks li::before{position:absolute;inset-inline-start:0;top:5px;margin-top:0}
