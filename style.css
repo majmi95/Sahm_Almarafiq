@@ -671,3 +671,22 @@ html[dir="ltr"] .hero-photo::after{background:linear-gradient(to right,color-mix
 .fgrid.f3{grid-template-columns:1fr 1fr 1fr}
 @media (max-width:760px){.finder{padding:22px 16px}.fgrid.f3{grid-template-columns:1fr}.rec{display:block}.rec .link{margin-top:10px}}
 html.a11y-nomotion .fn-in{animation:none}
+
+/* ---------- Footer, compact ---------- */
+.site-footer{padding:30px 0 18px;font-size:.86rem}
+.foot{gap:20px 40px;padding-bottom:20px;align-items:flex-start}
+.foot p{margin-top:8px;font-size:.84rem;line-height:1.6}
+.foot-links{gap:20px 40px}
+.foot-links h4{font-size:.8rem;margin-bottom:8px}
+.foot-links ul{display:flex;flex-wrap:wrap;gap:2px 14px;max-width:250px;line-height:1.7}
+.socials{gap:8px}
+.socials a{width:36px;height:36px;border-radius:10px}
+.socials svg{width:17px;height:17px}
+.foot-bottom{padding-top:14px;font-size:.78rem}
+@media (max-width:760px){
+  .foot{flex-direction:column;gap:18px}
+  .foot-links{flex-direction:column;gap:16px}
+  .foot-links ul{max-width:none}
+}
+@media(max-width:640px){.site-footer{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
+@media (min-width:641px) and (max-width:1320px){.foot-bottom{padding-inline:64px}}
