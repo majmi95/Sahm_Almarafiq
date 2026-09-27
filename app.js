@@ -46,6 +46,7 @@
       '<div><h4 data-i18n="foot.pages">الصفحات</h4><ul><li><a href="services.html" data-i18n="nav.services">خدماتنا</a></li><li><a href="packages.html" data-i18n="nav.packages">الباقات</a></li><li><a href="owners-association.html" data-i18n="nav.guide">دليل اتحاد الملاك</a></li><li><a href="about.html" data-i18n="nav.about">من نحن</a></li><li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li></ul></div>' +
       '<div><h4 data-i18n="nav.solutions">الحلول</h4><ul>' + SOL.map(function (s) { return '<li><a href="' + s[0] + '" data-i18n="' + s[1] + '">' + s[2] + '</a></li>'; }).join('') + '</ul></div>' +
       '<div><h4 data-i18n="foot.reach">تواصل</h4><div class="socials">' +
+        '<a href="#" data-wa aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 8.6c.2-.5.5-.6.8-.6h.5c.2 0 .4.1.5.4l.7 1.6c.1.2 0 .5-.1.6l-.5.6c-.1.1-.1.3 0 .5.6 1.1 1.5 2 2.6 2.6.2.1.4.1.5 0l.6-.6c.2-.2.4-.2.6-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3-.2.7-.6.9-.6.3-1.4.4-2.3.1-2.2-.8-4.2-2.8-5-5-.3-.8-.2-1.5.2-2.1z" fill="currentColor" stroke="none"/></svg></a>' +
         '<a href="tel:' + PHONE + '" aria-label="اتصل بنا" title="' + PHONE + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>' +
         '<a href="mailto:' + EMAIL + '" aria-label="البريد الإلكتروني" title="' + EMAIL + '"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>' +
         '<a href="https://www.instagram.com/sahmalmarafiq" target="_blank" rel="noopener" aria-label="Instagram" title="@sahmalmarafiq"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>' +
@@ -390,19 +391,19 @@
     });
     var F = { sent: null, busy: false, err: '', v: { name: '', phone: '', city: '1', msg: '' } };
     var PK = {
-      mgmt: { t: ['باقة إدارة الأملاك', 'Property management plan'], link: 'packages.html', lt: ['تفاصيل الباقة', 'Plan details'],
+      mgmt: { t: ['باقة إدارة الأملاك', 'Property management plan'], link: 'packages.html?rec=custom', lt: ['قارن مع باقي الباقات', 'Compare with the other plans'],
         why: ['نستلم عقارك بالكامل: تأجير وتحصيل وصيانة، وأنت تتابع النتيجة.', 'We take over your property: leasing, collections and maintenance.'],
         items: [['تأجير الوحدات وتسويقها', 'Leasing & marketing units'], ['العقود والتحصيل', 'Contracts & collections'], ['صيانة العقار ومتابعة المستأجرين', 'Maintenance & tenant follow-up']] },
-      bld: { t: ['باقة المباني', 'Buildings plan'], link: 'packages.html', lt: ['تفاصيل الباقة', 'Plan details'],
+      bld: { t: ['باقة المباني', 'Buildings plan'], link: 'packages.html?rec=complete', lt: ['قارن مع باقي الباقات', 'Compare with the other plans'],
         why: ['صيانة وتشغيل كل مرافق المبنى مع فريق واحد مسؤول.', 'Maintenance and operation of every facility, with one accountable team.'],
         items: [['صيانة وقائية للكهرباء والتكييف والسباكة', 'Preventive electrical, HVAC & plumbing maintenance'], ['صيانة المصاعد والكاميرات', 'Elevator & CCTV maintenance'], ['نظافة المناطق المشتركة', 'Shared-area cleaning']] },
-      home: { t: ['باقة المنزل', 'Home plan'], link: 'packages.html', lt: ['تفاصيل الباقة', 'Plan details'],
+      home: { t: ['باقة المنزل', 'Home plan'], link: 'packages.html?rec=basic', lt: ['قارن مع باقي الباقات', 'Compare with the other plans'],
         why: ['زيارات صيانة منتظمة لمنزلك بدل ما تنتظر العطل.', 'Regular maintenance visits instead of waiting for faults.'],
         items: [['زيارات صيانة مجدولة', 'Scheduled maintenance visits'], ['فحص التكييف والكهرباء والسباكة', 'HVAC, electrical & plumbing checks'], ['إصلاح الأعطال عند الحاجة', 'Repairs when needed']] },
-      fix: { t: ['زيارة فني لإصلاح العطل', 'A technician visit to fix the fault'], link: 'services.html#tech', lt: ['تفاصيل الخدمة', 'Service details'],
+      fix: { t: ['زيارة فني لإصلاح العطل', 'A technician visit to fix the fault'], link: 'services.html#tech', lt: ['استعرض باقي خدماتنا', 'Explore our other services'],
         why: ['نرسل لك فني يشخّص العطل ويصلحه، ونتابع لين ينحل.', 'We send a technician to diagnose and fix it, and follow up until it is solved.'],
         items: [['الكهرباء والتكييف والسباكة', 'Electrical, HVAC & plumbing'], ['المصاعد وأنظمة الإنذار', 'Elevators & alarm systems'], ['متابعة حتى إغلاق البلاغ', 'Follow-up until the request is closed']] },
-      re: { t: ['الخدمات العقارية', 'Real estate services'], link: 'services.html#realestate', lt: ['تفاصيل الخدمة', 'Service details'],
+      re: { t: ['الخدمات العقارية', 'Real estate services'], link: 'services.html#realestate', lt: ['استعرض باقي خدماتنا', 'Explore our other services'],
         why: ['نسوّق وحداتك ونساعدك في تنظيم جمعية الملاك.', 'We market your units and help organise the owners’ association.'],
         items: [['تسويق الوحدات للبيع والإيجار', 'Marketing units for sale and rent'], ['تقليل فترات الشغور', 'Reducing vacancy'], ['تفعيل جمعية الملاك وتشغيل المرافق المشتركة', 'Owners’ association & shared facilities']] }
     };
@@ -559,7 +560,19 @@
     HOOKS.push(function (en) { if (dlg.open) renderDlg(en); });
   }
 
-  /* packages: highlight the chosen plan */
+  /* packages: highlight the chosen plan (and the one recommended by the quick guide) */
+  var recKey = new URLSearchParams(location.search).get('rec');
+  if (recKey) {
+    var recLink = document.querySelector('.plans a[href*="plan=' + recKey + '&"], .plans a[href$="plan=' + recKey + '"]');
+    var recCard = recLink && recLink.closest('.plan');
+    if (recCard) {
+      recCard.classList.add('selected');
+      setTimeout(function () {
+        var r = recCard.getBoundingClientRect(), top = header.offsetHeight + 12, room = window.innerHeight - top;
+        window.scrollTo({ top: Math.max(0, window.scrollY + r.top - top - (r.height < room ? (room - r.height) / 2 : 0)), behavior: document.documentElement.classList.contains('a11y-nomotion') ? 'auto' : 'smooth' });
+      }, 250);
+    }
+  }
   document.querySelectorAll('.plans .plan').forEach(function (pl, _, all) {
     pl.addEventListener('click', function (e) {
       all.forEach(function (o) { o.classList.toggle('selected', o === pl); });
