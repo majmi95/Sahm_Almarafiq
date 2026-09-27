@@ -224,7 +224,7 @@
     'a11y.skip':'Skip to content','a11y.t':'Accessibility','a11y.close':'Close','a11y.fs':'Text size','a11y.fsd':'Smaller text','a11y.fsu':'Larger text',
     'a11y.dark':'Dark mode','a11y.contrast':'High contrast','a11y.motion':'Stop motion','a11y.links':'Highlight links','a11y.reset':'Reset',
     'foot.privacy':'Privacy Policy','f.consent':'By sending your request you agree to our <a href="privacy.html">Privacy Policy</a>.',
-    'pv.e':'Privacy','pv.t':'Privacy Policy','pv.l':'How we handle your data when you use the website and send requests.','pv.d':'Last updated: 27 September 2026',
+    'pv.e':'Privacy','pv.t':'Privacy Policy','pv.l':'How we handle your data when you use the website and send requests.','pv.d':'Last updated: 27 September 2026','pv.l2':'Your privacy matters to us. Here is how we look after your information.',
     'pv.s.t':'In short','pv.s.1':'We only collect what we need to serve you.','pv.s.2':'We never sell your data.','pv.s.3':'Analytics tools only run with your consent.','pv.s.4':'You can ask us to delete your data at any time.','pv.s.cta':'Email us about your data',
     'nav.home':'Home','nav.services':'Services','nav.packages':'Plans','nav.guide':'Owners\u2019 association guide','nav.about':'About','nav.contact':'Contact',
     'cta.book':'Book a site visit','cta.book2':'Book a visit for your property','cta.browse':'Explore services','cta.wa':'WhatsApp us','cta.call':'Call us','cta.all':'All services',
