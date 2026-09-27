@@ -531,6 +531,12 @@
         wa: ['أرغب بطلب ' + PL[plan][0] + '.', 'I would like to request the ' + PL[plan][1] + '.'],
         about: [PL[plan][0], PL[plan][1]], source: PL[plan][0] + ' (صفحة الباقات)' };
       var sv = SVCS.filter(function (s) { return s[0] === qs.get('svc'); })[0];
+      var card = qs.get('sub') && lnk.closest('.svc'), h = card && card.querySelector('h3[data-i18n]');
+      if (sv && h) { var hAr = lnk.getAttribute('data-title') || h.getAttribute('data-ar') || h.textContent, hEn = lnk.getAttribute('data-title-en') || EN[h.getAttribute('data-i18n')] || hAr;
+        return { key: 'sub-' + qs.get('sub'), svc: sv[0], site: qs.get('for') || PAGE_SITE[file] || null,
+          title: ['طلب خدمة ' + hAr, 'Request: ' + hEn], lead: ['اترك بياناتك ويتواصل معك أحد مختصينا بخصوص الخدمة.', 'Leave your details and one of our specialists will contact you about this service.'],
+          wa: ['أرغب بطلب خدمة ' + hAr + '.', 'I would like to request: ' + hEn + '.'],
+          about: [hAr, hEn], source: hAr + ' (' + page + ')' }; }
       if (sv) return { key: 'svc-' + sv[0], svc: sv[0], site: qs.get('for') || PAGE_SITE[file] || null,
         title: [(sv[0] === 're' ? 'طلب ' : 'طلب خدمة ') + sv[1], 'Request: ' + sv[2]], lead: ['اترك بياناتك ويتواصل معك أحد مختصينا بخصوص الخدمة.', 'Leave your details and one of our specialists will contact you about this service.'],
         wa: ['أرغب بطلب ' + (sv[0] === 're' ? '' : 'خدمة ') + sv[1] + '.', 'I would like to request ' + sv[2] + '.'],
