@@ -625,3 +625,22 @@ html[dir="ltr"] .hero-photo::after{background:linear-gradient(to right,color-mix
   .hero-photo::after{display:none}
   .hero-copy{padding:26px 0 44px}
 }
+
+/* ---------- Map card (contact) ---------- */
+.map-card{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--sand);aspect-ratio:16/10}
+.map-card iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.map-load{position:absolute;inset:0;width:100%;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--ink);
+  background:
+    radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--copper) 16%,transparent),transparent 42%),
+    repeating-linear-gradient(0deg,transparent 0 38px,var(--line) 38px 39px),
+    repeating-linear-gradient(90deg,transparent 0 38px,var(--line) 38px 39px),
+    linear-gradient(135deg,transparent 46%,color-mix(in srgb,var(--copper) 22%,transparent) 46% 49%,transparent 49%),
+    var(--sand)}
+.map-load:hover .map-pin{transform:translateY(-3px)}
+.map-pin{width:48px;height:48px;border-radius:50%;background:var(--copper);display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-s);transition:transform .2s}
+.map-pin svg{fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;width:24px;height:24px}
+.map-load b{font-size:1rem;margin-top:4px}
+.map-load{padding-bottom:52px}
+@media (max-width:760px){.map-card{aspect-ratio:4/3}}
+.map-load small{color:var(--muted);font-size:.8rem}
+.map-dir{position:absolute;bottom:12px;inset-inline-end:12px;z-index:2;padding:10px 18px;font-size:.88rem}
