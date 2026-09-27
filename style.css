@@ -686,15 +686,15 @@ html.a11y-nomotion .fn-in{animation:none}
 .foot p{margin-top:8px;font-size:.84rem;line-height:1.6}
 .foot-links{gap:20px 40px}
 .foot-links h4{font-size:.8rem;margin-bottom:8px}
-.foot-links ul{display:flex;flex-wrap:wrap;gap:2px 14px;max-width:250px;line-height:1.7}
+.foot-links ul{display:grid;gap:4px;line-height:1.6}
 .socials{gap:8px}
 .socials a{width:36px;height:36px;border-radius:10px}
 .socials svg{width:17px;height:17px}
 .foot-bottom{padding-top:14px;font-size:.78rem}
 @media (max-width:760px){
   .foot{flex-direction:column;gap:18px}
-  .foot-links{flex-direction:column;gap:16px}
-  .foot-links ul{max-width:none}
+  .foot-links{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px}
+  .foot-links>div:last-child{grid-column:1/-1}
 }
 @media(max-width:640px){.site-footer{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}}
 @media (min-width:641px) and (max-width:1320px){.foot-bottom{padding-inline:64px}}
