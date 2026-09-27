@@ -1,6 +1,6 @@
 /* ===== Sahm Almarafiq — layout, language switch, motion ===== */
 (function () {
-  var PHONE = '0544447611', EMAIL = 'info@sahmalmarafiq.com';
+  var PHONE = '0544447611', EMAIL = 'info@sahmalmarafiq.com', MAP_URL = 'https://maps.app.goo.gl/ovJERWqB1YXPLHsR9';
   var WA_AR = 'مرحبًا،\nأرغب بالاستفسار عن خدمات سهم المرافق';
   var WA_EN = 'Hello,\nI would like to inquire about Sahm Almarafiq services';
   function wa(msg) { return 'https://wa.me/966510105266?text=' + encodeURIComponent(msg); }
@@ -49,11 +49,21 @@
         '<a href="#" data-wa aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 8.6c.2-.5.5-.6.8-.6h.5c.2 0 .4.1.5.4l.7 1.6c.1.2 0 .5-.1.6l-.5.6c-.1.1-.1.3 0 .5.6 1.1 1.5 2 2.6 2.6.2.1.4.1.5 0l.6-.6c.2-.2.4-.2.6-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3-.2.7-.6.9-.6.3-1.4.4-2.3.1-2.2-.8-4.2-2.8-5-5-.3-.8-.2-1.5.2-2.1z" fill="currentColor" stroke="none"/></svg></a>' +
         '<a href="tel:' + PHONE + '" aria-label="اتصل بنا" title="' + PHONE + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>' +
         '<a href="mailto:' + EMAIL + '" aria-label="البريد الإلكتروني" title="' + EMAIL + '"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>' +
+        '<a href="'+MAP_URL+'" target="_blank" rel="noopener" aria-label="موقعنا على الخريطة" title="حي الشعلة، الدمام"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></a>' +
         '<a href="https://www.instagram.com/sahmalmarafiq" target="_blank" rel="noopener" aria-label="Instagram" title="@sahmalmarafiq"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>' +
       '</div></div>' +
     '</div></div><div class="foot-bottom"><span>© ' + new Date().getFullYear() + ' <span data-i18n="foot.rights">سهم المرافق. جميع الحقوق محفوظة.</span></span>' +
     '<span class="foot-meta"><a href="privacy.html" data-i18n="foot.privacy">سياسة الخصوصية</a></span></div></div>';
   document.body.appendChild(footer);
+
+  /* ---------- Map (loads only when the visitor asks) ---------- */
+  var mapBtn = document.querySelector('.map-load');
+  if (mapBtn) mapBtn.addEventListener('click', function () {
+    var f = document.createElement('iframe');
+    f.src = 'https://maps.google.com/maps?q=' + mapBtn.dataset.lat + ',' + mapBtn.dataset.lng + '&z=16&hl=' + (document.documentElement.lang || 'ar') + '&output=embed';
+    f.title = 'Google Maps'; f.loading = 'lazy'; f.referrerPolicy = 'no-referrer-when-downgrade'; f.allowFullscreen = true;
+    mapBtn.replaceWith(f);
+  });
 
   var fab = document.createElement('a');
   fab.className = 'wa-fab'; fab.id = 'waFab'; fab.target = '_blank'; fab.rel = 'noopener'; fab.setAttribute('aria-label', 'WhatsApp');
@@ -276,7 +286,7 @@
     'rg2.t':'Eastern Province','rg2.d':'Dammam · Khobar · Dhahran.',
     /* contact */
     'co.e':'Contact','co.t':'Contact the Sahm Almarafiq team','co.l':'Choose the channel that suits you, or send your request directly.',
-    'ch.wa':'WhatsApp','ch.wa2':'The fastest way to reach us','ch.ph':'Phone','ch.em':'Email','ch.cv':'Coverage','ch.cv2':'Riyadh · Dammam · Khobar · Dhahran',
+    'ch.wa':'WhatsApp','ch.wa2':'The fastest way to reach us','ch.ph':'Phone','ch.em':'Email','ch.loc':'Our location','ch.loc2':'Ash Shulah, Dammam 34261','map.show':'Show map','map.note':'The map loads from Google Maps','map.dir':'Directions','ch.cv':'Coverage','ch.cv2':'Riyadh · Dammam · Khobar · Dhahran',
     'f.name':'Full name','f.phone':'Mobile','f.city':'City','f.msg':'Details (optional)',
     'f.ph.name':'Your name','f.ph.msg':'Tell us briefly about your property',
     'f.send':'Send request',
