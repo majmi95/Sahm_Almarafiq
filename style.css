@@ -103,8 +103,8 @@ html[dir="ltr"] .link:hover svg{transform:translateX(3px)}
   .nav-actions{margin-inline-start:auto}
   .burger{display:block}
   .nav-actions .btn{min-height:40px;padding:0 14px;font-size:.88rem;border-radius:10px}
-  .mobile-nav{display:grid;gap:2px;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s;padding:0 20px;background:var(--bg)}
-  .menu-open .mobile-nav{max-height:80vh;padding:8px 20px 20px;border-bottom:1px solid var(--line);overflow:auto}
+  .mobile-nav{position:absolute;top:100%;left:0;right:0;display:grid;gap:2px;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s;padding:0 20px;background:var(--bg)}
+  .menu-open .mobile-nav{max-height:calc(100vh - var(--hdr));padding:8px 20px 20px;border-bottom:1px solid var(--line);box-shadow:var(--sh);overflow:auto}
   .mobile-nav a{padding:12px 4px;font-size:1rem;font-weight:500;border-bottom:1px solid var(--line)}
   .mobile-nav a.active{color:var(--navy);font-weight:700}
   .m-group{display:grid;border-bottom:1px solid var(--line);padding-bottom:6px}
