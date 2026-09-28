@@ -57,11 +57,10 @@
   var header = document.createElement('header');
   header.className = 'site-header';
   header.innerHTML = '<div class="wrap nav">' + BRAND + '<nav class="nav-links" aria-label="Main">' + desk + '</nav>' +
-    '<div class="nav-actions"><a href="' + QUOTE + '" class="btn btn-primary btn-sm" data-i18n="cta.quote" data-quote>اطلب عرضًا</a><div class="lang-dd"><button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu">EN</button><div class="lang-menu" id="langMenu" hidden><button type="button" data-lang="ar" lang="ar">العربية</button><button type="button" data-lang="en" lang="en">English</button><button type="button" data-lang="zh" lang="zh">中文</button></div></div>' +
+    '<div class="nav-actions"><a href="' + QUOTE + '" class="btn btn-primary btn-sm" data-i18n="cta.quote" data-quote>اطلب عرضًا</a><button class="lang-btn" id="langBtn">EN</button>' +
     '<button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span></button></div></div>' +
     '<nav class="mobile-nav" aria-label="Mobile">' + mob + '</nav>';
   document.body.insertBefore(header, document.body.firstChild);
-  var langMenu = document.getElementById('langMenu');
   var dd = header.querySelector('.dd'), ddBtn = header.querySelector('.dd-btn');
   ddBtn.addEventListener('click', function (e) { e.stopPropagation(); ddBtn.setAttribute('aria-expanded', dd.classList.toggle('open') ? 'true' : 'false'); });
   document.addEventListener('click', function () { dd.classList.remove('open'); ddBtn.setAttribute('aria-expanded', 'false'); });
@@ -85,7 +84,7 @@
   var mapBtn = document.querySelector('.map-load');
   if (mapBtn) mapBtn.addEventListener('click', function () {
     var f = document.createElement('iframe');
-    f.src = 'https://maps.google.com/maps?q=' + mapBtn.dataset.lat + ',' + mapBtn.dataset.lng + '&z=16&hl=' + ({ en: 'en', zh: 'zh-CN' }[document.documentElement.lang] || 'ar') + '&output=embed';
+    f.src = 'https://maps.google.com/maps?q=' + mapBtn.dataset.lat + ',' + mapBtn.dataset.lng + '&z=16&hl=' + (document.documentElement.lang || 'ar') + '&output=embed';
     f.title = 'Google Maps'; f.loading = 'lazy'; f.referrerPolicy = 'no-referrer-when-downgrade'; f.allowFullscreen = true;
     mapBtn.replaceWith(f);
   });
@@ -187,61 +186,22 @@
     'a11y.skip':'Skip to content','a11y.t':'Accessibility','a11y.close':'Close','a11y.fs':'Text size','a11y.fsd':'Smaller text','a11y.fsu':'Larger text','a11y.dark':'Dark mode','a11y.contrast':'High contrast','a11y.motion':'Stop motion','a11y.links':'Highlight links','a11y.reset':'Reset'
   };
 
-  /* ---------- Chinese (Simplified) copy ---------- */
-  var ZH = {
-    'brand.full':'Sahm Almarafiq 设施运营与维护',
-    'nav.home':'首页','nav.services':'服务项目','nav.sectors':'服务领域','nav.about':'关于我们','nav.contact':'联系我们',
-    'cta.quote':'获取报价','cta.explore':'了解我们的服务','cta.more':'了解更多',
-    'h.t':'一体化设施管理与运营解决方案',
-    'h.l':'为公共与私营领域的业主和机构提供设施管理、运营维护及房地产服务。',
-    'fm.t':'设施管理','fm.d':'为各类设施与物业提供一体化管理，旨在提升设施与服务质量、控制成本，并充分把握现有的投资机会。',
-    'om.t':'运营与维护','om.d':'根据每个场所的需求及所需的工作范围，执行设施与物业的运营和维护工作。',
-    're.t':'房地产服务','re.d':'房地产服务涵盖物业管理、营销、租赁、销售及租赁合同签订。',
-    'sec.t':'服务领域','sec.1':'住宅','sec.2':'商业与办公','sec.3':'医疗','sec.4':'业主协会',
-    'how.t':'工作流程',
-    'how.1t':'了解需求','how.1d':'明确设施或物业的需求及所需服务范围。',
-    'how.2t':'现场勘察与评估','how.2d':'勘察现场，评估现状及实际需求。',
-    'how.3t':'报价与工作计划','how.3d':'确定工作范围、费用及实施方式。',
-    'how.4t':'实施与跟进','how.4d':'执行工作，并持续跟进绩效与服务质量。',
-    'fn.t':'您需要什么服务？',
-    'fm.1t':'运营管理','fm.2t':'合同及服务供应商管理','fm.3t':'预算与成本管理','fm.4t':'绩效与设施质量监控','fm.5t':'投资机会研究',
-    'om.1t':'电气工程','om.2t':'管道工程','om.3t':'空调与制冷','om.4t':'清洁服务','om.5t':'翻新与装修',
-    're.1t':'物业管理','re.1d':'一体化物业管理，从租户跟进与租金收取，到物业养护及品质与价值提升。',
-    're.2t':'房地产营销、租赁与销售','re.2d':'推广房产及单元，并全程管理租赁与销售流程直至完成。',
-    're.3t':'租赁合同签订','re.3d':'通过 Ejar 平台为出租人与承租人签订并备案租赁合同。',
-    'fm.cta':'需要设施管理服务吗？','om.cta':'需要运营与维护服务吗？','re.cta':'需要房地产服务吗？',
-    'ab.t':'关于我们','ab.p':'Sahm Almarafiq 为公共与私营领域的业主和机构，提供设施管理、运营维护及房地产服务的一体化解决方案。',
-    'co.t':'联系我们','ch.wa':'WhatsApp','ch.wa2':'直接给我们发消息','ch.ph':'电话','ch.em':'电子邮件','ch.ig':'Instagram','ch.loc':'办公地址','ch.loc2':'达曼 Ash Shulah 区 34261',
-    'area.t':'当前服务范围','area.d':'达曼、胡拜尔、宰赫兰、盖提夫、赛哈特。',
-    'map.show':'显示地图','map.note':'地图由 Google Maps 提供','map.dir':'导航',
-    'foot.about':'一体化设施管理与运营解决方案。','foot.links':'网站导航','foot.reach':'联系方式','foot.rights':'Sahm Almarafiq 版权所有。','foot.privacy':'隐私政策',
-    'pv.e':'隐私','pv.t':'隐私政策','pv.l2':'我们重视您的隐私，以下说明我们如何保护您的信息。','pv.d':'最后更新：2026年9月28日',
-    'a11y.skip':'跳至正文','a11y.t':'无障碍设置','a11y.close':'关闭','a11y.fs':'字体大小','a11y.fsd':'缩小字体','a11y.fsu':'放大字体','a11y.dark':'深色模式','a11y.contrast':'高对比度','a11y.motion':'停止动画','a11y.links':'突出显示链接','a11y.reset':'重置'
-  };
-
   var HOOKS = [];
   var nodes = document.querySelectorAll('[data-i18n]'), T = document.title;
   nodes.forEach(function (e) { e.setAttribute('data-ar', e.innerHTML); });
-  var DICT = { en: EN, zh: ZH };
-  var TITLE_ZH = { home: 'Sahm Almarafiq | 设施管理、运营维护与房地产服务', fm: '设施管理 | Sahm Almarafiq', om: '运营与维护 | Sahm Almarafiq', re: '房地产服务 | Sahm Almarafiq', about: '关于我们 | Sahm Almarafiq', contact: '联系我们 | Sahm Almarafiq', privacy: '隐私政策 | Sahm Almarafiq' };
-  /* current language: 'ar' | 'en' | 'zh' */
-  function LG() { var l = document.documentElement.lang; return l === 'en' || l === 'zh' ? l : 'ar'; }
   function setLang(l) {
-    if (l !== 'en' && l !== 'zh') l = 'ar';
-    var H = document.documentElement, D = DICT[l];
-    H.lang = l; H.dir = l === 'ar' ? 'rtl' : 'ltr';
-    nodes.forEach(function (e) { var k = e.getAttribute('data-i18n'); e.innerHTML = D && D[k] ? D[k] : (l === 'zh' && EN[k]) || e.getAttribute('data-ar'); });
-    document.title = l === 'en' ? (document.body.getAttribute('data-title-en') || T) : l === 'zh' ? (TITLE_ZH[page] || T) : T;
+    var en = l === 'en', H = document.documentElement;
+    H.lang = en ? 'en' : 'ar'; H.dir = en ? 'ltr' : 'rtl';
+    nodes.forEach(function (e) { var k = e.getAttribute('data-i18n'); e.innerHTML = en && EN[k] ? EN[k] : e.getAttribute('data-ar'); });
+    document.title = en ? (document.body.getAttribute('data-title-en') || T) : T;
     var lb = document.getElementById('langBtn');
-    lb.textContent = { ar: 'ع', en: 'EN', zh: '中文' }[l];
-    lb.setAttribute('aria-label', { ar: 'اللغة', en: 'Language', zh: '语言' }[l]);
-    langMenu.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-current', b.getAttribute('data-lang') === l ? 'true' : 'false'); });
-    a11yBtn.setAttribute('aria-label', { ar: 'خيارات إمكانية الوصول', en: 'Accessibility options', zh: '无障碍设置' }[l]);
-    var link = wa(l === 'ar' ? WA_AR : WA_EN);
+    lb.textContent = en ? 'ع' : 'EN'; lb.setAttribute('aria-label', en ? 'التبديل إلى العربية' : 'Switch to English');
+    a11yBtn.setAttribute('aria-label', en ? 'Accessibility options' : 'خيارات إمكانية الوصول');
+    var link = wa(en ? WA_EN : WA_AR);
     fab.href = link;
     document.querySelectorAll('[data-wa]').forEach(function (x) { x.href = link; x.target = '_blank'; x.rel = 'noopener'; });
     try { localStorage.setItem('sahm-lang', l); } catch (e) {}
-    HOOKS.forEach(function (f) { f(l); });
+    HOOKS.forEach(function (f) { f(en); });
   }
 
   /* ---------- Google Forms connection ---------- */
@@ -264,7 +224,7 @@
   function validPhone(s) { return s.replace(/[^0-9٠-٩]/g, '').length >= 9; }
   document.addEventListener('click', function (e) {
     var c = e.target.closest && e.target.closest('[data-copy]'); if (!c) return;
-    var done = function () { c.textContent = { ar: 'تم النسخ ✓', en: 'Copied ✓', zh: '已复制 ✓' }[LG()]; };
+    var en = document.documentElement.lang === 'en', done = function () { c.textContent = en ? 'Copied ✓' : 'تم النسخ ✓'; };
     if (navigator.clipboard) navigator.clipboard.writeText(c.getAttribute('data-copy')).then(done, function () {}); else done();
   });
 
@@ -272,26 +232,26 @@
   var app = document.getElementById('finderApp');
   if (app) {
     var MAIN = {
-      fm: { ic: 'gear', t: ['إدارة المرافق', 'Facility management', '设施管理'], q: ['نوع المرفق', 'Facility type', '设施类型'],
-        subs: [['res', 'سكني', 'Residential', '住宅'], ['com', 'تجاري', 'Commercial', '商业']] },
-      om: { ic: 'bolt', t: ['التشغيل والصيانة', 'Operations & maintenance', '运营与维护'], q: ['الخدمة المطلوبة', 'Service needed', '所需服务'],
-        subs: [['elec', 'كهرباء', 'Electrical', '电气'], ['plumb', 'سباكة', 'Plumbing', '管道'], ['ac', 'تكييف', 'Air conditioning', '空调'], ['clean', 'نظافة', 'Cleaning', '清洁'], ['reno', 'ترميم وتشطيبات', 'Renovation & finishing', '翻新与装修']] },
-      re: { ic: 'home', t: ['الخدمات العقارية', 'Real estate services', '房地产服务'], q: ['الخدمة المطلوبة', 'Service needed', '所需服务'],
-        subs: [['pm', 'إدارة أملاك', 'Property management', '物业管理'], ['mkt', 'تسويق وتأجير وبيع', 'Marketing, leasing & sales', '营销、租赁与销售'], ['ejar', 'إبرام عقد إيجار', 'Lease contract (Ejar)', '租赁合同签订（Ejar）']] }
+      fm: { ic: 'gear', t: ['إدارة المرافق', 'Facility management'], q: ['نوع المرفق', 'Facility type'],
+        subs: [['res', 'سكني', 'Residential', 'home'], ['com', 'تجاري', 'Commercial', 'office']] },
+      om: { ic: 'bolt', t: ['التشغيل والصيانة', 'Operations & maintenance'], q: ['الخدمة المطلوبة', 'Service needed'],
+        subs: [['elec', 'كهرباء', 'Electrical'], ['plumb', 'سباكة', 'Plumbing'], ['ac', 'تكييف', 'Air conditioning'], ['clean', 'نظافة', 'Cleaning'], ['reno', 'ترميم وتشطيبات', 'Renovation & finishing']] },
+      re: { ic: 'home', t: ['الخدمات العقارية', 'Real estate services'], q: ['الخدمة المطلوبة', 'Service needed'],
+        subs: [['pm', 'إدارة أملاك', 'Property management'], ['mkt', 'تسويق وتأجير وبيع', 'Marketing, leasing & sales'], ['ejar', 'إبرام عقد إيجار', 'Lease contract (Ejar)']] }
     };
     var ORDER = ['fm', 'om', 're'];
     /* pre-select a main service: index.html?need=fm#finder (service pages), or in-page links with data-need */
     var need = new URLSearchParams(location.search).get('need');
     var F = { main: null, sub: null, sent: null, busy: false, err: '', bad: '', v: { city: '', district: '', name: '', phone: '' } };
     var box = document.getElementById('finderBox');
-    var L = function (lg, ar, en, zh) { return lg === 'zh' ? zh : lg === 'en' ? en : ar; };
-    var render = function (lg, focus) {
-      var i = { ar: 0, en: 1, zh: 2 }[lg] || 0, h = '';
+    var L = function (en, ar, e) { return en ? e : ar; };
+    var render = function (en, focus) {
+      var i = en ? 1 : 0, h = '';
       box.classList.remove('fm', 'om', 're'); if (F.main) box.classList.add(F.main);
       if (F.sent) {
-        h = '<div class="f-ok fx-in" tabindex="-1"><span class="ic">' + icon('check') + '</span><h3>' + L(lg, 'تم استلام طلبك، وسيتواصل معك فريق سهم المرافق.', 'Your request has been received, and the Sahm Almarafiq team will contact you.', '我们已收到您的请求，Sahm Almarafiq 团队将与您联系。') + '</h3>' +
-          '<div class="ref"><span>' + L(lg, 'رقم الطلب', 'Reference', '请求编号') + '</span><b class="ltr">' + F.sent + '</b><button type="button" data-copy="' + F.sent + '">' + L(lg, 'نسخ', 'Copy', '复制') + '</button></div>' +
-          '<p style="margin-top:14px"><button type="button" class="f-back" data-reset style="margin:0">' + L(lg, 'إرسال طلب آخر', 'Send another request', '提交新的请求') + '</button></p></div>';
+        h = '<div class="f-ok fx-in" tabindex="-1"><span class="ic">' + icon('check') + '</span><h3>' + L(en, 'تم استلام طلبك، وسيتواصل معك فريق سهم المرافق.', 'Your request has been received, and the Sahm Almarafiq team will contact you.') + '</h3>' +
+          '<div class="ref"><span>' + L(en, 'رقم الطلب', 'Reference') + '</span><b class="ltr">' + F.sent + '</b><button type="button" data-copy="' + F.sent + '">' + L(en, 'نسخ', 'Copy') + '</button></div>' +
+          '<p style="margin-top:14px"><button type="button" class="f-back" data-reset style="margin:0">' + L(en, 'إرسال طلب آخر', 'Send another request') + '</button></p></div>';
         app.innerHTML = h; if (focus) app.querySelector('.f-ok').focus(); return;
       }
       h += '<div class="fstep"><div class="opts" role="group">' + ORDER.map(function (k) {
@@ -307,13 +267,13 @@
         var fld = function (id, lab, type, auto, ph) {
           return '<div class="field"><label for="ff-' + id + '">' + lab + '</label><input id="ff-' + id + '" name="' + id + '" type="' + type + '"' + (auto ? ' autocomplete="' + auto + '"' : '') + (type === 'tel' ? ' inputmode="tel" dir="ltr"' : '') + (ph ? ' placeholder="' + ph + '"' : '') + ' value="' + esc(F.v[id]) + '"' + (F.bad === id ? ' aria-invalid="true"' : '') + '></div>';
         };
-        h += '<form class="fstep fx-in" novalidate><div class="lbl"><span class="num">3</span>' + L(lg, 'بيانات التواصل', 'Your details', '联系信息') + '</div><div class="fields">' +
-          fld('city', L(lg, 'المدينة', 'City', '城市'), 'text', 'address-level2', L(lg, 'مثال: الدمام', 'e.g. Dammam', '例如：达曼')) +
-          fld('district', L(lg, 'الحي', 'District', '街区'), 'text', 'address-level3', '') +
-          fld('name', L(lg, 'الاسم', 'Name', '姓名'), 'text', 'name', '') +
-          fld('phone', L(lg, 'رقم الجوال', 'Mobile number', '手机号码'), 'tel', 'tel', '05xxxxxxxx') +
-          '</div><p class="f-err" role="alert">' + esc(F.err) + '</p><div class="f-submit"><button type="submit" class="btn btn-primary"' + (F.busy ? ' disabled' : '') + '>' + (F.busy ? L(lg, 'جارٍ الإرسال…', 'Sending…', '正在提交…') : L(lg, 'إرسال الطلب', 'Send request', '提交请求')) + '</button>' +
-          '<p class="consent">' + L(lg, 'بإرسالك الطلب، توافق على <a href="privacy.html">سياسة الخصوصية</a>.', 'By sending your request you agree to our <a href="privacy.html">Privacy Policy</a>.', '提交即表示您同意我们的<a href="privacy.html">隐私政策</a>。') + '</p></div></form>';
+        h += '<form class="fstep fx-in" novalidate><div class="lbl"><span class="num">3</span>' + L(en, 'بيانات التواصل', 'Your details') + '</div><div class="fields">' +
+          fld('city', L(en, 'المدينة', 'City'), 'text', 'address-level2', L(en, 'مثال: الدمام', 'e.g. Dammam')) +
+          fld('district', L(en, 'الحي', 'District'), 'text', 'address-level3', '') +
+          fld('name', L(en, 'الاسم', 'Name'), 'text', 'name', '') +
+          fld('phone', L(en, 'رقم الجوال', 'Mobile number'), 'tel', 'tel', '05xxxxxxxx') +
+          '</div><p class="f-err" role="alert">' + esc(F.err) + '</p><div class="f-submit"><button type="submit" class="btn btn-primary"' + (F.busy ? ' disabled' : '') + '>' + (F.busy ? L(en, 'جارٍ الإرسال…', 'Sending…') : L(en, 'إرسال الطلب', 'Send request')) + '</button>' +
+          '<p class="consent">' + L(en, 'بإرسالك الطلب، توافق على <a href="privacy.html">سياسة الخصوصية</a>.', 'By sending your request you agree to our <a href="privacy.html">Privacy Policy</a>.') + '</p></div></form>';
       }
       app.innerHTML = h;
       if (focus) { var f = app.querySelector(focus); if (f) f.focus({ preventScroll: true }); }
@@ -325,10 +285,10 @@
     };
     var pick = function (k) { if (!MAIN[k]) return; F.main = k; F.sub = null; F.err = ''; F.bad = ''; };
     app.addEventListener('click', function (e) {
-      var lg = LG(), b = e.target.closest('button'); if (!b) return;
-      if (b.hasAttribute('data-main')) { var k = b.getAttribute('data-main'); if (F.main !== k) pick(k); render(lg, '[data-main="' + k + '"]'); nudge('.chips'); }
-      else if (b.hasAttribute('data-sub')) { F.sub = b.getAttribute('data-sub'); F.err = ''; render(lg, '[data-sub="' + F.sub + '"]'); nudge('form'); }
-      else if (b.hasAttribute('data-reset')) { F.sent = null; F.main = null; F.sub = null; render(lg, '[data-main]'); }
+      var en = document.documentElement.lang === 'en', b = e.target.closest('button'); if (!b) return;
+      if (b.hasAttribute('data-main')) { var k = b.getAttribute('data-main'); if (F.main !== k) pick(k); render(en, '[data-main="' + k + '"]'); nudge('.chips'); }
+      else if (b.hasAttribute('data-sub')) { F.sub = b.getAttribute('data-sub'); F.err = ''; render(en, '[data-sub="' + F.sub + '"]'); nudge('form'); }
+      else if (b.hasAttribute('data-reset')) { F.sent = null; F.main = null; F.sub = null; render(en, '[data-main]'); }
     });
     app.addEventListener('input', function (e) {
       if (e.target.name in F.v) F.v[e.target.name] = e.target.value;
@@ -336,35 +296,26 @@
     });
     app.addEventListener('submit', function (e) {
       e.preventDefault(); if (F.busy) return;
-      var lg = LG(), v = F.v;
+      var en = document.documentElement.lang === 'en', v = F.v;
       F.bad = !v.city.trim() ? 'city' : !v.name.trim() ? 'name' : !validPhone(v.phone) ? 'phone' : '';
-      F.err = { city: L(lg, 'فضلًا اكتب المدينة.', 'Please enter your city.', '请输入城市。'), name: L(lg, 'فضلًا اكتب اسمك.', 'Please enter your name.', '请输入您的姓名。'), phone: L(lg, 'فضلًا أدخل رقم جوال صحيح.', 'Please enter a valid mobile number.', '请输入有效的手机号码。') }[F.bad] || '';
-      if (F.bad) { render(lg, '#ff-' + F.bad); return; }
+      F.err = { city: L(en, 'فضلًا اكتب المدينة.', 'Please enter your city.'), name: L(en, 'فضلًا اكتب اسمك.', 'Please enter your name.'), phone: L(en, 'فضلًا أدخل رقم جوال صحيح.', 'Please enter a valid mobile number.') }[F.bad] || '';
+      if (F.bad) { render(en, '#ff-' + F.bad); return; }
       var m = MAIN[F.main], s = m.subs.filter(function (x) { return x[0] === F.sub; })[0];
       var src = (need === F.main && { fm: 'صفحة إدارة المرافق', om: 'صفحة التشغيل والصيانة', re: 'صفحة الخدمات العقارية' }[need]) || 'الرئيسية';
-      var ref = makeRef(); F.busy = true; render(lg);
+      var ref = makeRef(); F.busy = true; render(en);
       sendLead({ ref: ref, name: v.name.trim(), phone: v.phone.trim(), city: v.city.trim() + (v.district.trim() ? ' — ' + v.district.trim() : ''), type: m.t[0],
         service: (F.main === 'fm' ? 'مرفق ' : '') + s[1] + ' — ما الذي تحتاجه؟ (' + src + ')' })
-        .then(function () { F.busy = false; F.sent = ref; render(lg, '.f-ok'); })
-        .catch(function () { F.busy = false; F.err = L(lg, 'تعذّر الإرسال. حاول مرة أخرى أو تواصل معنا عبر واتساب.', 'Sending failed. Please try again or contact us on WhatsApp.', '提交失败，请重试或通过 WhatsApp 联系我们。'); render(lg); });
+        .then(function () { F.busy = false; F.sent = ref; render(en, '.f-ok'); })
+        .catch(function () { F.busy = false; F.err = L(en, 'تعذّر الإرسال. حاول مرة أخرى أو تواصل معنا عبر واتساب.', 'Sending failed. Please try again or contact us on WhatsApp.'); render(en); });
     });
     if (need) pick(need);
-    document.addEventListener('click', function (e) { var l = e.target.closest && e.target.closest('a[data-need]'); if (l) { pick(l.getAttribute('data-need')); render(LG()); } });
-    HOOKS.push(function (lg) { render(lg); });
+    document.addEventListener('click', function (e) { var l = e.target.closest && e.target.closest('a[data-need]'); if (l) { pick(l.getAttribute('data-need')); render(document.documentElement.lang === 'en'); } });
+    HOOKS.push(function (en) { render(en); });
   }
 
   var saved = 'ar'; try { saved = localStorage.getItem('sahm-lang') || 'ar'; } catch (e) {}
   setLang(saved);
-  var langBtn = document.getElementById('langBtn');
-  function openLang(open) { langMenu.hidden = !open; langBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
-  langBtn.addEventListener('click', function (e) { e.stopPropagation(); openLang(langMenu.hidden); });
-  langMenu.addEventListener('click', function (e) {
-    e.stopPropagation();
-    var b = e.target.closest('[data-lang]'); if (!b) return;
-    setLang(b.getAttribute('data-lang')); openLang(false); header.classList.remove('menu-open'); langBtn.focus();
-  });
-  document.addEventListener('click', function () { if (!langMenu.hidden) openLang(false); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !langMenu.hidden) { openLang(false); langBtn.focus(); } });
+  document.getElementById('langBtn').onclick = function () { setLang(document.documentElement.lang === 'en' ? 'ar' : 'en'); header.classList.remove('menu-open'); };
 
   /* reveal on scroll */
   var rv = document.querySelectorAll('.reveal');
