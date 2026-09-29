@@ -297,16 +297,16 @@ html[dir="ltr"] .hero::after{background:linear-gradient(to right,rgba(11,45,77,.
 @media(max-width:860px){.contact{grid-template-columns:1fr}}
 
 /* ---------- Footer ---------- */
-.site-footer{background:var(--navy);color:rgba(255,255,255,.8);padding:44px 0 22px;font-size:.9rem}
+.site-footer{background:var(--navy);color:#fff;padding:44px 0 22px;font-size:.9rem}
 .foot{display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:28px 36px;padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,.14)}
-.foot .brand{color:var(--ivory);display:inline-block}
+.foot .brand{color:#fff;display:inline-block}
 .foot .brand .logo{height:46px}
 .foot p{margin-top:12px;font-size:.88rem;max-width:34ch;line-height:1.7}
 .foot h4{color:#fff;font-size:.85rem;font-weight:500;margin-bottom:10px}
 .foot ul{list-style:none;display:grid;gap:6px}
 .foot a:hover{color:#fff}
 .foot .ltr{display:inline-block}
-.foot-bottom{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:16px;font-size:.8rem;color:rgba(255,255,255,.6)}
+.foot-bottom{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:16px;font-size:.8rem;color:#fff}
 .foot-bottom a:hover{color:#fff}
 @media(max-width:960px){.foot{grid-template-columns:1fr 1fr}.foot>div:first-child{grid-column:1/-1}}
 @media(min-width:641px) and (max-width:1320px){.foot-bottom{padding-inline:64px}}
