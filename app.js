@@ -179,7 +179,7 @@
     'fm.cta':'Do you need facility management services?','om.cta':'Do you need operations & maintenance services?','re.cta':'Do you need real estate services?',
     'ab.t':'About us','ab.p':'Sahm Almarafiq provides integrated solutions in facility management, operations & maintenance, and real estate services for owners and organisations in the public and private sectors.',
     'co.t':'Contact us','ch.wa':'WhatsApp','ch.wa2':'Message us directly','ch.ph':'Phone','ch.em':'Email','ch.ig':'Instagram','ch.loc':'Office location','ch.loc2':'Ash Shulah, Dammam 34261',
-    'area.t':'Current service area','area.d':'Dammam, Khobar, Dhahran, Qatif, Saihat.',
+    'area.t':'Current service area','area.d':'Eastern Province: Dammam, Khobar, Dhahran.',
     'map.show':'Show map','map.note':'The map loads from Google Maps','map.dir':'Directions',
     'foot.about':'Integrated solutions for managing and operating facilities.','foot.links':'Website','foot.reach':'Contact','foot.rights':'Sahm Almarafiq. All rights reserved.','foot.privacy':'Privacy Policy',
     'pv.e':'Privacy','pv.t':'Privacy Policy','pv.l2':'Your privacy matters to us. Here is how we look after your information.','pv.d':'Last updated: 28 September 2026',
