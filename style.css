@@ -424,3 +424,17 @@ html.a11y-dark .about .logo{color:#fff}
   .foot-icons svg{width:19px;height:19px}
   .foot-bottom{flex-direction:row;justify-content:space-between;padding-inline:64px}
 }
+/* phones: compact footer — logo, contact icons, links, one-line bottom */
+@media(max-width:760px){
+  .site-footer{padding:24px 0 calc(84px + env(safe-area-inset-bottom,0px))}
+  .foot{gap:16px 12px;padding-bottom:16px}
+  .foot p,.foot h4{display:none}
+  .foot .brand .logo{height:34px}
+  .foot>div:first-child{order:0}
+  .foot .foot-reach{order:1}
+  .foot>div:nth-child(2),.foot>div:nth-child(3){order:2}
+  .foot ul{gap:2px;font-size:.88rem}
+  .foot-icons a{width:40px;height:40px;border-radius:10px}
+  .foot-icons svg{width:19px;height:19px}
+  .foot-bottom{flex-direction:row;justify-content:center;flex-wrap:wrap;gap:4px 14px;padding-top:12px;font-size:.76rem}
+}
