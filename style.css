@@ -382,3 +382,7 @@ html.a11y-contrast .svc-card p,html.a11y-contrast .p-hero p{opacity:1}
 @media(max-width:960px){.about .logo{height:36px}}
 html.a11y-dark .about .logo{color:#fff}
 @media(max-width:960px){.svc-card .mk,.p-hero .mk{width:38px;height:36px}}
+.area-list{display:grid;gap:10px}
+.area-reg{font-size:1rem}
+.area-cities{display:flex;flex-wrap:wrap;gap:8px}
+.area-cities span{padding:4px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.4);font-size:.92rem}
