@@ -61,7 +61,7 @@ html[dir="ltr"] .link:hover svg{transform:translateX(3px)}
 /* ---------- Logo (mask so it takes the surrounding colour) ---------- */
 .logo{display:block;background:currentColor;-webkit-mask:url(images/brand/logo-h.svg) no-repeat center/contain;mask:url(images/brand/logo-h.svg) no-repeat center/contain;aspect-ratio:2154/752}
 .logo-v{-webkit-mask-image:url(images/brand/logo-v.svg);mask-image:url(images/brand/logo-v.svg);aspect-ratio:1017/917}
-.mark{-webkit-mask-image:url(images/brand/mark.svg);mask-image:url(images/brand/mark.svg);aspect-ratio:848/671}
+.mark{-webkit-mask-image:url(images/brand/mark-2.svg);mask-image:url(images/brand/mark-2.svg);aspect-ratio:848/671}
 
 /* ---------- Header ---------- */
 .site-header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
