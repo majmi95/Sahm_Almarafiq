@@ -170,6 +170,16 @@
   });
   document.addEventListener('click', function () { if (!panel.hidden) openA11y(false); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { openA11y(false); a11yBtn.focus(); } });
+  /* floating buttons step aside while scrolling down or typing, and come back on scroll up / at the page end */
+  var lastY = window.scrollY, typing = false, root = document.documentElement;
+  var fabs = function (hide) { root.classList.toggle('fab-off', hide && panel.hidden); };
+  window.addEventListener('scroll', function () {
+    var y = window.scrollY, end = y + window.innerHeight >= document.documentElement.scrollHeight - 40;
+    if (!typing && Math.abs(y - lastY) > 8) { fabs(y > lastY && y > 120 && !end); lastY = y; }
+    if (end && !typing) fabs(false);
+  }, { passive: true });
+  document.addEventListener('focusin', function (e) { if (e.target.matches && e.target.matches('input,select,textarea')) { typing = true; fabs(true); } });
+  document.addEventListener('focusout', function (e) { if (e.target.matches && e.target.matches('input,select,textarea')) { typing = false; fabs(false); } });
   applyA11y();
 
   /* ---------- English copy ---------- */
