@@ -395,9 +395,9 @@ html.a11y-dark .about .logo{color:#fff}
   .area-cities{gap:6px}
   .area-cities span{background:var(--soft);border:0;color:var(--ink);font-size:.88rem;padding:4px 12px}
 }
-/* footer: contact icon row (phones) */
+/* footer: centred layout with a contact icon row (phones and tablets) */
 .foot-icons{display:none}
-@media(max-width:760px){
+@media(max-width:1199px){
   .site-footer{padding:32px 0 calc(104px + env(safe-area-inset-bottom,0px));text-align:center}
   .foot{grid-template-columns:1fr 1fr;gap:26px 16px;padding-bottom:22px}
   .foot>div:first-child,.foot .foot-reach{grid-column:1/-1}
@@ -413,3 +413,4 @@ html.a11y-dark .about .logo{color:#fff}
   .foot-icons a[data-wa] svg{fill:currentColor;stroke:none;width:23px;height:23px}
   .foot-bottom{flex-direction:column;align-items:center;gap:6px;padding-top:16px}
 }
+@media(min-width:761px) and (max-width:1199px){.foot{max-width:560px;margin:0 auto}.foot-bottom{padding-inline:0}}
