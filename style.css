@@ -386,3 +386,12 @@ html.a11y-dark .about .logo{color:#fff}
 .area-reg{font-size:1rem}
 .area-cities{display:flex;flex-wrap:wrap;gap:8px}
 .area-cities span{padding:4px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.4);font-size:.92rem}
+/* service area on phones: light card that matches the contact rows */
+@media(max-width:760px){
+  .area{background:var(--surface);color:var(--text);border:1px solid var(--line);padding:16px 18px;margin-top:10px}
+  .area b{color:var(--ink);font-size:.95rem;margin-bottom:6px}
+  .area-list{gap:8px}
+  .area-reg{font-size:.92rem;color:var(--muted)}
+  .area-cities{gap:6px}
+  .area-cities span{background:var(--soft);border:0;color:var(--ink);font-size:.88rem;padding:4px 12px}
+}
