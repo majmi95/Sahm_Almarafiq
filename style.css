@@ -476,3 +476,14 @@ html.a11y-dark .svc-tab[aria-expanded="true"]{color:#fff}
 .field select{appearance:none;-webkit-appearance:none;color:var(--ink);font:inherit;font-size:1rem;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7785' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:18px;background-position:left 14px center;padding-left:40px}
 [dir=ltr] .field select{background-position:right 14px center;padding-left:14px;padding-right:40px}
 .field.full{grid-column:1/-1}
+/* floating buttons on phones/tablets: smaller, and out of the way while scrolling down or typing */
+.wa-fab,.a11y-btn{transition:transform .25s ease,opacity .25s ease}
+@media(max-width:960px){
+  .wa-fab{width:46px;height:46px;bottom:calc(14px + env(safe-area-inset-bottom,0px));inset-inline-start:14px}
+  .wa-fab svg{width:24px;height:24px}
+  .a11y-btn{width:40px;height:40px;bottom:calc(17px + env(safe-area-inset-bottom,0px));inset-inline-end:14px}
+  .a11y-btn svg{width:20px;height:20px}
+  .a11y-panel{bottom:calc(66px + env(safe-area-inset-bottom,0px));inset-inline-end:14px}
+  html.fab-off .wa-fab,html.fab-off .a11y-btn{transform:translateY(90px);opacity:0;pointer-events:none}
+}
+@media(prefers-reduced-motion:reduce){.wa-fab,.a11y-btn{transition:none}}
