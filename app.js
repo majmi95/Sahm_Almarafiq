@@ -58,7 +58,7 @@
   header.className = 'site-header';
   header.innerHTML = '<div class="wrap nav">' + BRAND + '<nav class="nav-links" aria-label="Main">' + desk + '</nav>' +
     '<div class="nav-actions"><a href="' + QUOTE + '" class="btn btn-primary btn-sm" data-i18n="cta.quote" data-quote>اطلب عرضًا</a><button class="lang-btn" id="langBtn">EN</button>' +
-    '<button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span></button></div></div>' +
+    '<button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><svg class="i-menu" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="i-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>' +
     '<nav class="mobile-nav" aria-label="Mobile">' + mob + '</nav>';
   document.body.insertBefore(header, document.body.firstChild);
   var dd = header.querySelector('.dd'), ddBtn = header.querySelector('.dd-btn');
