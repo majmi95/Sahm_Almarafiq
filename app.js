@@ -111,7 +111,7 @@
     H.classList.toggle('a11y-contrast', !!A11Y.contrast);
     H.classList.toggle('a11y-nomotion', !!A11Y.motion);
     H.classList.toggle('a11y-links', !!A11Y.links);
-    var meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.content = A11Y.dark ? '#0C1824' : '#FCFAF7';
+    var meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.content = A11Y.dark ? '#0C1824' : '#FFFFFF';
     if (panel) {
       panel.querySelector('.a11y-fs-val').textContent = Math.round(100 + A11Y.fs * 12.5) + '%';
       panel.querySelector('[data-a11y="fs-down"]').disabled = A11Y.fs <= FS[0];
