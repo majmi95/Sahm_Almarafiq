@@ -77,7 +77,13 @@
     '<div><a href="index.html" class="brand" aria-label="سهم المرافق"><span class="logo" aria-hidden="true"></span></a><p data-i18n="foot.about">حلول متكاملة لإدارة وتشغيل المرافق.</p></div>' +
     '<div><h4 data-i18n="foot.links">الموقع</h4><ul><li>' + a('index.html', 'nav.home', 'الرئيسية') + '</li><li>' + a('about.html', 'nav.about', 'من نحن') + '</li><li>' + a('contact.html', 'nav.contact', 'تواصل معنا') + '</li><li><a href="' + QUOTE + '" data-i18n="cta.quote" data-quote>اطلب عرضًا</a></li></ul></div>' +
     '<div><h4 data-i18n="nav.services">خدماتنا</h4><ul>' + SVC.map(function (s) { return '<li><a href="' + s[1] + '" data-i18n="' + s[2] + '">' + s[3] + '</a></li>'; }).join('') + '</ul></div>' +
-    '<div><h4 data-i18n="foot.reach">التواصل</h4><ul><li><a href="tel:' + PHONE + '" class="ltr">' + PHONE + '</a></li><li><a href="tel:' + MOBILE + '" class="ltr">' + MOBILE + '</a></li><li><a href="mailto:' + EMAIL + '" class="ltr">' + EMAIL + '</a></li><li><a href="' + MAP_URL + '" target="_blank" rel="noopener" data-i18n="ch.loc2">حي الشعلة، الدمام 34261</a></li><li><a href="#" data-wa data-i18n="ch.wa">واتساب</a></li></ul></div>' +
+    '<div class="foot-reach"><h4 data-i18n="foot.reach">التواصل</h4><ul><li><a href="tel:' + PHONE + '" class="ltr">' + PHONE + '</a></li><li><a href="tel:' + MOBILE + '" class="ltr">' + MOBILE + '</a></li><li><a href="mailto:' + EMAIL + '" class="ltr">' + EMAIL + '</a></li><li><a href="' + MAP_URL + '" target="_blank" rel="noopener" data-i18n="ch.loc2">حي الشعلة، الدمام 34261</a></li><li><a href="#" data-wa data-i18n="ch.wa">واتساب</a></li></ul><div class="foot-icons">' +
+      '<a href="#" data-wa aria-label="WhatsApp"><svg viewBox="0 0 32 32">' + WAP + '</svg></a>' +
+      '<a href="tel:' + PHONE + '" aria-label="' + PHONE + '">' + icon('phone') + '</a>' +
+      '<a href="tel:' + MOBILE + '" aria-label="' + MOBILE + '">' + icon('mobile') + '</a>' +
+      '<a href="mailto:' + EMAIL + '" aria-label="' + EMAIL + '">' + icon('mail') + '</a>' +
+      '<a href="' + MAP_URL + '" target="_blank" rel="noopener" aria-label="Map">' + icon('pin') + '</a>' +
+    '</div></div>' +
     '</div><div class="foot-bottom"><span>© ' + new Date().getFullYear() + ' <span data-i18n="foot.rights">سهم المرافق. جميع الحقوق محفوظة.</span></span><a href="privacy.html" data-i18n="foot.privacy">سياسة الخصوصية</a></div></div>';
   document.body.appendChild(footer);
 
