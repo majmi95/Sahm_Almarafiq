@@ -50,10 +50,10 @@
   var SECT = 'sectors.html';
   var desk = a('index.html', 'nav.home', 'الرئيسية', onHome) +
     '<div class="dd"><button class="dd-btn' + (inSvc ? ' active' : '') + '" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav.services">خدماتنا</span>' + CHEV + '</button><div class="dd-menu">' + svcLinks() + '</div></div>' +
-    a(SECT, 'nav.sectors', 'عملاؤنا', page === 'sectors') + a('about.html', 'nav.about', 'من نحن', page === 'about') + a('contact.html', 'nav.contact', 'تواصل معنا', page === 'contact');
+    a(SECT, 'nav.sectors', 'عملائنا', page === 'sectors') + a('about.html', 'nav.about', 'من نحن', page === 'about') + a('contact.html', 'nav.contact', 'تواصل معنا', page === 'contact');
   var mob = a('index.html', 'nav.home', 'الرئيسية', onHome) +
     '<div class="m-group"><span class="m-label" data-i18n="nav.services">خدماتنا</span>' + svcLinks() + '</div>' +
-    a(SECT, 'nav.sectors', 'عملاؤنا', page === 'sectors') + a('about.html', 'nav.about', 'من نحن', page === 'about') + a('contact.html', 'nav.contact', 'تواصل معنا', page === 'contact');
+    a(SECT, 'nav.sectors', 'عملائنا', page === 'sectors') + a('about.html', 'nav.about', 'من نحن', page === 'about') + a('contact.html', 'nav.contact', 'تواصل معنا', page === 'contact');
   var BRAND = '<a href="index.html" class="brand" aria-label="سهم المرافق — الرئيسية"><span class="logo" aria-hidden="true"></span></a>';
 
   var header = document.createElement('header');
