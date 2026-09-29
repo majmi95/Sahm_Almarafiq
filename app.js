@@ -314,7 +314,7 @@
           '<div class="field"><label for="ff-city">' + L(en, 'المدينة', 'City') + '</label><select id="ff-city" name="city"' + (F.bad === 'city' ? ' aria-invalid="true"' : '') + '><option value="">' + L(en, 'اختر المدينة', 'Select city') + '</option>' +
             CITIES.map(function (c) { return '<option value="' + c[0] + '"' + (F.v.city === c[0] ? ' selected' : '') + '>' + c[en ? 2 : 1] + '</option>'; }).join('') + '</select></div>' +
           fld('district', L(en, 'الحي', 'District'), 'text', 'address-level3', '') +
-          (F.v.city === 'other' ? fld('cityOther', L(en, 'اسم المدينة', 'City name'), 'text', 'address-level2', '').replace('class="field"', 'class="field full"') : '') +
+          fld('cityOther', L(en, 'اسم المدينة', 'City name'), 'text', 'address-level2', '').replace('class="field"', 'class="field full" id="ff-cityOtherBox"' + (F.v.city === 'other' ? '' : ' hidden')) +
           fld('name', L(en, 'الاسم', 'Name'), 'text', 'name', '') +
           fld('phone', L(en, 'رقم الجوال', 'Mobile number'), 'tel', 'tel', '05xxxxxxxx') +
           '</div><p class="f-err" role="alert">' + esc(F.err) + '</p><div class="f-submit"><button type="submit" class="btn btn-primary"' + (F.busy ? ' disabled' : '') + '>' + (F.busy ? L(en, 'جارٍ الإرسال…', 'Sending…') : L(en, 'إرسال الطلب', 'Send request')) + '</button>' +
@@ -349,7 +349,9 @@
     /* «أخرى» adds a field to type the city */
     app.addEventListener('change', function (e) {
       if (e.target.name !== 'city') return;
-      F.v.city = e.target.value; render(document.documentElement.lang === 'en', F.v.city === 'other' ? '#ff-cityOther' : '#ff-city');
+      /* toggle the extra field in place: rebuilding the form would re-focus the list and re-open it on iPhone */
+      F.v.city = e.target.value; var ob = app.querySelector('#ff-cityOtherBox'); if (!ob) return;
+      ob.hidden = F.v.city !== 'other'; if (!ob.hidden) ob.querySelector('input').focus();
     });
     app.addEventListener('submit', function (e) {
       e.preventDefault(); if (F.busy) return;
