@@ -468,3 +468,6 @@ html.a11y-dark .svc-tab[aria-expanded="true"]{color:#fff}
 .ticks li{display:flex;gap:10px;align-items:flex-start;font-size:.95rem;color:var(--text)}
 .ticks li::before{content:"";flex-shrink:0;width:20px;height:20px;margin-top:3px;border-radius:50%;background:var(--c,var(--navy)) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center/12px no-repeat}
 @media(min-width:600px){.svc-panel .ticks{grid-template-columns:1fr 1fr}}
+/* «استكشف خدماتنا»: land with the heading right under the header and the cards in view */
+#services{scroll-margin-top:-44px}
+@media(min-width:961px) and (max-height:900px){.svc-card .img{aspect-ratio:16/8.5}.svc-card .body{padding:18px 22px 20px}}
