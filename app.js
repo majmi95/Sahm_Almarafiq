@@ -214,7 +214,7 @@
     'area.t':'Current service area','area.d':'<span class="area-reg">Eastern Province</span><span class="area-cities"><span>Dammam</span><span>Khobar</span><span>Dhahran</span></span>',
     'map.show':'Show map','map.note':'The map loads from Google Maps','map.dir':'Directions',
     'foot.about':'Integrated solutions for managing and operating facilities.','foot.links':'Website','foot.reach':'Contact','foot.rights':'Sahm Almarafiq. All rights reserved.','foot.privacy':'Privacy Policy',
-    'nf.t':'Page not found','nf.d':'The page you are looking for is unavailable or has moved.','nf.b':'Back to home','pv.e':'Privacy','pv.t':'Privacy Policy','pv.l2':'Your privacy matters to us. Here is how we look after your information.','pv.d':'Last updated: 28 September 2026',
+    'q.sub':'Choose the service and enter your details, and the Sahm Almarafiq team will contact you.','q.alt':'Prefer to contact us directly?','nf.t':'Page not found','nf.d':'The page you are looking for is unavailable or has moved.','nf.b':'Back to home','pv.e':'Privacy','pv.t':'Privacy Policy','pv.l2':'Your privacy matters to us. Here is how we look after your information.','pv.d':'Last updated: 28 September 2026',
     'a11y.skip':'Skip to content','a11y.t':'Accessibility','a11y.close':'Close','a11y.fs':'Text size','a11y.fsd':'Smaller text','a11y.fsu':'Larger text','a11y.dark':'Dark mode','a11y.contrast':'High contrast','a11y.motion':'Stop motion','a11y.links':'Highlight links','a11y.reset':'Reset'
   };
 
@@ -291,13 +291,17 @@
     var render = function (en, focus) {
       var i = en ? 1 : 0, h = '';
       box.classList.remove('fm', 'om', 're'); if (F.main) box.classList.add(F.main);
+      box.classList.toggle('is-sent', !!F.sent);
       if (F.sent) {
         h = '<div class="f-ok fx-in" tabindex="-1"><span class="ic">' + icon('check') + '</span><h3>' + L(en, 'تم استلام طلبك، وسيتواصل معك فريق سهم المرافق.', 'Your request has been received, and the Sahm Almarafiq team will contact you.') + '</h3>' +
           '<div class="ref"><span>' + L(en, 'رقم الطلب', 'Reference') + '</span><b class="ltr">' + F.sent + '</b><button type="button" data-copy="' + F.sent + '">' + L(en, 'نسخ', 'Copy') + '</button></div>' +
-          '<p style="margin-top:14px"><button type="button" class="f-back" data-reset style="margin:0">' + L(en, 'إرسال طلب آخر', 'Send another request') + '</button></p></div>';
+          '<p class="f-home"><a href="index.html" class="btn btn-primary">' + L(en, 'العودة إلى الرئيسية', 'Back to home') + '</a></p></div>';
         app.innerHTML = h; if (focus) app.querySelector('.f-ok').focus({ preventScroll: true }); return;
       }
-      if (!LOCK) h += '<div class="fstep"><div class="opts" role="group">' + ORDER.map(function (k) {
+      /* progress: one segment per step, filled as the visitor moves on */
+      var steps = LOCK ? 2 : 3, done = (LOCK ? 0 : (F.main ? 1 : 0)) + (F.sub ? 1 : 0);
+      h += '<div class="f-prog" aria-hidden="true">' + Array.apply(null, Array(steps)).map(function (_, n) { return '<span class="' + (n < done ? 'on' : n === done ? 'now' : '') + '"></span>'; }).join('') + '</div>';
+      if (!LOCK) h += '<div class="fstep"><div class="lbl"><span class="num">1</span>' + L(en, 'نوع الخدمة', 'Service type') + '</div><div class="opts" role="group">' + ORDER.map(function (k) {
         var m = MAIN[k];
         return '<button type="button" class="opt ' + k + '" data-main="' + k + '" aria-pressed="' + (F.main === k) + '"><span class="ic">' + icon(m.ic) + '</span>' + m.t[i] + '</button>';
       }).join('') + '</div></div>';
@@ -314,7 +318,7 @@
           '<div class="field"><label for="ff-city">' + L(en, 'المدينة', 'City') + '</label><select id="ff-city" name="city"' + (F.bad === 'city' ? ' aria-invalid="true"' : '') + '><option value="">' + L(en, 'اختر المدينة', 'Select city') + '</option>' +
             CITIES.map(function (c) { return '<option value="' + c[0] + '"' + (F.v.city === c[0] ? ' selected' : '') + '>' + c[en ? 2 : 1] + '</option>'; }).join('') + '</select></div>' +
           fld('district', L(en, 'الحي', 'District'), 'text', 'address-level3', '') +
-          (F.v.city === 'other' ? fld('cityOther', L(en, 'اسم المدينة', 'City name'), 'text', 'address-level2', '').replace('class="field"', 'class="field full"') : '') +
+          fld('cityOther', L(en, 'اسم المدينة', 'City name'), 'text', 'address-level2', '').replace('class="field"', 'class="field full" id="ff-cityOtherBox"' + (F.v.city === 'other' ? '' : ' hidden')) +
           fld('name', L(en, 'الاسم', 'Name'), 'text', 'name', '') +
           fld('phone', L(en, 'رقم الجوال', 'Mobile number'), 'tel', 'tel', '05xxxxxxxx') +
           '</div><p class="f-err" role="alert">' + esc(F.err) + '</p><div class="f-submit"><button type="submit" class="btn btn-primary"' + (F.busy ? ' disabled' : '') + '>' + (F.busy ? L(en, 'جارٍ الإرسال…', 'Sending…') : L(en, 'إرسال الطلب', 'Send request')) + '</button>' +
@@ -349,7 +353,9 @@
     /* «أخرى» adds a field to type the city */
     app.addEventListener('change', function (e) {
       if (e.target.name !== 'city') return;
-      F.v.city = e.target.value; render(document.documentElement.lang === 'en', F.v.city === 'other' ? '#ff-cityOther' : '#ff-city');
+      /* toggle the extra field in place: rebuilding the form would re-focus the list and re-open it on iPhone */
+      F.v.city = e.target.value; var ob = app.querySelector('#ff-cityOtherBox'); if (!ob) return;
+      ob.hidden = F.v.city !== 'other'; if (!ob.hidden) ob.querySelector('input').focus();
     });
     app.addEventListener('submit', function (e) {
       e.preventDefault(); if (F.busy) return;
