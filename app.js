@@ -260,7 +260,8 @@
     var ORDER = ['fm', 'om', 're'];
     /* pre-select a main service: quote.html?need=fm, or in-page links with data-need */
     var need = new URLSearchParams(location.search).get('need');
-    var F = { main: null, sub: null, sent: null, busy: false, err: '', bad: '', v: { city: '', district: '', name: '', phone: '' } };
+    var F = { main: null, sub: null, sent: null, busy: false, err: '', bad: '', v: { city: '', cityOther: '', district: '', name: '', phone: '' } };
+    var CITIES = [['dmm', 'الدمام', 'Dammam'], ['khb', 'الخبر', 'Khobar'], ['dhr', 'الظهران', 'Dhahran'], ['other', 'أخرى', 'Other']];
     var box = document.getElementById('finderBox');
     /* on a service page the form is fixed to that service: no step 1 */
     var LOCK = box.getAttribute('data-main');
@@ -288,8 +289,10 @@
           return '<div class="field"><label for="ff-' + id + '">' + lab + '</label><input id="ff-' + id + '" name="' + id + '" type="' + type + '"' + (auto ? ' autocomplete="' + auto + '"' : '') + (type === 'tel' ? ' inputmode="tel" dir="ltr"' : '') + (ph ? ' placeholder="' + ph + '"' : '') + ' value="' + esc(F.v[id]) + '"' + (F.bad === id ? ' aria-invalid="true"' : '') + '></div>';
         };
         h += '<form class="fstep fx-in" novalidate><div class="lbl"><span class="num">' + (LOCK ? 2 : 3) + '</span>' + L(en, 'بيانات التواصل', 'Your details') + '</div><div class="fields">' +
-          fld('city', L(en, 'المدينة', 'City'), 'text', 'address-level2', L(en, 'مثال: الدمام', 'e.g. Dammam')) +
+          '<div class="field"><label for="ff-city">' + L(en, 'المدينة', 'City') + '</label><select id="ff-city" name="city"' + (F.bad === 'city' ? ' aria-invalid="true"' : '') + '><option value="">' + L(en, 'اختر المدينة', 'Select city') + '</option>' +
+            CITIES.map(function (c) { return '<option value="' + c[0] + '"' + (F.v.city === c[0] ? ' selected' : '') + '>' + c[en ? 2 : 1] + '</option>'; }).join('') + '</select></div>' +
           fld('district', L(en, 'الحي', 'District'), 'text', 'address-level3', '') +
+          (F.v.city === 'other' ? fld('cityOther', L(en, 'اسم المدينة', 'City name'), 'text', 'address-level2', '').replace('class="field"', 'class="field full"') : '') +
           fld('name', L(en, 'الاسم', 'Name'), 'text', 'name', '') +
           fld('phone', L(en, 'رقم الجوال', 'Mobile number'), 'tel', 'tel', '05xxxxxxxx') +
           '</div><p class="f-err" role="alert">' + esc(F.err) + '</p><div class="f-submit"><button type="submit" class="btn btn-primary"' + (F.busy ? ' disabled' : '') + '>' + (F.busy ? L(en, 'جارٍ الإرسال…', 'Sending…') : L(en, 'إرسال الطلب', 'Send request')) + '</button>' +
@@ -314,17 +317,22 @@
       if (e.target.name in F.v) F.v[e.target.name] = e.target.value;
       if (F.err) { F.err = ''; F.bad = ''; var er = app.querySelector('.f-err'); if (er) er.textContent = ''; e.target.removeAttribute('aria-invalid'); }
     });
+    /* «أخرى» adds a field to type the city */
+    app.addEventListener('change', function (e) {
+      if (e.target.name !== 'city') return;
+      F.v.city = e.target.value; render(document.documentElement.lang === 'en', F.v.city === 'other' ? '#ff-cityOther' : '#ff-city');
+    });
     app.addEventListener('submit', function (e) {
       e.preventDefault(); if (F.busy) return;
       var en = document.documentElement.lang === 'en', v = F.v;
-      F.bad = !v.city.trim() ? 'city' : !v.name.trim() ? 'name' : !validPhone(v.phone) ? 'phone' : '';
-      F.err = { city: L(en, 'فضلًا اكتب المدينة.', 'Please enter your city.'), name: L(en, 'فضلًا اكتب اسمك.', 'Please enter your name.'), phone: L(en, 'فضلًا أدخل رقم جوال صحيح.', 'Please enter a valid mobile number.') }[F.bad] || '';
+      F.bad = !v.city ? 'city' : v.city === 'other' && !v.cityOther.trim() ? 'cityOther' : !v.name.trim() ? 'name' : !validPhone(v.phone) ? 'phone' : '';
+      F.err = { city: L(en, 'فضلًا اختر المدينة.', 'Please select your city.'), cityOther: L(en, 'فضلًا اكتب اسم المدينة.', 'Please enter the city name.'), name: L(en, 'فضلًا اكتب اسمك.', 'Please enter your name.'), phone: L(en, 'فضلًا أدخل رقم جوال صحيح.', 'Please enter a valid mobile number.') }[F.bad] || '';
       if (F.bad) { render(en, '#ff-' + F.bad); return; }
       var m = MAIN[F.main], s = m.subs.filter(function (x) { return x[0] === F.sub; })[0];
       var PG = { fm: 'صفحة إدارة المرافق', om: 'صفحة التشغيل والصيانة', re: 'صفحة الخدمات العقارية' };
       var src = (LOCK && PG[LOCK]) || (need === F.main && PG[need]) || 'صفحة اطلب عرضًا';
       var ref = makeRef(); F.busy = true; render(en);
-      sendLead({ ref: ref, name: v.name.trim(), phone: v.phone.trim(), city: v.city.trim() + (v.district.trim() ? ' — ' + v.district.trim() : ''), type: m.t[0],
+      sendLead({ ref: ref, name: v.name.trim(), phone: v.phone.trim(), city: (v.city === 'other' ? 'أخرى: ' + v.cityOther.trim() : CITIES.filter(function (c) { return c[0] === v.city; })[0][1]) + (v.district.trim() ? ' — ' + v.district.trim() : ''), type: m.t[0],
         service: (F.main === 'fm' ? 'مرفق ' : '') + s[1] + ' — ' + (LOCK ? 'طلب عرض' : 'ما الذي تحتاجه؟') + ' (' + src + ')' })
         .then(function () { F.busy = false; F.sent = ref; render(en, '.f-ok'); })
         .catch(function () { F.busy = false; F.err = L(en, 'تعذّر الإرسال. حاول مرة أخرى أو تواصل معنا عبر واتساب.', 'Sending failed. Please try again or contact us on WhatsApp.'); render(en); });
