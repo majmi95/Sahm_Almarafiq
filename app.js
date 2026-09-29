@@ -88,6 +88,16 @@
     '</div><div class="foot-bottom"><span>© ' + new Date().getFullYear() + ' <span data-i18n="foot.rights">سهم المرافق. جميع الحقوق محفوظة.</span></span><a href="privacy.html" data-i18n="foot.privacy">سياسة الخصوصية</a></div></div>';
   document.body.appendChild(footer);
 
+  /* ---------- About: service tabs open their details in place ---------- */
+  document.querySelectorAll('.svc-tab').forEach(function (t) {
+    t.addEventListener('click', function () {
+      var open = t.getAttribute('aria-expanded') !== 'true';
+      document.querySelectorAll('.svc-tab').forEach(function (o) { o.setAttribute('aria-expanded', 'false'); });
+      document.querySelectorAll('.svc-panel').forEach(function (p) { p.hidden = true; });
+      if (open) { t.setAttribute('aria-expanded', 'true'); var p = document.getElementById('pn-' + t.getAttribute('data-tab')); p.hidden = false; p.classList.remove('fx-in'); void p.offsetWidth; p.classList.add('fx-in'); }
+    });
+  });
+
   /* ---------- Map (loads only when the visitor asks) ---------- */
   var mapBtn = document.querySelector('.map-load');
   if (mapBtn) mapBtn.addEventListener('click', function () {

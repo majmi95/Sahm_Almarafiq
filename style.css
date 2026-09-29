@@ -448,3 +448,23 @@ html.a11y-dark .about .logo{color:#fff}
 a.sector{transition:border-color .2s,transform .2s}
 a.sector:hover{border-color:var(--navy);transform:translateY(-2px)}
 @media(max-width:760px){.sec-grid{grid-template-columns:1fr;gap:12px}.sec-card{padding:20px}}
+/* ---------- About: service details in place ---------- */
+.svc-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.svc-tab{--c:var(--navy);display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1.5px solid var(--line-2);background:var(--surface);cursor:pointer;font-size:.92rem;font-weight:500;color:var(--ink);transition:border-color .2s,background .2s}
+.svc-tab.om{--c:var(--om)}.svc-tab.re{--c:var(--re)}
+.svc-tab:hover{border-color:var(--c)}
+.svc-tab .chev{transition:transform .2s;opacity:.6}
+.svc-tab[aria-expanded="true"]{border-color:var(--c);background:var(--c);color:#fff}
+.svc-tab[aria-expanded="true"] .dot{background:#fff}
+.svc-tab[aria-expanded="true"] .chev{transform:rotate(180deg);opacity:1}
+.svc-panel{--c:var(--navy);margin-top:14px;padding:20px 22px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);border-inline-start:4px solid var(--c)}
+.svc-panel.om{--c:var(--om)}.svc-panel.re{--c:var(--re)}
+.svc-panel[hidden]{display:none}
+.svc-panel h3{font-size:1.1rem;margin-bottom:6px}
+.svc-panel p{color:var(--muted);font-size:.95rem}
+.svc-panel .ticks{margin-top:12px}
+html.a11y-dark .svc-tab[aria-expanded="true"]{color:#fff}
+.ticks{list-style:none;display:grid;gap:8px}
+.ticks li{display:flex;gap:10px;align-items:flex-start;font-size:.95rem;color:var(--text)}
+.ticks li::before{content:"";flex-shrink:0;width:20px;height:20px;margin-top:3px;border-radius:50%;background:var(--c,var(--navy)) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center/12px no-repeat}
+@media(min-width:600px){.svc-panel .ticks{grid-template-columns:1fr 1fr}}
