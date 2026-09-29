@@ -214,7 +214,7 @@
     'area.t':'Current service area','area.d':'<span class="area-reg">Eastern Province</span><span class="area-cities"><span>Dammam</span><span>Khobar</span><span>Dhahran</span></span>',
     'map.show':'Show map','map.note':'The map loads from Google Maps','map.dir':'Directions',
     'foot.about':'Integrated solutions for managing and operating facilities.','foot.links':'Website','foot.reach':'Contact','foot.rights':'Sahm Almarafiq. All rights reserved.','foot.privacy':'Privacy Policy',
-    'nf.t':'Page not found','nf.d':'The page you are looking for is unavailable or has moved.','nf.b':'Back to home','pv.e':'Privacy','pv.t':'Privacy Policy','pv.l2':'Your privacy matters to us. Here is how we look after your information.','pv.d':'Last updated: 28 September 2026',
+    'q.sub':'Choose the service and enter your details, and the Sahm Almarafiq team will contact you.','q.alt':'Prefer to contact us directly?','nf.t':'Page not found','nf.d':'The page you are looking for is unavailable or has moved.','nf.b':'Back to home','pv.e':'Privacy','pv.t':'Privacy Policy','pv.l2':'Your privacy matters to us. Here is how we look after your information.','pv.d':'Last updated: 28 September 2026',
     'a11y.skip':'Skip to content','a11y.t':'Accessibility','a11y.close':'Close','a11y.fs':'Text size','a11y.fsd':'Smaller text','a11y.fsu':'Larger text','a11y.dark':'Dark mode','a11y.contrast':'High contrast','a11y.motion':'Stop motion','a11y.links':'Highlight links','a11y.reset':'Reset'
   };
 
@@ -291,13 +291,17 @@
     var render = function (en, focus) {
       var i = en ? 1 : 0, h = '';
       box.classList.remove('fm', 'om', 're'); if (F.main) box.classList.add(F.main);
+      box.classList.toggle('is-sent', !!F.sent);
       if (F.sent) {
         h = '<div class="f-ok fx-in" tabindex="-1"><span class="ic">' + icon('check') + '</span><h3>' + L(en, 'تم استلام طلبك، وسيتواصل معك فريق سهم المرافق.', 'Your request has been received, and the Sahm Almarafiq team will contact you.') + '</h3>' +
           '<div class="ref"><span>' + L(en, 'رقم الطلب', 'Reference') + '</span><b class="ltr">' + F.sent + '</b><button type="button" data-copy="' + F.sent + '">' + L(en, 'نسخ', 'Copy') + '</button></div>' +
-          '<p style="margin-top:14px"><button type="button" class="f-back" data-reset style="margin:0">' + L(en, 'إرسال طلب آخر', 'Send another request') + '</button></p></div>';
+          '<p class="f-home"><a href="index.html" class="btn btn-primary">' + L(en, 'العودة إلى الرئيسية', 'Back to home') + '</a></p></div>';
         app.innerHTML = h; if (focus) app.querySelector('.f-ok').focus({ preventScroll: true }); return;
       }
-      if (!LOCK) h += '<div class="fstep"><div class="opts" role="group">' + ORDER.map(function (k) {
+      /* progress: one segment per step, filled as the visitor moves on */
+      var steps = LOCK ? 2 : 3, done = (LOCK ? 0 : (F.main ? 1 : 0)) + (F.sub ? 1 : 0);
+      h += '<div class="f-prog" aria-hidden="true">' + Array.apply(null, Array(steps)).map(function (_, n) { return '<span class="' + (n < done ? 'on' : n === done ? 'now' : '') + '"></span>'; }).join('') + '</div>';
+      if (!LOCK) h += '<div class="fstep"><div class="lbl"><span class="num">1</span>' + L(en, 'نوع الخدمة', 'Service type') + '</div><div class="opts" role="group">' + ORDER.map(function (k) {
         var m = MAIN[k];
         return '<button type="button" class="opt ' + k + '" data-main="' + k + '" aria-pressed="' + (F.main === k) + '"><span class="ic">' + icon(m.ic) + '</span>' + m.t[i] + '</button>';
       }).join('') + '</div></div>';
