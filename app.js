@@ -88,13 +88,17 @@
     '</div><div class="foot-bottom"><span>© ' + new Date().getFullYear() + ' <span data-i18n="foot.rights">سهم المرافق. جميع الحقوق محفوظة.</span></span><a href="privacy.html" data-i18n="foot.privacy">سياسة الخصوصية</a></div></div>';
   document.body.appendChild(footer);
 
+  var H_SMOOTH = function () { return document.documentElement.classList.contains('a11y-nomotion') ? 'auto' : 'smooth'; };
   /* ---------- About: service tabs open their details in place ---------- */
   document.querySelectorAll('.svc-tab').forEach(function (t) {
     t.addEventListener('click', function () {
       var open = t.getAttribute('aria-expanded') !== 'true';
       document.querySelectorAll('.svc-tab').forEach(function (o) { o.setAttribute('aria-expanded', 'false'); });
       document.querySelectorAll('.svc-panel').forEach(function (p) { p.hidden = true; });
-      if (open) { t.setAttribute('aria-expanded', 'true'); var p = document.getElementById('pn-' + t.getAttribute('data-tab')); p.hidden = false; p.classList.remove('fx-in'); void p.offsetWidth; p.classList.add('fx-in'); }
+      if (open) { t.setAttribute('aria-expanded', 'true'); var p = document.getElementById('pn-' + t.getAttribute('data-tab')); p.hidden = false; p.classList.remove('fx-in'); void p.offsetWidth; p.classList.add('fx-in');
+        var r = p.getBoundingClientRect(), hb = header.getBoundingClientRect().bottom + 16;
+        if (r.bottom > window.innerHeight - 16 || r.top < hb) window.scrollTo({ top: window.scrollY + Math.min(t.getBoundingClientRect().top - hb, r.bottom - window.innerHeight + 24), behavior: H_SMOOTH() });
+      }
     });
   });
 
@@ -219,6 +223,13 @@
   nodes.forEach(function (e) { e.setAttribute('data-ar', e.innerHTML); });
   function setLang(l) {
     var en = l === 'en', H = document.documentElement;
+    /* keep the reader in place: remember what sits under the header and restore it after the texts change */
+    var ref = null, refTop = 0;
+    if (window.scrollY > 0 && typeof header !== 'undefined') {
+      ref = document.elementFromPoint(window.innerWidth / 2, header.getBoundingClientRect().bottom + 12);
+      while (ref && ref.closest && ref.closest('#finderApp')) ref = ref.parentNode;
+      if (ref && ref.getBoundingClientRect) refTop = ref.getBoundingClientRect().top; else ref = null;
+    }
     H.lang = en ? 'en' : 'ar'; H.dir = en ? 'ltr' : 'rtl';
     nodes.forEach(function (e) { var k = e.getAttribute('data-i18n'); e.innerHTML = en && EN[k] ? EN[k] : e.getAttribute('data-ar'); });
     document.title = en ? (document.body.getAttribute('data-title-en') || T) : T;
@@ -230,6 +241,7 @@
     document.querySelectorAll('[data-wa]').forEach(function (x) { x.href = link; x.target = '_blank'; x.rel = 'noopener'; });
     try { localStorage.setItem('sahm-lang', l); } catch (e) {}
     HOOKS.forEach(function (f) { f(en); });
+    if (ref && document.contains(ref)) window.scrollTo({ top: window.scrollY + ref.getBoundingClientRect().top - refTop, behavior: 'instant' });
   }
 
   /* ---------- Google Forms connection ---------- */
@@ -283,7 +295,7 @@
         h = '<div class="f-ok fx-in" tabindex="-1"><span class="ic">' + icon('check') + '</span><h3>' + L(en, 'تم استلام طلبك، وسيتواصل معك فريق سهم المرافق.', 'Your request has been received, and the Sahm Almarafiq team will contact you.') + '</h3>' +
           '<div class="ref"><span>' + L(en, 'رقم الطلب', 'Reference') + '</span><b class="ltr">' + F.sent + '</b><button type="button" data-copy="' + F.sent + '">' + L(en, 'نسخ', 'Copy') + '</button></div>' +
           '<p style="margin-top:14px"><button type="button" class="f-back" data-reset style="margin:0">' + L(en, 'إرسال طلب آخر', 'Send another request') + '</button></p></div>';
-        app.innerHTML = h; if (focus) app.querySelector('.f-ok').focus(); return;
+        app.innerHTML = h; if (focus) app.querySelector('.f-ok').focus({ preventScroll: true }); return;
       }
       if (!LOCK) h += '<div class="fstep"><div class="opts" role="group">' + ORDER.map(function (k) {
         var m = MAIN[k];
@@ -311,6 +323,13 @@
       app.innerHTML = h;
       if (focus) { var f = app.querySelector(focus); if (f) f.focus({ preventScroll: true }); }
     };
+    /* after the box changes size (sent / reset / error), bring it back into view under the sticky header */
+    var settle = function (el, top) {
+      el = el || box; var r = el.getBoundingClientRect(), hb = header.getBoundingClientRect().bottom + 16;
+      if (!top && r.top >= hb && r.bottom <= window.innerHeight - 20) return;
+      var y = top ? r.top - hb : r.top - (window.innerHeight - r.height) / 2;
+      window.scrollTo({ top: Math.max(0, window.scrollY + y), behavior: document.documentElement.classList.contains('a11y-nomotion') ? 'auto' : 'smooth' });
+    };
     var nudge = function (sel) {
       var el = app.querySelector(sel); if (!el) return;
       var r = el.getBoundingClientRect();
@@ -321,7 +340,7 @@
       var en = document.documentElement.lang === 'en', b = e.target.closest('button'); if (!b) return;
       if (b.hasAttribute('data-main')) { var k = b.getAttribute('data-main'); if (F.main !== k) pick(k); render(en, '[data-main="' + k + '"]'); nudge('.chips'); }
       else if (b.hasAttribute('data-sub')) { F.sub = b.getAttribute('data-sub'); F.err = ''; render(en, '[data-sub="' + F.sub + '"]'); nudge('form'); }
-      else if (b.hasAttribute('data-reset')) { F.sent = null; F.main = LOCK || null; F.sub = null; render(en, LOCK ? '[data-sub]' : '[data-main]'); }
+      else if (b.hasAttribute('data-reset')) { F.sent = null; F.main = LOCK || null; F.sub = null; render(en, LOCK ? '[data-sub]' : '[data-main]'); settle(box, true); }
     });
     app.addEventListener('input', function (e) {
       if (e.target.name in F.v) F.v[e.target.name] = e.target.value;
@@ -337,14 +356,14 @@
       var en = document.documentElement.lang === 'en', v = F.v;
       F.bad = !v.city ? 'city' : v.city === 'other' && !v.cityOther.trim() ? 'cityOther' : !v.name.trim() ? 'name' : !validPhone(v.phone) ? 'phone' : '';
       F.err = { city: L(en, 'فضلًا اختر المدينة.', 'Please select your city.'), cityOther: L(en, 'فضلًا اكتب اسم المدينة.', 'Please enter the city name.'), name: L(en, 'فضلًا اكتب اسمك.', 'Please enter your name.'), phone: L(en, 'فضلًا أدخل رقم جوال صحيح.', 'Please enter a valid mobile number.') }[F.bad] || '';
-      if (F.bad) { render(en, '#ff-' + F.bad); return; }
+      if (F.bad) { render(en, '#ff-' + F.bad); settle(app.querySelector('#ff-' + F.bad).parentNode); return; }
       var m = MAIN[F.main], s = m.subs.filter(function (x) { return x[0] === F.sub; })[0];
       var PG = { fm: 'صفحة إدارة المرافق', om: 'صفحة التشغيل والصيانة', re: 'صفحة الخدمات العقارية' };
       var src = (LOCK && PG[LOCK]) || (need === F.main && PG[need]) || 'صفحة اطلب عرضًا';
       var ref = makeRef(); F.busy = true; render(en);
       sendLead({ ref: ref, name: v.name.trim(), phone: v.phone.trim(), city: (v.city === 'other' ? 'أخرى: ' + v.cityOther.trim() : CITIES.filter(function (c) { return c[0] === v.city; })[0][1]) + (v.district.trim() ? ' — ' + v.district.trim() : ''), type: m.t[0],
         service: (F.main === 'fm' ? 'مرفق ' : '') + s[1] + ' — ' + (LOCK ? 'طلب عرض' : 'ما الذي تحتاجه؟') + ' (' + src + ')' })
-        .then(function () { F.busy = false; F.sent = ref; render(en, '.f-ok'); })
+        .then(function () { F.busy = false; F.sent = ref; render(en, '.f-ok'); settle(box, true); })
         .catch(function () { F.busy = false; F.err = L(en, 'تعذّر الإرسال. حاول مرة أخرى أو تواصل معنا عبر واتساب.', 'Sending failed. Please try again or contact us on WhatsApp.'); render(en); });
     });
     if (LOCK) pick(LOCK); else if (need) pick(need);
