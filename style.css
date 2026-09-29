@@ -438,3 +438,13 @@ html.a11y-dark .about .logo{color:#fff}
   .foot-icons svg{width:19px;height:19px}
   .foot-bottom{flex-direction:row;justify-content:center;flex-wrap:wrap;gap:4px 14px;padding-top:12px;font-size:.76rem}
 }
+/* ---------- Sectors page ---------- */
+.sec-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.sec-card{padding:26px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);scroll-margin-top:calc(var(--hdr) + 16px)}
+.sec-card h2{font-size:1.3rem;margin:14px 0 6px}
+.sec-card p{color:var(--muted)}
+.sec-lbl{display:block;margin-top:18px;font-size:.8rem;font-weight:500;color:var(--muted)}
+.sec-card .about-links{margin-top:8px}
+a.sector{transition:border-color .2s,transform .2s}
+a.sector:hover{border-color:var(--navy);transform:translateY(-2px)}
+@media(max-width:760px){.sec-grid{grid-template-columns:1fr;gap:12px}.sec-card{padding:20px}}

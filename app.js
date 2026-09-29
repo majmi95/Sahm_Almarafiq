@@ -46,13 +46,13 @@
   function svcLinks() { return SVC.map(function (s) { return '<a href="' + s[1] + '"' + (s[0] === page ? ' class="active"' : '') + '><span class="dot ' + s[0] + '"></span><span data-i18n="' + s[2] + '">' + s[3] + '</span></a>'; }).join(''); }
   function a(href, key, ar, act) { return '<a href="' + href + '" data-i18n="' + key + '"' + (act ? ' class="active"' : '') + '>' + ar + '</a>'; }
   var CHEV = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>';
-  var SECT = onHome ? '#sectors' : 'index.html#sectors';
+  var SECT = 'sectors.html';
   var desk = a('index.html', 'nav.home', 'الرئيسية', onHome) +
     '<div class="dd"><button class="dd-btn' + (inSvc ? ' active' : '') + '" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav.services">خدماتنا</span>' + CHEV + '</button><div class="dd-menu">' + svcLinks() + '</div></div>' +
-    a(SECT, 'nav.sectors', 'القطاعات') + a('about.html', 'nav.about', 'من نحن', page === 'about') + a('contact.html', 'nav.contact', 'تواصل معنا', page === 'contact');
+    a(SECT, 'nav.sectors', 'القطاعات', page === 'sectors') + a('about.html', 'nav.about', 'من نحن', page === 'about') + a('contact.html', 'nav.contact', 'تواصل معنا', page === 'contact');
   var mob = a('index.html', 'nav.home', 'الرئيسية', onHome) +
     '<div class="m-group"><span class="m-label" data-i18n="nav.services">خدماتنا</span>' + svcLinks() + '</div>' +
-    a(SECT, 'nav.sectors', 'القطاعات') + a('about.html', 'nav.about', 'من نحن', page === 'about') + a('contact.html', 'nav.contact', 'تواصل معنا', page === 'contact');
+    a(SECT, 'nav.sectors', 'القطاعات', page === 'sectors') + a('about.html', 'nav.about', 'من نحن', page === 'about') + a('contact.html', 'nav.contact', 'تواصل معنا', page === 'contact');
   var BRAND = '<a href="index.html" class="brand" aria-label="سهم المرافق — الرئيسية"><span class="logo" aria-hidden="true"></span></a>';
 
   var header = document.createElement('header');
@@ -171,7 +171,7 @@
     'fm.t':'Facility management','fm.d':'Integrated management of facilities and properties that raises the quality of facilities and services, controls costs, and makes the most of available investment opportunities.',
     'om.t':'Operations & maintenance','om.d':'Operations and maintenance work for facilities and properties, tailored to each site’s needs and the scope of work required.',
     're.t':'Real estate services','re.d':'Real estate services covering property management, marketing, leasing, sales and lease contracts.',
-    'sec.t':'Sectors we serve','sec.1':'Residential','sec.2':'Commercial & administrative','sec.3':'Healthcare','sec.4':'Owners’ associations',
+    'sec.t':'Sectors we serve','sx.lbl':'Available services','sx.cta':'Do you need our services for your facility?','sx1.d':'Residential buildings, compounds and villas.','sx2.d':'Commercial buildings, offices and administrative headquarters.','sx3.d':'Hospitals, clinics and medical centres.','sx4.d':'Multi-owner buildings and compounds and their shared areas.','sec.1':'Residential','sec.2':'Commercial & administrative','sec.3':'Healthcare','sec.4':'Owners’ associations',
     'how.t':'How we work',
     'how.1t':'Understanding the need','how.1d':'We define the facility’s or property’s needs and the scope of service required.',
     'how.2t':'Inspection & assessment','how.2d':'We inspect the site and assess its condition and actual requirements.',
