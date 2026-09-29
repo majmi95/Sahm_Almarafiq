@@ -4,6 +4,21 @@
   var WA_AR = 'مرحبًا،\nأرغب بالاستفسار عن خدمات سهم المرافق';
   var WA_EN = 'Hello,\nI would like to inquire about Sahm Almarafiq services';
   function wa(msg) { return 'https://wa.me/966138181292?text=' + encodeURIComponent(msg); }
+  /* ---------- Google Analytics 4: paste the measurement ID (G-…) to switch it on ---------- */
+  var GA_ID = '';
+  if (GA_ID) {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date()); window.gtag('config', GA_ID);
+    var gs = document.createElement('script'); gs.async = true; gs.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID; document.head.appendChild(gs);
+  }
+  function track(name, params) { if (window.gtag) window.gtag('event', name, params || {}); }
+  /* contact clicks: WhatsApp, phone, email */
+  document.addEventListener('click', function (e) {
+    var l = e.target.closest && e.target.closest('a[href]'); if (!l) return;
+    var h = l.getAttribute('href') || '', ev = h.indexOf('wa.me') > -1 ? 'contact_whatsapp' : h.indexOf('tel:') === 0 ? 'contact_phone' : h.indexOf('mailto:') === 0 ? 'contact_email' : '';
+    if (ev) track(ev, { page: document.body.getAttribute('data-page') });
+  });
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   /* ---------- Icons (24px line set) ---------- */
@@ -369,7 +384,7 @@
       var ref = makeRef(); F.busy = true; render(en);
       sendLead({ ref: ref, name: v.name.trim(), phone: v.phone.trim(), city: (v.city === 'other' ? 'أخرى: ' + v.cityOther.trim() : CITIES.filter(function (c) { return c[0] === v.city; })[0][1]) + (v.district.trim() ? ' — ' + v.district.trim() : ''), type: m.t[0],
         service: (F.main === 'fm' ? 'مرفق ' : '') + s[1] + ' — ' + (LOCK ? 'طلب عرض' : 'ما الذي تحتاجه؟') + ' (' + src + ')' })
-        .then(function () { F.busy = false; F.sent = ref; render(en, '.f-ok'); settle(box, true); })
+        .then(function () { F.busy = false; F.sent = ref; render(en, '.f-ok'); settle(box, true); track('generate_lead', { service: F.main, detail: F.sub, page: document.body.getAttribute('data-page') }); })
         .catch(function () { F.busy = false; F.err = L(en, 'تعذّر الإرسال. حاول مرة أخرى أو تواصل معنا عبر واتساب.', 'Sending failed. Please try again or contact us on WhatsApp.'); render(en); });
     });
     if (LOCK) pick(LOCK); else if (need) pick(need);
