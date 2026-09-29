@@ -61,7 +61,7 @@ html[dir="ltr"] .link:hover svg{transform:translateX(3px)}
 /* ---------- Logo (mask so it takes the surrounding colour) ---------- */
 .logo{display:block;background:currentColor;-webkit-mask:url(images/brand/logo-h.svg) no-repeat center/contain;mask:url(images/brand/logo-h.svg) no-repeat center/contain;aspect-ratio:2154/752}
 .logo-v{-webkit-mask-image:url(images/brand/logo-v.svg);mask-image:url(images/brand/logo-v.svg);aspect-ratio:1017/917}
-.mark{-webkit-mask-image:url(images/brand/mark-2.svg);mask-image:url(images/brand/mark-2.svg);aspect-ratio:848/671}
+.mark{-webkit-mask-image:url(images/brand/mark-3.svg);mask-image:url(images/brand/mark-3.svg);aspect-ratio:781/748}
 
 /* ---------- Header ---------- */
 .site-header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
@@ -137,7 +137,7 @@ html[dir="ltr"] .hero::after{background:linear-gradient(to right,rgba(11,45,77,.
 .svc-card .img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
 .svc-card:hover .img img{transform:scale(1.04)}
 .svc-card .body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
-.svc-card .mk{width:40px;height:32px;color:var(--c2);margin-bottom:12px}
+.svc-card .mk{width:44px;height:42px;color:var(--c2);margin-bottom:12px}
 .svc-card h3{color:var(--c2);font-size:1.3rem;margin-bottom:8px}
 .svc-card p{color:var(--c2);font-size:.94rem;flex:1}
 .svc-card .link{margin-top:18px;color:var(--c2)}
@@ -225,7 +225,7 @@ html[dir="ltr"] .hero::after{background:linear-gradient(to right,rgba(11,45,77,.
 .p-hero .eyebrow{color:var(--c2)}
 .p-hero h1{color:var(--c2);margin:12px 0 14px}
 .p-hero p{color:var(--c2);font-size:clamp(1rem,1.4vw,1.12rem);max-width:54ch}
-.p-hero .mk{display:block;width:40px;height:32px;color:var(--c2)}
+.p-hero .mk{display:block;width:44px;height:42px;color:var(--c2)}
 .p-hero-img{position:relative;margin-inline-end:calc(-1 * max(20px,(100vw - 1160px)/2 + 20px))}
 .p-hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .crumb{font-size:.82rem;margin-bottom:18px}
@@ -381,3 +381,4 @@ html.a11y-contrast .svc-card p,html.a11y-contrast .p-hero p{opacity:1}
 .about .logo{height:42px;color:var(--navy);margin-bottom:24px}
 @media(max-width:960px){.about .logo{height:36px}}
 html.a11y-dark .about .logo{color:#fff}
+@media(max-width:960px){.svc-card .mk,.p-hero .mk{width:38px;height:36px}}
