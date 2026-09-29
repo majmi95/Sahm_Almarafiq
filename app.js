@@ -59,7 +59,7 @@
   var header = document.createElement('header');
   header.className = 'site-header';
   header.innerHTML = '<div class="wrap nav">' + BRAND + '<nav class="nav-links" aria-label="Main">' + desk + '</nav>' +
-    '<div class="nav-actions"><a href="' + QUOTE + '" class="btn btn-primary btn-sm" data-i18n="cta.quote" data-quote>اطلب عرضًا</a><button class="lang-btn" id="langBtn">EN</button>' +
+    '<div class="nav-actions"><a href="' + QUOTE + '" class="btn btn-primary btn-sm" data-i18n="cta.interest" data-quote>سجّل اهتمامك</a><button class="lang-btn" id="langBtn">EN</button>' +
     '<button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><svg class="i-menu" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="i-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>' +
     '<nav class="mobile-nav" aria-label="Mobile">' + mob + '</nav>';
   document.body.insertBefore(header, document.body.firstChild);
@@ -190,7 +190,7 @@
   var EN = {
     'brand.full':'Sahm Almarafiq Operations & Maintenance',
     'nav.home':'Home','nav.services':'Our services','nav.sectors':'Our clients','nav.about':'About','nav.contact':'Contact',
-    'cta.quote':'Request a quote','cta.explore':'Explore our services','cta.more':'Learn more',
+    'cta.quote':'Request a quote','cta.interest':'Register interest','cta.explore':'Explore our services','cta.more':'Learn more',
     'h.t':'Integrated solutions for managing and operating facilities',
     'h.l':'Facility management, operations & maintenance, and real estate services for owners and organisations in the public and private sectors.',
     'fm.t':'Facility management','fm.d':'Integrated management of facilities and properties that raises the quality of facilities and services, controls costs, and makes the most of available investment opportunities.',
