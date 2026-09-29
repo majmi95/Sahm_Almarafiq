@@ -1,9 +1,9 @@
 /* ===== Sahm Almarafiq — layout, language switch, request finder ===== */
 (function () {
-  var PHONE = '0544447611', EMAIL = 'info@sahmalmarafiq.com', MAP_URL = 'https://maps.app.goo.gl/ovJERWqB1YXPLHsR9';
+  var PHONE = '0138181292', MOBILE = '0510105266', EMAIL = 'info@sahmalmarafiq.com', MAP_URL = 'https://maps.app.goo.gl/ovJERWqB1YXPLHsR9';
   var WA_AR = 'مرحبًا،\nأرغب بالاستفسار عن خدمات سهم المرافق';
   var WA_EN = 'Hello,\nI would like to inquire about Sahm Almarafiq services';
-  function wa(msg) { return 'https://wa.me/966510105266?text=' + encodeURIComponent(msg); }
+  function wa(msg) { return 'https://wa.me/966138181292?text=' + encodeURIComponent(msg); }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   /* ---------- Icons (24px line set) ---------- */
@@ -24,6 +24,7 @@
     health: '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/>',
     people: '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/>',
     shop: '<path d="M4 9l1.5-5h13L20 9"/><path d="M4 9h16v2a3 3 0 0 1-5.3 1.9A3 3 0 0 1 12 14a3 3 0 0 1-2.7-1.1A3 3 0 0 1 4 11z"/><path d="M5 13v8h14v-8M10 21v-5h4v5"/>',
+    mobile: '<rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/>',
     phone: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
     mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
     pin: '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
@@ -76,7 +77,7 @@
     '<div><a href="index.html" class="brand" aria-label="سهم المرافق"><span class="logo" aria-hidden="true"></span></a><p data-i18n="foot.about">حلول متكاملة لإدارة وتشغيل المرافق.</p></div>' +
     '<div><h4 data-i18n="foot.links">الموقع</h4><ul><li>' + a('index.html', 'nav.home', 'الرئيسية') + '</li><li>' + a('about.html', 'nav.about', 'من نحن') + '</li><li>' + a('contact.html', 'nav.contact', 'تواصل معنا') + '</li><li><a href="' + QUOTE + '" data-i18n="cta.quote" data-quote>اطلب عرضًا</a></li></ul></div>' +
     '<div><h4 data-i18n="nav.services">خدماتنا</h4><ul>' + SVC.map(function (s) { return '<li><a href="' + s[1] + '" data-i18n="' + s[2] + '">' + s[3] + '</a></li>'; }).join('') + '</ul></div>' +
-    '<div><h4 data-i18n="foot.reach">التواصل</h4><ul><li><a href="tel:' + PHONE + '" class="ltr">' + PHONE + '</a></li><li><a href="mailto:' + EMAIL + '" class="ltr">' + EMAIL + '</a></li><li><a href="' + MAP_URL + '" target="_blank" rel="noopener" data-i18n="ch.loc2">حي الشعلة، الدمام 34261</a></li><li><a href="#" data-wa data-i18n="ch.wa">واتساب</a></li></ul></div>' +
+    '<div><h4 data-i18n="foot.reach">التواصل</h4><ul><li><a href="tel:' + PHONE + '" class="ltr">' + PHONE + '</a></li><li><a href="tel:' + MOBILE + '" class="ltr">' + MOBILE + '</a></li><li><a href="mailto:' + EMAIL + '" class="ltr">' + EMAIL + '</a></li><li><a href="' + MAP_URL + '" target="_blank" rel="noopener" data-i18n="ch.loc2">حي الشعلة، الدمام 34261</a></li><li><a href="#" data-wa data-i18n="ch.wa">واتساب</a></li></ul></div>' +
     '</div><div class="foot-bottom"><span>© ' + new Date().getFullYear() + ' <span data-i18n="foot.rights">سهم المرافق. جميع الحقوق محفوظة.</span></span><a href="privacy.html" data-i18n="foot.privacy">سياسة الخصوصية</a></div></div>';
   document.body.appendChild(footer);
 
@@ -178,7 +179,7 @@
     're.3t':'Lease contracts','re.3d':'Drafting and registering lease contracts between landlord and tenant through the Ejar platform.',
     'fm.cta':'Do you need facility management services?','om.cta':'Do you need operations & maintenance services?','re.cta':'Do you need real estate services?',
     'ab.t':'About us','ab.p':'Sahm Almarafiq provides integrated solutions in facility management, operations & maintenance, and real estate services for owners and organisations in the public and private sectors.',
-    'co.t':'Contact us','ch.wa':'WhatsApp','ch.wa2':'Message us directly','ch.ph':'Phone','ch.em':'Email','ch.ig':'Instagram','ch.loc':'Office location','ch.loc2':'Ash Shulah, Dammam 34261',
+    'co.t':'Contact us','ch.wa':'WhatsApp','ch.wa2':'Message us directly','ch.ph':'Phone','ch.mob':'Mobile','ch.em':'Email','ch.ig':'Instagram','ch.loc':'Office location','ch.loc2':'Ash Shulah, Dammam 34261',
     'area.t':'Current service area','area.d':'<span class="area-reg">Eastern Province</span><span class="area-cities"><span>Dammam</span><span>Khobar</span><span>Dhahran</span></span>',
     'map.show':'Show map','map.note':'The map loads from Google Maps','map.dir':'Directions',
     'foot.about':'Integrated solutions for managing and operating facilities.','foot.links':'Website','foot.reach':'Contact','foot.rights':'Sahm Almarafiq. All rights reserved.','foot.privacy':'Privacy Policy',
