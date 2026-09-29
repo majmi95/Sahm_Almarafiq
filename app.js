@@ -40,7 +40,8 @@
   /* ---------- Header ---------- */
   var page = document.body.getAttribute('data-page');
   var onHome = page === 'home';
-  var QUOTE = onHome ? '#finder' : 'index.html#finder';
+  var onSvc = ['fm', 'om', 're'].indexOf(page) > -1;
+  var QUOTE = onHome || onSvc ? '#finder' : 'index.html#finder';
   var SVC = [['fm', 'facility-management.html', 'fm.t', 'إدارة المرافق'], ['om', 'operations.html', 'om.t', 'التشغيل والصيانة'], ['re', 'real-estate.html', 're.t', 'الخدمات العقارية']];
   var inSvc = SVC.some(function (s) { return s[0] === page; });
   function svcLinks() { return SVC.map(function (s) { return '<a href="' + s[1] + '"' + (s[0] === page ? ' class="active"' : '') + '><span class="dot ' + s[0] + '"></span><span data-i18n="' + s[2] + '">' + s[3] + '</span></a>'; }).join(''); }
@@ -49,10 +50,10 @@
   var SECT = 'sectors.html';
   var desk = a('index.html', 'nav.home', 'الرئيسية', onHome) +
     '<div class="dd"><button class="dd-btn' + (inSvc ? ' active' : '') + '" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav.services">خدماتنا</span>' + CHEV + '</button><div class="dd-menu">' + svcLinks() + '</div></div>' +
-    a(SECT, 'nav.sectors', 'القطاعات', page === 'sectors') + a('about.html', 'nav.about', 'من نحن', page === 'about') + a('contact.html', 'nav.contact', 'تواصل معنا', page === 'contact');
+    a(SECT, 'nav.sectors', 'عملاؤنا', page === 'sectors') + a('about.html', 'nav.about', 'من نحن', page === 'about') + a('contact.html', 'nav.contact', 'تواصل معنا', page === 'contact');
   var mob = a('index.html', 'nav.home', 'الرئيسية', onHome) +
     '<div class="m-group"><span class="m-label" data-i18n="nav.services">خدماتنا</span>' + svcLinks() + '</div>' +
-    a(SECT, 'nav.sectors', 'القطاعات', page === 'sectors') + a('about.html', 'nav.about', 'من نحن', page === 'about') + a('contact.html', 'nav.contact', 'تواصل معنا', page === 'contact');
+    a(SECT, 'nav.sectors', 'عملاؤنا', page === 'sectors') + a('about.html', 'nav.about', 'من نحن', page === 'about') + a('contact.html', 'nav.contact', 'تواصل معنا', page === 'contact');
   var BRAND = '<a href="index.html" class="brand" aria-label="سهم المرافق — الرئيسية"><span class="logo" aria-hidden="true"></span></a>';
 
   var header = document.createElement('header');
@@ -164,14 +165,14 @@
   /* ---------- English copy ---------- */
   var EN = {
     'brand.full':'Sahm Almarafiq Operations & Maintenance',
-    'nav.home':'Home','nav.services':'Our services','nav.sectors':'Sectors','nav.about':'About','nav.contact':'Contact',
+    'nav.home':'Home','nav.services':'Our services','nav.sectors':'Our clients','nav.about':'About','nav.contact':'Contact',
     'cta.quote':'Request a quote','cta.explore':'Explore our services','cta.more':'Learn more',
     'h.t':'Integrated solutions for managing and operating facilities',
     'h.l':'Facility management, operations & maintenance, and real estate services for owners and organisations in the public and private sectors.',
     'fm.t':'Facility management','fm.d':'Integrated management of facilities and properties that raises the quality of facilities and services, controls costs, and makes the most of available investment opportunities.',
     'om.t':'Operations & maintenance','om.d':'Operations and maintenance work for facilities and properties, tailored to each site’s needs and the scope of work required.',
     're.t':'Real estate services','re.d':'Real estate services covering property management, marketing, leasing, sales and lease contracts.',
-    'sec.t':'Sectors we serve','sx.lbl':'Available services','sx.cta':'Do you need our services for your facility?','sx1.d':'Residential buildings, compounds and villas.','sx2.d':'Commercial buildings, offices and administrative headquarters.','sx3.d':'Hospitals, clinics and medical centres.','sx4.d':'Multi-owner buildings and compounds and their shared areas.','sec.1':'Residential','sec.2':'Commercial & administrative','sec.3':'Healthcare','sec.4':'Owners’ associations',
+    'sec.t':'Our clients','sx.lbl':'Available services','sx.cta':'Do you need our services for your facility?','sx1.d':'Residential buildings, compounds and villas.','sx2.d':'Commercial buildings, offices and administrative headquarters.','sx3.d':'Hospitals, clinics and medical centres.','sx4.d':'Multi-owner buildings and compounds and their shared areas.','sec.1':'Residential','sec.2':'Commercial & administrative','sec.3':'Healthcare','sec.4':'Owners’ associations',
     'how.t':'How we work',
     'how.1t':'Understanding the need','how.1d':'We define the facility’s or property’s needs and the scope of service required.',
     'how.2t':'Inspection & assessment','how.2d':'We inspect the site and assess its condition and actual requirements.',
@@ -251,6 +252,8 @@
     var need = new URLSearchParams(location.search).get('need');
     var F = { main: null, sub: null, sent: null, busy: false, err: '', bad: '', v: { city: '', district: '', name: '', phone: '' } };
     var box = document.getElementById('finderBox');
+    /* on a service page the form is fixed to that service: no step 1 */
+    var LOCK = box.getAttribute('data-main');
     var L = function (en, ar, e) { return en ? e : ar; };
     var render = function (en, focus) {
       var i = en ? 1 : 0, h = '';
@@ -261,20 +264,20 @@
           '<p style="margin-top:14px"><button type="button" class="f-back" data-reset style="margin:0">' + L(en, 'إرسال طلب آخر', 'Send another request') + '</button></p></div>';
         app.innerHTML = h; if (focus) app.querySelector('.f-ok').focus(); return;
       }
-      h += '<div class="fstep"><div class="opts" role="group">' + ORDER.map(function (k) {
+      if (!LOCK) h += '<div class="fstep"><div class="opts" role="group">' + ORDER.map(function (k) {
         var m = MAIN[k];
         return '<button type="button" class="opt ' + k + '" data-main="' + k + '" aria-pressed="' + (F.main === k) + '"><span class="ic">' + icon(m.ic) + '</span>' + m.t[i] + '</button>';
       }).join('') + '</div></div>';
       if (F.main) {
         var m = MAIN[F.main];
-        h += '<div class="fstep fx-in"><div class="lbl"><span class="num">2</span>' + m.q[i] + '</div><div class="chips" role="group">' +
+        h += '<div class="fstep fx-in"><div class="lbl"><span class="num">' + (LOCK ? 1 : 2) + '</span>' + m.q[i] + '</div><div class="chips" role="group">' +
           m.subs.map(function (s) { return '<button type="button" class="chip" data-sub="' + s[0] + '" aria-pressed="' + (F.sub === s[0]) + '">' + s[i + 1] + '</button>'; }).join('') + '</div></div>';
       }
       if (F.main && F.sub) {
         var fld = function (id, lab, type, auto, ph) {
           return '<div class="field"><label for="ff-' + id + '">' + lab + '</label><input id="ff-' + id + '" name="' + id + '" type="' + type + '"' + (auto ? ' autocomplete="' + auto + '"' : '') + (type === 'tel' ? ' inputmode="tel" dir="ltr"' : '') + (ph ? ' placeholder="' + ph + '"' : '') + ' value="' + esc(F.v[id]) + '"' + (F.bad === id ? ' aria-invalid="true"' : '') + '></div>';
         };
-        h += '<form class="fstep fx-in" novalidate><div class="lbl"><span class="num">3</span>' + L(en, 'بيانات التواصل', 'Your details') + '</div><div class="fields">' +
+        h += '<form class="fstep fx-in" novalidate><div class="lbl"><span class="num">' + (LOCK ? 2 : 3) + '</span>' + L(en, 'بيانات التواصل', 'Your details') + '</div><div class="fields">' +
           fld('city', L(en, 'المدينة', 'City'), 'text', 'address-level2', L(en, 'مثال: الدمام', 'e.g. Dammam')) +
           fld('district', L(en, 'الحي', 'District'), 'text', 'address-level3', '') +
           fld('name', L(en, 'الاسم', 'Name'), 'text', 'name', '') +
@@ -295,7 +298,7 @@
       var en = document.documentElement.lang === 'en', b = e.target.closest('button'); if (!b) return;
       if (b.hasAttribute('data-main')) { var k = b.getAttribute('data-main'); if (F.main !== k) pick(k); render(en, '[data-main="' + k + '"]'); nudge('.chips'); }
       else if (b.hasAttribute('data-sub')) { F.sub = b.getAttribute('data-sub'); F.err = ''; render(en, '[data-sub="' + F.sub + '"]'); nudge('form'); }
-      else if (b.hasAttribute('data-reset')) { F.sent = null; F.main = null; F.sub = null; render(en, '[data-main]'); }
+      else if (b.hasAttribute('data-reset')) { F.sent = null; F.main = LOCK || null; F.sub = null; render(en, LOCK ? '[data-sub]' : '[data-main]'); }
     });
     app.addEventListener('input', function (e) {
       if (e.target.name in F.v) F.v[e.target.name] = e.target.value;
@@ -308,14 +311,15 @@
       F.err = { city: L(en, 'فضلًا اكتب المدينة.', 'Please enter your city.'), name: L(en, 'فضلًا اكتب اسمك.', 'Please enter your name.'), phone: L(en, 'فضلًا أدخل رقم جوال صحيح.', 'Please enter a valid mobile number.') }[F.bad] || '';
       if (F.bad) { render(en, '#ff-' + F.bad); return; }
       var m = MAIN[F.main], s = m.subs.filter(function (x) { return x[0] === F.sub; })[0];
-      var src = (need === F.main && { fm: 'صفحة إدارة المرافق', om: 'صفحة التشغيل والصيانة', re: 'صفحة الخدمات العقارية' }[need]) || 'الرئيسية';
+      var PG = { fm: 'صفحة إدارة المرافق', om: 'صفحة التشغيل والصيانة', re: 'صفحة الخدمات العقارية' };
+      var src = (LOCK && PG[LOCK]) || (need === F.main && PG[need]) || 'الرئيسية';
       var ref = makeRef(); F.busy = true; render(en);
       sendLead({ ref: ref, name: v.name.trim(), phone: v.phone.trim(), city: v.city.trim() + (v.district.trim() ? ' — ' + v.district.trim() : ''), type: m.t[0],
-        service: (F.main === 'fm' ? 'مرفق ' : '') + s[1] + ' — ما الذي تحتاجه؟ (' + src + ')' })
+        service: (F.main === 'fm' ? 'مرفق ' : '') + s[1] + ' — ' + (LOCK ? 'طلب عرض' : 'ما الذي تحتاجه؟') + ' (' + src + ')' })
         .then(function () { F.busy = false; F.sent = ref; render(en, '.f-ok'); })
         .catch(function () { F.busy = false; F.err = L(en, 'تعذّر الإرسال. حاول مرة أخرى أو تواصل معنا عبر واتساب.', 'Sending failed. Please try again or contact us on WhatsApp.'); render(en); });
     });
-    if (need) pick(need);
+    if (LOCK) pick(LOCK); else if (need) pick(need);
     document.addEventListener('click', function (e) { var l = e.target.closest && e.target.closest('a[data-need]'); if (l) { pick(l.getAttribute('data-need')); render(document.documentElement.lang === 'en'); } });
     HOOKS.push(function (en) { render(en); });
   }
