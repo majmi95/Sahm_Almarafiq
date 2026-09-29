@@ -41,7 +41,7 @@
   var page = document.body.getAttribute('data-page');
   var onHome = page === 'home';
   var onSvc = ['fm', 'om', 're'].indexOf(page) > -1;
-  var QUOTE = onHome || onSvc ? '#finder' : 'index.html#finder';
+  var QUOTE = onSvc ? '#finder' : 'quote.html';
   var SVC = [['fm', 'facility-management.html', 'fm.t', 'إدارة المرافق'], ['om', 'operations.html', 'om.t', 'التشغيل والصيانة'], ['re', 'real-estate.html', 're.t', 'الخدمات العقارية']];
   var inSvc = SVC.some(function (s) { return s[0] === page; });
   function svcLinks() { return SVC.map(function (s) { return '<a href="' + s[1] + '"' + (s[0] === page ? ' class="active"' : '') + '><span class="dot ' + s[0] + '"></span><span data-i18n="' + s[2] + '">' + s[3] + '</span></a>'; }).join(''); }
@@ -248,7 +248,7 @@
         subs: [['pm', 'إدارة أملاك', 'Property management'], ['mkt', 'تسويق وتأجير وبيع', 'Marketing, leasing & sales'], ['ejar', 'إبرام عقد إيجار', 'Lease contract (Ejar)']] }
     };
     var ORDER = ['fm', 'om', 're'];
-    /* pre-select a main service: index.html?need=fm#finder (service pages), or in-page links with data-need */
+    /* pre-select a main service: quote.html?need=fm, or in-page links with data-need */
     var need = new URLSearchParams(location.search).get('need');
     var F = { main: null, sub: null, sent: null, busy: false, err: '', bad: '', v: { city: '', district: '', name: '', phone: '' } };
     var box = document.getElementById('finderBox');
@@ -312,7 +312,7 @@
       if (F.bad) { render(en, '#ff-' + F.bad); return; }
       var m = MAIN[F.main], s = m.subs.filter(function (x) { return x[0] === F.sub; })[0];
       var PG = { fm: 'صفحة إدارة المرافق', om: 'صفحة التشغيل والصيانة', re: 'صفحة الخدمات العقارية' };
-      var src = (LOCK && PG[LOCK]) || (need === F.main && PG[need]) || 'الرئيسية';
+      var src = (LOCK && PG[LOCK]) || (need === F.main && PG[need]) || 'صفحة اطلب عرضًا';
       var ref = makeRef(); F.busy = true; render(en);
       sendLead({ ref: ref, name: v.name.trim(), phone: v.phone.trim(), city: v.city.trim() + (v.district.trim() ? ' — ' + v.district.trim() : ''), type: m.t[0],
         service: (F.main === 'fm' ? 'مرفق ' : '') + s[1] + ' — ' + (LOCK ? 'طلب عرض' : 'ما الذي تحتاجه؟') + ' (' + src + ')' })
