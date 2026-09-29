@@ -190,9 +190,9 @@ html[dir="ltr"] .hero::after{background:linear-gradient(to right,rgba(11,45,77,.
 .fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .field{display:grid;gap:6px}
 .field label{font-size:.85rem;font-weight:500;color:var(--ink)}
-.field input{height:50px;border-radius:12px;border:1.5px solid var(--line-2);background:var(--bg);padding:0 14px;font-size:1rem;outline:none;transition:border-color .2s,box-shadow .2s;width:100%}
-.field input:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(11,45,77,.12);background:var(--surface)}
-.field input[aria-invalid="true"]{border-color:#B42318}
+.field input,.field select{height:50px;border-radius:12px;border:1.5px solid var(--line-2);background:var(--bg);padding:0 14px;font-size:1rem;outline:none;transition:border-color .2s,box-shadow .2s;width:100%}
+.field input:focus,.field select:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(11,45,77,.12);background-color:var(--surface)}
+.field input[aria-invalid="true"],.field select[aria-invalid="true"]{border-color:#B42318}
 .f-submit{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px}
 .f-submit .btn{min-width:200px}
 .consent{font-size:.8rem;color:var(--muted)}
@@ -471,3 +471,8 @@ html.a11y-dark .svc-tab[aria-expanded="true"]{color:#fff}
 /* «استكشف خدماتنا»: land with the heading right under the header and the cards in view */
 #services{scroll-margin-top:-44px}
 @media(min-width:961px) and (max-height:900px){.svc-card .img{aspect-ratio:16/8.5}.svc-card .body{padding:18px 22px 20px}}
+
+/* city dropdown */
+.field select{appearance:none;-webkit-appearance:none;color:var(--ink);font:inherit;font-size:1rem;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7785' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:18px;background-position:left 14px center;padding-left:40px}
+[dir=ltr] .field select{background-position:right 14px center;padding-left:14px;padding-right:40px}
+.field.full{grid-column:1/-1}
