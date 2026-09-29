@@ -505,3 +505,4 @@ html.a11y-dark .svc-tab[aria-expanded="true"]{color:#fff}
 .f-home .btn{min-width:220px}
 @media(max-width:760px){.q-page{padding-top:24px}.f-home .btn{width:100%}}
 html.a11y-dark .f-prog span.on{background:var(--ivory)}
+@media(max-width:340px){.nav-actions{gap:6px}.nav-actions .btn{padding:0 9px;font-size:.84rem}.brand .logo{height:28px}}

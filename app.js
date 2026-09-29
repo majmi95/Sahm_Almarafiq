@@ -59,7 +59,7 @@
   var header = document.createElement('header');
   header.className = 'site-header';
   header.innerHTML = '<div class="wrap nav">' + BRAND + '<nav class="nav-links" aria-label="Main">' + desk + '</nav>' +
-    '<div class="nav-actions"><a href="' + QUOTE + '" class="btn btn-primary btn-sm" data-i18n="cta.quote" data-quote>اطلب عرضًا</a><button class="lang-btn" id="langBtn">EN</button>' +
+    '<div class="nav-actions"><a href="' + QUOTE + '" class="btn btn-primary btn-sm" data-i18n="cta.quote" data-quote>سجّل اهتمامك</a><button class="lang-btn" id="langBtn">EN</button>' +
     '<button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><svg class="i-menu" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="i-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>' +
     '<nav class="mobile-nav" aria-label="Mobile">' + mob + '</nav>';
   document.body.insertBefore(header, document.body.firstChild);
@@ -76,7 +76,7 @@
   footer.className = 'site-footer';
   footer.innerHTML = '<div class="wrap"><div class="foot">' +
     '<div><a href="index.html" class="brand" aria-label="سهم المرافق"><span class="logo" aria-hidden="true"></span></a><p data-i18n="foot.about">حلول متكاملة لإدارة وتشغيل المرافق.</p></div>' +
-    '<div><h4 data-i18n="foot.links">الموقع</h4><ul><li>' + a('index.html', 'nav.home', 'الرئيسية') + '</li><li>' + a('about.html', 'nav.about', 'من نحن') + '</li><li>' + a('contact.html', 'nav.contact', 'تواصل معنا') + '</li><li><a href="' + QUOTE + '" data-i18n="cta.quote" data-quote>اطلب عرضًا</a></li></ul></div>' +
+    '<div><h4 data-i18n="foot.links">الموقع</h4><ul><li>' + a('index.html', 'nav.home', 'الرئيسية') + '</li><li>' + a('about.html', 'nav.about', 'من نحن') + '</li><li>' + a('contact.html', 'nav.contact', 'تواصل معنا') + '</li><li><a href="' + QUOTE + '" data-i18n="cta.quote" data-quote>سجّل اهتمامك</a></li></ul></div>' +
     '<div><h4 data-i18n="nav.services">خدماتنا</h4><ul>' + SVC.map(function (s) { return '<li><a href="' + s[1] + '" data-i18n="' + s[2] + '">' + s[3] + '</a></li>'; }).join('') + '</ul></div>' +
     '<div class="foot-reach"><h4 data-i18n="foot.reach">التواصل</h4><ul><li><a href="tel:' + PHONE + '" class="ltr">' + PHONE + '</a></li><li><a href="tel:' + MOBILE + '" class="ltr">' + MOBILE + '</a></li><li><a href="mailto:' + EMAIL + '" class="ltr">' + EMAIL + '</a></li><li><a href="' + MAP_URL + '" target="_blank" rel="noopener" data-i18n="ch.loc2">حي الشعلة، الدمام 34261</a></li><li><a href="#" data-wa data-i18n="ch.wa">واتساب</a></li></ul><div class="foot-icons">' +
       '<a href="#" data-wa aria-label="WhatsApp"><svg viewBox="0 0 32 32">' + WAP + '</svg></a>' +
@@ -190,7 +190,7 @@
   var EN = {
     'brand.full':'Sahm Almarafiq Operations & Maintenance',
     'nav.home':'Home','nav.services':'Our services','nav.sectors':'Our clients','nav.about':'About','nav.contact':'Contact',
-    'cta.quote':'Request a quote','cta.explore':'Explore our services','cta.more':'Learn more',
+    'cta.quote':'Register interest','cta.explore':'Explore our services','cta.more':'Learn more',
     'h.t':'Integrated solutions for managing and operating facilities',
     'h.l':'Facility management, operations & maintenance, and real estate services for owners and organisations in the public and private sectors.',
     'fm.t':'Facility management','fm.d':'Integrated management of facilities and properties that raises the quality of facilities and services, controls costs, and makes the most of available investment opportunities.',
@@ -365,10 +365,10 @@
       if (F.bad) { render(en, '#ff-' + F.bad); settle(app.querySelector('#ff-' + F.bad).parentNode); return; }
       var m = MAIN[F.main], s = m.subs.filter(function (x) { return x[0] === F.sub; })[0];
       var PG = { fm: 'صفحة إدارة المرافق', om: 'صفحة التشغيل والصيانة', re: 'صفحة الخدمات العقارية' };
-      var src = (LOCK && PG[LOCK]) || (need === F.main && PG[need]) || 'صفحة اطلب عرضًا';
+      var src = (LOCK && PG[LOCK]) || (need === F.main && PG[need]) || 'صفحة سجّل اهتمامك';
       var ref = makeRef(); F.busy = true; render(en);
       sendLead({ ref: ref, name: v.name.trim(), phone: v.phone.trim(), city: (v.city === 'other' ? 'أخرى: ' + v.cityOther.trim() : CITIES.filter(function (c) { return c[0] === v.city; })[0][1]) + (v.district.trim() ? ' — ' + v.district.trim() : ''), type: m.t[0],
-        service: (F.main === 'fm' ? 'مرفق ' : '') + s[1] + ' — ' + (LOCK ? 'طلب عرض' : 'ما الذي تحتاجه؟') + ' (' + src + ')' })
+        service: (F.main === 'fm' ? 'مرفق ' : '') + s[1] + ' — ' + 'تسجيل اهتمام' + ' (' + src + ')' })
         .then(function () { F.busy = false; F.sent = ref; render(en, '.f-ok'); settle(box, true); })
         .catch(function () { F.busy = false; F.err = L(en, 'تعذّر الإرسال. حاول مرة أخرى أو تواصل معنا عبر واتساب.', 'Sending failed. Please try again or contact us on WhatsApp.'); render(en); });
     });
