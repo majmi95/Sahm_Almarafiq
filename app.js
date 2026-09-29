@@ -9,6 +9,7 @@
   /* ---------- Icons (24px line set) ---------- */
   var ICO = {
     gear: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',
+    chat: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/>',
     doc: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6M9 9h2"/>',
     calc: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 18h.01M12 18h4"/>',
     chart: '<path d="M4 20h16"/><rect x="6" y="11" width="3" height="7" rx=".5"/><rect x="11" y="7" width="3" height="11" rx=".5"/><rect x="16" y="4" width="3" height="14" rx=".5"/>',
@@ -76,7 +77,7 @@
   footer.className = 'site-footer';
   footer.innerHTML = '<div class="wrap"><div class="foot">' +
     '<div><a href="index.html" class="brand" aria-label="سهم المرافق"><span class="logo" aria-hidden="true"></span></a><p data-i18n="foot.about">حلول متكاملة لإدارة وتشغيل المرافق.</p></div>' +
-    '<div><h4 data-i18n="foot.links">الموقع</h4><ul><li>' + a('index.html', 'nav.home', 'الرئيسية') + '</li><li>' + a('about.html', 'nav.about', 'من نحن') + '</li><li>' + a('contact.html', 'nav.contact', 'تواصل معنا') + '</li><li><a href="' + QUOTE + '" data-i18n="cta.quote" data-quote>سجّل اهتمامك</a></li></ul></div>' +
+    '<div><h4 data-i18n="foot.links">الموقع</h4><ul><li>' + a('index.html', 'nav.home', 'الرئيسية') + '</li><li>' + a('about.html', 'nav.about', 'من نحن') + '</li><li>' + a('contact.html', 'nav.contact', 'تواصل معنا') + '</li><li><a href="' + QUOTE + '" data-i18n="cta.quote" data-quote>سجّل اهتمامك</a></li><li>' + a('feedback.html', 'fb.t', 'ملاحظات ومقترحات') + '</li></ul></div>' +
     '<div><h4 data-i18n="nav.services">خدماتنا</h4><ul>' + SVC.map(function (s) { return '<li><a href="' + s[1] + '" data-i18n="' + s[2] + '">' + s[3] + '</a></li>'; }).join('') + '</ul></div>' +
     '<div class="foot-reach"><h4 data-i18n="foot.reach">التواصل</h4><ul><li><a href="tel:' + PHONE + '" class="ltr">' + PHONE + '</a></li><li><a href="tel:' + MOBILE + '" class="ltr">' + MOBILE + '</a></li><li><a href="mailto:' + EMAIL + '" class="ltr">' + EMAIL + '</a></li><li><a href="' + MAP_URL + '" target="_blank" rel="noopener" data-i18n="ch.loc2">حي الشعلة، الدمام 34261</a></li><li><a href="#" data-wa data-i18n="ch.wa">واتساب</a></li></ul><div class="foot-icons">' +
       '<a href="#" data-wa aria-label="WhatsApp"><svg viewBox="0 0 32 32">' + WAP + '</svg></a>' +
@@ -214,7 +215,7 @@
     'area.t':'Current service area','area.d':'<span class="area-reg">Eastern Province</span><span class="area-cities"><span>Dammam</span><span>Khobar</span><span>Dhahran</span></span>',
     'map.show':'Show map','map.note':'The map loads from Google Maps','map.dir':'Directions',
     'foot.about':'Integrated solutions for managing and operating facilities.','foot.links':'Website','foot.reach':'Contact','foot.rights':'Sahm Almarafiq. All rights reserved.','foot.privacy':'Privacy Policy',
-    'q.sub':'Choose the service and enter your details, and the Sahm Almarafiq team will contact you.','q.alt':'Prefer to contact us directly?','nf.t':'Page not found','nf.d':'The page you are looking for is unavailable or has moved.','nf.b':'Back to home','pv.e':'Privacy','pv.t':'Privacy Policy','pv.l2':'Your privacy matters to us. Here is how we look after your information.','pv.d':'Last updated: 28 September 2026',
+    'fb.t':'Feedback & suggestions','fb.l':'Share a note, a suggestion or a complaint, and we will look into it and get back to you.','ch.fb2':'Send a note, suggestion or complaint','q.sub':'Choose the service and enter your details, and the Sahm Almarafiq team will contact you.','q.alt':'Prefer to contact us directly?','nf.t':'Page not found','nf.d':'The page you are looking for is unavailable or has moved.','nf.b':'Back to home','pv.e':'Privacy','pv.t':'Privacy Policy','pv.l2':'Your privacy matters to us. Here is how we look after your information.','pv.d':'Last updated: 28 September 2026',
     'a11y.skip':'Skip to content','a11y.t':'Accessibility','a11y.close':'Close','a11y.fs':'Text size','a11y.fsd':'Smaller text','a11y.fsu':'Larger text','a11y.dark':'Dark mode','a11y.contrast':'High contrast','a11y.motion':'Stop motion','a11y.links':'Highlight links','a11y.reset':'Reset'
   };
 
@@ -249,10 +250,10 @@
     action: 'https://docs.google.com/forms/d/e/1FAIpQLSelebci6NyLK1aqt2hoZHARp2XyeTo6Q-Y6yF1sjhHowdHgvw/formResponse',
     name: 'entry.2070584688', phone: 'entry.1332491611', city: 'entry.850383722', type: 'entry.1865738174', service: 'entry.1878773108'
   };
-  function makeRef() {
+  function makeRef(pre) {
     var d = new Date(), p = function (n) { return (n < 10 ? '0' : '') + n; }, r;
     try { r = crypto.getRandomValues(new Uint32Array(1))[0] % 9000 + 1000; } catch (e) { r = Math.floor(Math.random() * 9000) + 1000; }
-    return 'SA-' + String(d.getFullYear()).slice(2) + p(d.getMonth() + 1) + p(d.getDate()) + '-' + r;
+    return (pre || 'SA') + '-' + String(d.getFullYear()).slice(2) + p(d.getMonth() + 1) + p(d.getDate()) + '-' + r;
   }
   /* the reference number is saved with the service so it shows in the sheet and in the Telegram alert */
   function sendLead(o) {
@@ -375,6 +376,73 @@
     if (LOCK) pick(LOCK); else if (need) pick(need);
     document.addEventListener('click', function (e) { var l = e.target.closest && e.target.closest('a[data-need]'); if (l) { pick(l.getAttribute('data-need')); render(document.documentElement.lang === 'en'); } });
     HOOKS.push(function (en) { render(en); });
+  }
+
+  /* ---------- Feedback: note / suggestion / complaint ---------- */
+  var fbApp = document.getElementById('fbApp');
+  if (fbApp) {
+    L = function (en, ar, e) { return en ? e : ar; };
+    var FBT = [['note', 'ملاحظة', 'Note'], ['idea', 'مقترح', 'Suggestion'], ['complaint', 'شكوى', 'Complaint']];
+    var B = { type: '', ref: '', msg: '', name: '', phone: '', bad: '', err: '', busy: false, sent: null };
+    var fbBox = document.getElementById('fbBox');
+    var fbTop = function () {
+      var r = fbBox.getBoundingClientRect(), hb = header.getBoundingClientRect().bottom + 16;
+      window.scrollTo({ top: Math.max(0, window.scrollY + r.top - hb), behavior: H_SMOOTH() });
+    };
+    var fbRender = function (en, focus) {
+      var h;
+      fbBox.classList.toggle('is-sent', !!B.sent);
+      if (B.sent) {
+        h = '<div class="f-ok fx-in" tabindex="-1"><span class="ic">' + icon('check') + '</span><h3>' + L(en, 'شكرًا لك، وصلتنا رسالتك وسنطّلع عليها.', 'Thank you, we have received your message and will look into it.') + '</h3>' +
+          '<div class="ref"><span>' + L(en, 'رقم المرجع', 'Reference') + '</span><b class="ltr">' + B.sent + '</b><button type="button" data-copy="' + B.sent + '">' + L(en, 'نسخ', 'Copy') + '</button></div>' +
+          '<p class="f-home"><a href="index.html" class="btn btn-primary">' + L(en, 'العودة إلى الرئيسية', 'Back to home') + '</a></p></div>';
+        fbApp.innerHTML = h; if (focus) fbApp.querySelector('.f-ok').focus({ preventScroll: true }); return;
+      }
+      var inv = function (id) { return B.bad === id ? ' aria-invalid="true"' : ''; };
+      var fld = function (id, lab, type, auto, extra) {
+        return '<div class="field' + (extra || '') + '"><label for="fb-' + id + '">' + lab + '</label><input id="fb-' + id + '" name="' + id + '" type="' + type + '"' + (auto ? ' autocomplete="' + auto + '"' : '') + (type === 'tel' ? ' inputmode="tel" dir="ltr" placeholder="05xxxxxxxx"' : '') + ' value="' + esc(B[id]) + '"' + inv(id) + '></div>';
+      };
+      h = '<form novalidate><div class="fstep" style="margin-top:0"><div class="lbl"><span class="num">1</span>' + L(en, 'نوع الرسالة', 'Message type') + '</div><div class="chips" role="group"' + (B.bad === 'type' ? ' aria-invalid="true"' : '') + '>' +
+        FBT.map(function (t) { return '<button type="button" class="chip" data-fbt="' + t[0] + '" aria-pressed="' + (B.type === t[0]) + '">' + t[en ? 2 : 1] + '</button>'; }).join('') + '</div></div>' +
+        '<div class="fstep"><div class="lbl"><span class="num">2</span>' + L(en, 'رسالتك', 'Your message') + '</div><div class="fields">' +
+        '<div class="field full"><label for="fb-msg">' + L(en, 'اكتب ملاحظتك أو مقترحك', 'Write your note or suggestion') + '</label><textarea id="fb-msg" name="msg" rows="5"' + inv('msg') + '>' + esc(B.msg) + '</textarea></div>' +
+        fld('ref', L(en, 'رقم الطلب (اختياري)', 'Request number (optional)'), 'text', 'off', ' full').replace('type="text"', 'type="text" dir="ltr" placeholder="SA-260930-1234"') +
+        '</div></div>' +
+        '<div class="fstep"><div class="lbl"><span class="num">3</span>' + L(en, 'بيانات التواصل', 'Your details') + '</div><div class="fields">' +
+        fld('name', L(en, 'الاسم', 'Name'), 'text', 'name') + fld('phone', L(en, 'رقم الجوال', 'Mobile number'), 'tel', 'tel') +
+        '</div></div><p class="f-err" role="alert">' + esc(B.err) + '</p><div class="f-submit"><button type="submit" class="btn btn-primary"' + (B.busy ? ' disabled' : '') + '>' + (B.busy ? L(en, 'جارٍ الإرسال…', 'Sending…') : L(en, 'إرسال', 'Send')) + '</button>' +
+        '<p class="consent">' + L(en, 'بإرسالك، توافق على <a href="privacy.html">سياسة الخصوصية</a>.', 'By sending you agree to our <a href="privacy.html">Privacy Policy</a>.') + '</p></div></form>';
+      fbApp.innerHTML = h;
+      if (focus) { var f = fbApp.querySelector(focus); if (f) f.focus({ preventScroll: true }); }
+    };
+    fbApp.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-fbt]'); if (!b) return;
+      B.type = b.getAttribute('data-fbt'); if (B.bad === 'type') { B.bad = ''; B.err = ''; }
+      fbRender(document.documentElement.lang === 'en', '[data-fbt="' + B.type + '"]');
+    });
+    fbApp.addEventListener('input', function (e) {
+      if (e.target.name in B) B[e.target.name] = e.target.value;
+      if (B.err) { B.err = ''; B.bad = ''; var er = fbApp.querySelector('.f-err'); if (er) er.textContent = ''; e.target.removeAttribute('aria-invalid'); }
+    });
+    fbApp.addEventListener('submit', function (e) {
+      e.preventDefault(); if (B.busy) return;
+      var en = document.documentElement.lang === 'en';
+      B.bad = !B.type ? 'type' : !B.msg.trim() ? 'msg' : !B.name.trim() ? 'name' : !validPhone(B.phone) ? 'phone' : '';
+      B.err = { type: L(en, 'فضلًا اختر نوع الرسالة.', 'Please choose the message type.'), msg: L(en, 'فضلًا اكتب رسالتك.', 'Please write your message.'), name: L(en, 'فضلًا اكتب اسمك.', 'Please enter your name.'), phone: L(en, 'فضلًا أدخل رقم جوال صحيح.', 'Please enter a valid mobile number.') }[B.bad] || '';
+      if (B.bad) {
+        var sel = B.bad === 'type' ? '[data-fbt]' : '#fb-' + B.bad; fbRender(en, sel);
+        var el = fbApp.querySelector(sel), r = el.getBoundingClientRect(), hb = header.getBoundingClientRect().bottom + 16;
+        if (r.top < hb || r.bottom > window.innerHeight - 20) window.scrollTo({ top: window.scrollY + r.top - (window.innerHeight - r.height) / 2, behavior: H_SMOOTH() });
+        return;
+      }
+      var t = FBT.filter(function (x) { return x[0] === B.type; })[0], ref = makeRef('FB');
+      B.busy = true; fbRender(en);
+      sendLead({ ref: ref, name: B.name.trim(), phone: B.phone.trim(), city: '—', type: 'ملاحظات: ' + t[1],
+        service: B.msg.trim().replace(/\s+/g, ' ') + (B.ref.trim() ? ' (رقم الطلب: ' + B.ref.trim() + ')' : '') })
+        .then(function () { B.busy = false; B.sent = ref; fbRender(en, '.f-ok'); fbTop(); })
+        .catch(function () { B.busy = false; B.err = L(en, 'تعذّر الإرسال. حاول مرة أخرى أو تواصل معنا عبر واتساب.', 'Sending failed. Please try again or contact us on WhatsApp.'); fbRender(en); });
+    });
+    HOOKS.push(function (en) { fbRender(en); });
   }
 
   var saved = 'ar'; try { saved = localStorage.getItem('sahm-lang') || 'ar'; } catch (e) {}
