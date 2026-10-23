@@ -64,6 +64,8 @@
     '<button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><svg class="i-menu" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="i-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>' +
     '<nav class="mobile-nav" aria-label="Mobile">' + mob + '</nav>';
   document.body.insertBefore(header, document.body.firstChild);
+  /* the page reserved the header's height until now (style.css), so nothing jumps when it appears */
+  document.body.classList.add('hdr-ready');
   var dd = header.querySelector('.dd'), ddBtn = header.querySelector('.dd-btn');
   ddBtn.addEventListener('click', function (e) { e.stopPropagation(); ddBtn.setAttribute('aria-expanded', dd.classList.toggle('open') ? 'true' : 'false'); });
   document.addEventListener('click', function () { dd.classList.remove('open'); ddBtn.setAttribute('aria-expanded', 'false'); });
@@ -315,7 +317,7 @@
         var fld = function (id, lab, type, auto, ph) {
           return '<div class="field"><label for="ff-' + id + '">' + lab + '</label><input id="ff-' + id + '" name="' + id + '" type="' + type + '"' + (auto ? ' autocomplete="' + auto + '"' : '') + (type === 'tel' ? ' inputmode="tel" dir="ltr"' : '') + (ph ? ' placeholder="' + ph + '"' : '') + ' value="' + esc(F.v[id]) + '"' + (F.bad === id ? ' aria-invalid="true"' : '') + '></div>';
         };
-        h += '<form class="fstep fx-in" novalidate><div class="lbl"><span class="num">' + (LOCK ? 2 : 3) + '</span>' + L(en, 'بيانات التواصل', 'Your details') + '</div><div class="fields">' +
+        h += '<form class="fstep fx-in" novalidate>' + '<div class="hp" aria-hidden="true"><label>Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>' + '<div class="lbl"><span class="num">' + (LOCK ? 2 : 3) + '</span>' + L(en, 'بيانات التواصل', 'Your details') + '</div><div class="fields">' +
           '<div class="field"><label for="ff-city">' + L(en, 'المدينة', 'City') + '</label><select id="ff-city" name="city"' + (F.bad === 'city' ? ' aria-invalid="true"' : '') + '><option value="">' + L(en, 'اختر المدينة', 'Select city') + '</option>' +
             CITIES.map(function (c) { return '<option value="' + c[0] + '"' + (F.v.city === c[0] ? ' selected' : '') + '>' + c[en ? 2 : 1] + '</option>'; }).join('') + '</select></div>' +
           fld('district', L(en, 'الحي', 'District'), 'text', 'address-level3', '') +
@@ -361,6 +363,9 @@
     app.addEventListener('submit', function (e) {
       e.preventDefault(); if (F.busy) return;
       var en = document.documentElement.lang === 'en', v = F.v;
+      /* spam trap: people never see this field, so only bots fill it */
+      var trap = e.target.querySelector('[name="website"]');
+      if (trap && trap.value) { F.sent = makeRef(); render(en, '.f-ok'); return; }
       F.bad = !v.city ? 'city' : v.city === 'other' && !v.cityOther.trim() ? 'cityOther' : !v.name.trim() ? 'name' : !validPhone(v.phone) ? 'phone' : '';
       F.err = { city: L(en, 'فضلًا اختر المدينة.', 'Please select your city.'), cityOther: L(en, 'فضلًا اكتب اسم المدينة.', 'Please enter the city name.'), name: L(en, 'فضلًا اكتب اسمك.', 'Please enter your name.'), phone: L(en, 'فضلًا أدخل رقم جوال صحيح.', 'Please enter a valid mobile number.') }[F.bad] || '';
       if (F.bad) { render(en, '#ff-' + F.bad); settle(app.querySelector('#ff-' + F.bad).parentNode); return; }
@@ -402,7 +407,7 @@
       var fld = function (id, lab, type, auto, extra) {
         return '<div class="field' + (extra || '') + '"><label for="fb-' + id + '">' + lab + '</label><input id="fb-' + id + '" name="' + id + '" type="' + type + '"' + (auto ? ' autocomplete="' + auto + '"' : '') + (type === 'tel' ? ' inputmode="tel" dir="ltr" placeholder="05xxxxxxxx"' : '') + ' value="' + esc(B[id]) + '"' + inv(id) + '></div>';
       };
-      h = '<form novalidate><div class="fstep" style="margin-top:0"><div class="lbl"><span class="num">1</span>' + L(en, 'نوع الرسالة', 'Message type') + '</div><div class="chips" role="group"' + (B.bad === 'type' ? ' aria-invalid="true"' : '') + '>' +
+      h = '<form novalidate>' + '<div class="hp" aria-hidden="true"><label>Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>' + '<div class="fstep" style="margin-top:0"><div class="lbl"><span class="num">1</span>' + L(en, 'نوع الرسالة', 'Message type') + '</div><div class="chips" role="group"' + (B.bad === 'type' ? ' aria-invalid="true"' : '') + '>' +
         FBT.map(function (t) { return '<button type="button" class="chip" data-fbt="' + t[0] + '" aria-pressed="' + (B.type === t[0]) + '">' + t[en ? 2 : 1] + '</button>'; }).join('') + '</div></div>' +
         '<div class="fstep"><div class="lbl"><span class="num">2</span>' + L(en, 'رسالتك', 'Your message') + '</div><div class="fields">' +
         '<div class="field full"><label for="fb-msg">' + L(en, 'اكتب ملاحظتك أو مقترحك', 'Write your note or suggestion') + '</label><textarea id="fb-msg" name="msg" rows="5"' + inv('msg') + '>' + esc(B.msg) + '</textarea></div>' +
@@ -427,6 +432,8 @@
     fbApp.addEventListener('submit', function (e) {
       e.preventDefault(); if (B.busy) return;
       var en = document.documentElement.lang === 'en';
+      var trap = e.target.querySelector('[name="website"]');
+      if (trap && trap.value) { B.sent = makeRef('FB'); fbRender(en, '.f-ok'); return; }
       B.bad = !B.type ? 'type' : !B.msg.trim() ? 'msg' : !B.name.trim() ? 'name' : !validPhone(B.phone) ? 'phone' : '';
       B.err = { type: L(en, 'فضلًا اختر نوع الرسالة.', 'Please choose the message type.'), msg: L(en, 'فضلًا اكتب رسالتك.', 'Please write your message.'), name: L(en, 'فضلًا اكتب اسمك.', 'Please enter your name.'), phone: L(en, 'فضلًا أدخل رقم جوال صحيح.', 'Please enter a valid mobile number.') }[B.bad] || '';
       if (B.bad) {

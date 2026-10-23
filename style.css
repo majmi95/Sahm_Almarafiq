@@ -60,7 +60,6 @@ html[dir="ltr"] .link:hover svg{transform:translateX(3px)}
 
 /* ---------- Logo (mask so it takes the surrounding colour) ---------- */
 .logo{display:block;background:currentColor;-webkit-mask:url(images/brand/logo-h.svg) no-repeat center/contain;mask:url(images/brand/logo-h.svg) no-repeat center/contain;aspect-ratio:2154/752}
-.logo-v{-webkit-mask-image:url(images/brand/logo-v.svg);mask-image:url(images/brand/logo-v.svg);aspect-ratio:1017/917}
 .mark{-webkit-mask-image:url(images/brand/mark-3.svg);mask-image:url(images/brand/mark-3.svg);aspect-ratio:781/748}
 
 /* ---------- Header ---------- */
@@ -517,3 +516,9 @@ html.a11y-dark .f-prog span.on{background:var(--ivory)}
 .field textarea{border-radius:12px;border:1.5px solid var(--line-2);background:var(--bg);padding:12px 14px;font:inherit;font-size:1rem;outline:none;resize:vertical;min-height:120px;width:100%;color:var(--ink);transition:border-color .2s,box-shadow .2s}
 .field textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(11,45,77,.12);background-color:var(--surface)}
 .field textarea[aria-invalid="true"],.chips[aria-invalid="true"] .chip{border-color:#B42318}
+/* responsive images: <picture> adds no box of its own */
+picture{display:contents}
+/* hold the header's place until app.js adds it, so the page does not jump on load */
+body:not(.hdr-ready){padding-top:calc(var(--hdr) + 1px)}
+/* spam trap field, hidden from people */
+.hp{position:absolute!important;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
