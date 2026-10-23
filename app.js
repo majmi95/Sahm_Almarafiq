@@ -10,6 +10,7 @@
   var ICO = {
     gear: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',
     chat: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/>',
+    lift: '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M12 3v18"/><path d="M6.5 10.5 8 8.5l1.5 2M14.5 13.5l1.5 2 1.5-2"/>',
     doc: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6M9 9h2"/>',
     calc: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 18h.01M12 18h4"/>',
     chart: '<path d="M4 20h16"/><rect x="6" y="11" width="3" height="7" rx=".5"/><rect x="11" y="7" width="3" height="11" rx=".5"/><rect x="16" y="4" width="3" height="14" rx=".5"/>',
@@ -41,9 +42,9 @@
   /* ---------- Header ---------- */
   var page = document.body.getAttribute('data-page');
   var onHome = page === 'home';
-  var onSvc = ['fm', 'om', 're'].indexOf(page) > -1;
+  var onSvc = ['fm', 'om', 're', 'oa'].indexOf(page) > -1;
   var QUOTE = onSvc ? '#finder' : 'quote.html';
-  var SVC = [['fm', 'facility-management.html', 'fm.t', 'إدارة المرافق'], ['om', 'operations.html', 'om.t', 'التشغيل والصيانة'], ['re', 'real-estate.html', 're.t', 'الخدمات العقارية']];
+  var SVC = [['fm', 'facility-management.html', 'fm.t', 'إدارة المرافق'], ['om', 'operations.html', 'om.t', 'التشغيل والصيانة'], ['re', 'real-estate.html', 're.t', 'الخدمات العقارية'], ['oa', 'owners-association.html', 'oa.t', 'إدارة اتحاد الملاك']];
   var inSvc = SVC.some(function (s) { return s[0] === page; });
   function svcLinks() { return SVC.map(function (s) { return '<a href="' + s[1] + '"' + (s[0] === page ? ' class="active"' : '') + '><span class="dot ' + s[0] + '"></span><span data-i18n="' + s[2] + '">' + s[3] + '</span></a>'; }).join(''); }
   function a(href, key, ar, act) { return '<a href="' + href + '" data-i18n="' + key + '"' + (act ? ' class="active"' : '') + '>' + ar + '</a>'; }
@@ -218,7 +219,8 @@
     'map.show':'Show map','map.note':'The map loads from Google Maps','map.dir':'Directions',
     'foot.about':'Integrated solutions for managing and operating facilities.','foot.links':'Website','foot.reach':'Contact','foot.rights':'Sahm Almarafiq. All rights reserved.','foot.privacy':'Privacy Policy',
     'fb.t':'Feedback & suggestions','fb.l':'Share a note, a suggestion or a complaint, and we will look into it and get back to you.','ch.fb2':'Send a note, suggestion or complaint','q.sub':'Choose the service and enter your details, and the Sahm Almarafiq team will contact you.','q.alt':'Or contact us directly','nf.t':'Page not found','nf.d':'The page you are looking for is unavailable or has moved.','nf.b':'Back to home','pv.e':'Privacy','pv.t':'Privacy Policy','pv.l2':'Your privacy matters to us. Here is how we look after your information.','pv.d':'Last updated: 28 September 2026',
-    'a11y.skip':'Skip to content','a11y.t':'Accessibility','a11y.close':'Close','a11y.fs':'Text size','a11y.fsd':'Smaller text','a11y.fsu':'Larger text','a11y.dark':'Dark mode','a11y.contrast':'High contrast','a11y.motion':'Stop motion','a11y.links':'Highlight links','a11y.reset':'Reset'
+    'a11y.skip':'Skip to content','a11y.t':'Accessibility','a11y.close':'Close','a11y.fs':'Text size','a11y.fsd':'Smaller text','a11y.fsu':'Larger text','a11y.dark':'Dark mode','a11y.contrast':'High contrast','a11y.motion':'Stop motion','a11y.links':'Highlight links','a11y.reset':'Reset',
+    'oa.g1':'Association management','oa.g1a':'Activating and following up the Mullak platform','oa.g1b':'Managing shared affairs','oa.g1c':'Organising decisions and voting','oa.g1d':'Applying the rules and owners’ obligations','oa.g2':'Operations & maintenance','oa.g2a':'Plumbing and electrical works','oa.g2b':'Air conditioner maintenance and cleaning','oa.g2c':'Fault repair','oa.g3':'Cleaning & facility care','oa.g3a':'Regular cleaning of the building and facilities','oa.g3b':'Care of common areas','oa.g3c':'Fragrancing shared facilities','oa.g4':'Elevators & safety systems','oa.g4a':'Elevator maintenance contracts','oa.g4b':'Following up safety systems','oa.g4c':'Monthly preventive visits','oa.g5':'Real estate marketing','oa.g5a':'Marketing property units','oa.g5b':'Managing lease contracts','oa.g5c':'Selling properties','oa.t':'Owners association management','oa.h':'Your partner in owners association management','oa.l':'For a more comfortable and sustainable residential environment. We manage your owners association and all of the complex’s needs under one roof — from the Mullak platform and shared decisions to operations, maintenance, cleaning and elevators.','cta.wa':'Chat on WhatsApp','oa.e':'Integrated services','oa.st':'Integrated services for owners associations','oa.cta':'Your complex is our responsibility','oa.ctad':'All your owners association needs under one roof.','oa.bl':'For a more comfortable and sustainable residential environment, with all your owners association needs under one roof.','om.6t':'Elevators & safety systems'
   };
 
   var HOOKS = [];
@@ -278,11 +280,13 @@
       fm: { ic: 'gear', t: ['إدارة المرافق', 'Facility management'], q: ['نوع المرفق', 'Facility type'],
         subs: [['res', 'سكني', 'Residential', 'home'], ['com', 'تجاري', 'Commercial', 'office']] },
       om: { ic: 'bolt', t: ['التشغيل والصيانة', 'Operations & maintenance'], q: ['الخدمة المطلوبة', 'Service needed'],
-        subs: [['elec', 'كهرباء', 'Electrical'], ['plumb', 'سباكة', 'Plumbing'], ['ac', 'تكييف', 'Air conditioning'], ['clean', 'نظافة', 'Cleaning'], ['reno', 'ترميم وتشطيبات', 'Renovation & finishing']] },
+        subs: [['elec', 'كهرباء', 'Electrical'], ['plumb', 'سباكة', 'Plumbing'], ['ac', 'تكييف', 'Air conditioning'], ['clean', 'نظافة', 'Cleaning'], ['reno', 'ترميم وتشطيبات', 'Renovation & finishing'], ['elev', 'مصاعد وأنظمة سلامة', 'Elevators & safety systems']] },
       re: { ic: 'home', t: ['الخدمات العقارية', 'Real estate services'], q: ['الخدمة المطلوبة', 'Service needed'],
-        subs: [['pm', 'إدارة أملاك', 'Property management'], ['mkt', 'تسويق وتأجير وبيع', 'Marketing, leasing & sales'], ['ejar', 'إبرام عقد إيجار', 'Lease contract (Ejar)']] }
+        subs: [['pm', 'إدارة أملاك', 'Property management'], ['mkt', 'تسويق وتأجير وبيع', 'Marketing, leasing & sales'], ['ejar', 'إبرام عقد إيجار', 'Lease contract (Ejar)']] },
+      oa: { ic: 'people', t: ['إدارة اتحاد الملاك', 'Owners association'], q: ['الخدمة المطلوبة', 'Service needed'],
+        subs: [['assoc', 'إدارة اتحاد الملاك', 'Association management'], ['om', 'التشغيل والصيانة', 'Operations & maintenance'], ['clean', 'النظافة والعناية بالمرافق', 'Cleaning & facility care'], ['elev', 'المصاعد وأنظمة السلامة', 'Elevators & safety systems'], ['mkt', 'التسويق العقاري', 'Real estate marketing']] }
     };
-    var ORDER = ['fm', 'om', 're'];
+    var ORDER = ['fm', 'om', 're', 'oa'];
     /* pre-select a main service: quote.html?need=fm, or in-page links with data-need */
     var need = new URLSearchParams(location.search).get('need');
     var F = { main: null, sub: null, sent: null, busy: false, err: '', bad: '', v: { city: '', cityOther: '', district: '', name: '', phone: '' } };
@@ -293,7 +297,7 @@
     var L = function (en, ar, e) { return en ? e : ar; };
     var render = function (en, focus) {
       var i = en ? 1 : 0, h = '';
-      box.classList.remove('fm', 'om', 're'); if (F.main) box.classList.add(F.main);
+      box.classList.remove('fm', 'om', 're', 'oa'); if (F.main) box.classList.add(F.main);
       box.classList.toggle('is-sent', !!F.sent);
       if (F.sent) {
         h = '<div class="f-ok fx-in" tabindex="-1"><span class="ic">' + icon('check') + '</span><h3>' + L(en, 'تم استلام طلبك، وسيتواصل معك فريق سهم المرافق.', 'Your request has been received, and the Sahm Almarafiq team will contact you.') + '</h3>' +
@@ -370,7 +374,7 @@
       F.err = { city: L(en, 'فضلًا اختر المدينة.', 'Please select your city.'), cityOther: L(en, 'فضلًا اكتب اسم المدينة.', 'Please enter the city name.'), name: L(en, 'فضلًا اكتب اسمك.', 'Please enter your name.'), phone: L(en, 'فضلًا أدخل رقم جوال صحيح.', 'Please enter a valid mobile number.') }[F.bad] || '';
       if (F.bad) { render(en, '#ff-' + F.bad); settle(app.querySelector('#ff-' + F.bad).parentNode); return; }
       var m = MAIN[F.main], s = m.subs.filter(function (x) { return x[0] === F.sub; })[0];
-      var PG = { fm: 'صفحة إدارة المرافق', om: 'صفحة التشغيل والصيانة', re: 'صفحة الخدمات العقارية' };
+      var PG = { fm: 'صفحة إدارة المرافق', om: 'صفحة التشغيل والصيانة', re: 'صفحة الخدمات العقارية', oa: 'صفحة إدارة اتحاد الملاك' };
       var src = (LOCK && PG[LOCK]) || (need === F.main && PG[need]) || 'صفحة سجّل اهتمامك';
       var ref = makeRef(); F.busy = true; render(en);
       sendLead({ ref: ref, name: v.name.trim(), phone: v.phone.trim(), city: (v.city === 'other' ? 'أخرى: ' + v.cityOther.trim() : CITIES.filter(function (c) { return c[0] === v.city; })[0][1]) + (v.district.trim() ? ' — ' + v.district.trim() : ''), type: m.t[0],
